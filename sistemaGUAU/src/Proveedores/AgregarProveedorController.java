@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Inventario;
+package Proveedores;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,25 +11,37 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
- * @author José Sánchez
+ * @author GuillePC
  */
-public class FormInventarioController implements Initializable {
+public class AgregarProveedorController implements Initializable {
 
     @FXML
-    private AnchorPane APaneInventario;
+    private Button btnGuardar;
     @FXML
-    private Button btnBuscar;
+    private Button btnLimpiar;
     @FXML
-    private Button btnAgregarProducto;
-    @FXML
-    private Button btnModificar;
+    private Button btnCancelar;
     @FXML
     private Button btnRegresar;
+    @FXML
+    private TextField txtNombre;
+    @FXML
+    private ComboBox<?> cmbProveedor;
+    @FXML
+    private AnchorPane AgregarProveedor;
+    @FXML
+    private TextField txtTelefono;
+    @FXML
+    private TextField txtDireccion;
+    @FXML
+    private TextField txtEmpresa;
 
     /**
      * Initializes the controller class.
@@ -40,15 +52,20 @@ public class FormInventarioController implements Initializable {
     }    
 
     @FXML
-    private void btnAgregarProductoHandel(ActionEvent event) {
+    private void btnGuardarHandle(ActionEvent event) {
     }
 
     @FXML
-    private void btnModificarHandle(ActionEvent event) {
+    private void btnLimpiarHandle(ActionEvent event) {
+    }
+
+    @FXML
+    private void btnCancelarHandle(ActionEvent event) {
     }
 
     @FXML
     private void btnRegresarHandle(ActionEvent event) {
     }
+
     
 }

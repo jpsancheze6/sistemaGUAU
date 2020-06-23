@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
  *
  * @author José Sánchez
  */
-public class FormClientesController implements Initializable {
+public class AgregarClienteController implements Initializable {
 
     /**
      * Initializes the controller class.

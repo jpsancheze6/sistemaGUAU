@@ -1,4 +1,4 @@
-package com.guau.sistemaguau;
+package sistemaguau;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -7,7 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class FXMLController implements Initializable {
+/**
+ *
+ * @author José Sánchez
+ */
+public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
@@ -22,4 +26,5 @@ public class FXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
 }

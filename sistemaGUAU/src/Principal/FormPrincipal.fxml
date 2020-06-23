@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Principal.FormPrincipalController">
+    <stylesheets>
+        <URL value="@/CSS/Styles.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="214.0" layoutY="28.0" text="MEVECOM">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnCliente" layoutX="93.0" layoutY="128.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="130.0" text="Cliente" />
+      <Button fx:id="btnProveedores" layoutX="93.0" layoutY="208.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="130.0" text="Proveedores" />
+      <Button fx:id="btnCompras" layoutX="234.0" layoutY="128.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="130.0" text="Compras" />
+      <Button fx:id="btnUsuarios" layoutX="234.0" layoutY="208.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="130.0" text="Usuarios" />
+      <Button fx:id="btnVentas" layoutX="377.0" layoutY="208.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="130.0" text="Ventas" />
+      <Button fx:id="btnInventario" layoutX="377.0" layoutY="128.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="130.0" text="Inventario" />
+      <Button layoutX="534.0" layoutY="361.0" mnemonicParsing="false" text="Salida" />
+   </children>
+</AnchorPane>

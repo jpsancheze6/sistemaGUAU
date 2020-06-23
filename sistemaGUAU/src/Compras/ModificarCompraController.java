@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
  *
  * @author José Sánchez
  */
-public class FormComprasController implements Initializable {
+public class ModificarCompraController implements Initializable {
 
     /**
      * Initializes the controller class.

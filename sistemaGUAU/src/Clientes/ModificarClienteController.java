@@ -1,31 +1,31 @@
-package Login;
+package Clientes;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 /**
  * FXML Controller class
  *
  * @author José Sánchez
  */
-public class FormLoginController implements Initializable {
+public class ModificarClienteController implements Initializable {
 
     @FXML
-    PasswordField txtPassword;
-    
+    Button btnGuardar;
+
     @FXML
-    public void aceptar(ActionEvent e) throws IOException {
+    public void regresar(ActionEvent event) throws IOException {
         //Llamar a una nueva ventana
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Principal/FormPrincipal.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AgregarCliente.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
@@ -33,7 +33,7 @@ public class FormLoginController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) txtPassword.getScene().getWindow();
+        Stage actual = (Stage) btnGuardar.getScene().getWindow();
         actual.close();
     }
 

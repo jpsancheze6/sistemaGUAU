@@ -8,15 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="APaneModificarProveedor" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Proveedores.ModificarProveedorController">
+<AnchorPane id="AnchorPane" fx:id="APaneModificarProveedor" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Proveedores.ModificarProveedorController">
     <stylesheets>
         <URL value="@/CSS/Styles.css" />
     </stylesheets>
    <children>
-      <Button fx:id="btnGuardar" layoutX="461.0" layoutY="126.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
-      <Button fx:id="btnLimpiar" layoutX="461.0" layoutY="159.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
-      <Button fx:id="btnCancelar" layoutX="461.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
-      <Button fx:id="btnRegresar" layoutX="529.0" layoutY="356.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
+      <Button fx:id="btnGuardar" layoutX="419.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+      <Button fx:id="btnLimpiar" layoutX="419.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+      <Button fx:id="btnCancelar" layoutX="419.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
       <TextField fx:id="txtNombre" layoutX="179.0" layoutY="84.0" promptText="Nombre" />
       <TextField fx:id="txtTelefono" layoutX="179.0" layoutY="126.0" promptText="Telefono" />
       <TextField fx:id="txtDireccion" layoutX="179.0" layoutY="166.0" promptText="Direccion" />

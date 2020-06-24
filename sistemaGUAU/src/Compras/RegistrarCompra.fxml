@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Compras.RegistrarCompraController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.RegistrarCompraController">
     <stylesheets>
         <URL value="@/CSS/Styles.css" />
     </stylesheets>
@@ -20,7 +20,7 @@
       </Label>
       <Button fx:id="btnGuardar" layoutX="372.0" layoutY="284.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Guardar" />
       <Button fx:id="btnVaciarCampos" layoutX="372.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
-      <Button fx:id="btnCancelar" layoutX="372.0" layoutY="347.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
+      <Button fx:id="btnCancelar" layoutX="372.0" layoutY="347.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
       <ListView fx:id="lstProductos" layoutX="70.0" layoutY="75.0" prefHeight="228.0" prefWidth="273.0" />
       <ComboBox fx:id="cbxProductos" layoutX="92.0" layoutY="315.0" prefWidth="150.0" promptText="Productos" />
       <TextField fx:id="txtCantidad" layoutX="255.0" layoutY="315.0" prefHeight="25.0" prefWidth="66.0" promptText="Cantidad" />

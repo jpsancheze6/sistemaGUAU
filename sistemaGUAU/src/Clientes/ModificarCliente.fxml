@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Clientes.ModificarClienteController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.ModificarClienteController">
     <stylesheets>
         <URL value="@/CSS/Styles.css" />
     </stylesheets>
@@ -25,6 +25,6 @@
       <CheckBox fx:id="cbMayorista" layoutX="372.0" layoutY="130.0" mnemonicParsing="false" text="Mayorista" />
       <Button fx:id="btnActualizar" layoutX="348.0" layoutY="185.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Actualizar" />
       <Button fx:id="btnVaciarCampos" layoutX="348.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
-      <Button fx:id="btnCancelar" layoutX="348.0" layoutY="248.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
+      <Button fx:id="btnCancelar" layoutX="348.0" layoutY="248.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
    </children>
 </AnchorPane>

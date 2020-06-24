@@ -26,8 +26,9 @@
             <TableColumn prefWidth="123.0" text="Dirección" />
         </columns>
       </TableView>
-      <Button fx:id="btnCrearCliente" layoutX="127.0" layoutY="323.0" mnemonicParsing="false" text="Crear Cliente" />
+      <Button fx:id="btnCrearCliente" layoutX="127.0" layoutY="323.0" mnemonicParsing="false" onAction="#crearCliente" text="Crear Cliente" />
       <Button fx:id="btnEditarCliente" layoutX="260.0" layoutY="323.0" mnemonicParsing="false" text="Editar Cliente" />
       <Button fx:id="btnDeshabilitarCliente" layoutX="394.0" layoutY="323.0" mnemonicParsing="false" text="Deshabilitar" />
+      <Button fx:id="btnRegresar" layoutX="523.0" layoutY="361.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>

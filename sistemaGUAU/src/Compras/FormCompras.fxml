@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Compras.FormComprasController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.FormComprasController">
     <stylesheets>
         <URL value="@/CSS/Styles.css" />
     </stylesheets>
@@ -26,7 +26,8 @@
             <TableColumn prefWidth="123.0" text="Fecha" />
         </columns>
       </TableView>
-      <Button fx:id="btnRegistrarCompra" layoutX="195.0" layoutY="326.0" mnemonicParsing="false" text="Registrar compra" />
-      <Button fx:id="btnEditarCompra" layoutX="315.0" layoutY="326.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Editar Compra" />
+      <Button fx:id="btnRegistrarCompra" layoutX="195.0" layoutY="326.0" mnemonicParsing="false" onAction="#registrarCompra" text="Registrar compra" />
+      <Button fx:id="btnEditarCompra" layoutX="315.0" layoutY="326.0" mnemonicParsing="false" onAction="#editarCompra" prefHeight="25.0" prefWidth="107.0" text="Editar Compra" />
+      <Button fx:id="btnSalir" layoutX="523.0" layoutY="361.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
    </children>
 </AnchorPane>

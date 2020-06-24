@@ -17,6 +17,7 @@
       <Button fx:id="btnGuardar" layoutX="417.0" layoutY="81.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
       <Button fx:id="btnLimpiar" layoutX="417.0" layoutY="114.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
       <Button fx:id="btnCancelar" layoutX="417.0" layoutY="153.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
+      <Button fx:id="btnRegresar" layoutX="529.0" layoutY="366.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
       <TextField fx:id="txtNombre" layoutX="165.0" layoutY="68.0" promptText="Nombre" />
       <TextField fx:id="txtNit" layoutX="165.0" layoutY="110.0" promptText="Existencias" />
       <TextField fx:id="txtPrecio" layoutX="165.0" layoutY="150.0" promptText="Precio" />

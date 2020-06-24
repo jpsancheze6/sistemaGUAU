@@ -16,9 +16,9 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author GuillePC
+ * @author José Sánchez
  */
-public class InventarioController implements Initializable {
+public class FormInventarioController implements Initializable {
 
     @FXML
     private AnchorPane APaneInventario;

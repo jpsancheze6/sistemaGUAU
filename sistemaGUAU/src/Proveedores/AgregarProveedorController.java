@@ -29,6 +29,8 @@ public class AgregarProveedorController implements Initializable {
     @FXML
     private Button btnCancelar;
     @FXML
+    private Button btnRegresar;
+    @FXML
     private TextField txtNombre;
     @FXML
     private ComboBox<?> cmbProveedor;
@@ -61,6 +63,9 @@ public class AgregarProveedorController implements Initializable {
     private void btnCancelarHandle(ActionEvent event) {
     }
 
+    @FXML
+    private void btnRegresarHandle(ActionEvent event) {
+    }
 
     
 }

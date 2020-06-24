@@ -17,14 +17,10 @@ public class SistemaGUAU extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/Login/FormLogin.fxml"));
         
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }
-
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         launch(args);
     }

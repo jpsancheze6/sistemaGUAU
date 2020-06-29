@@ -1,5 +1,6 @@
 package Principal;
 
+import Proveedores.ProveedoresController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +22,18 @@ public class FormPrincipalController implements Initializable {
 
     @FXML
     Button btnSalir;
+    @FXML
+    private Button btnCliente;
+    @FXML
+    private Button btnProveedores;
+    @FXML
+    private Button btnCompras;
+    @FXML
+    private Button btnUsuarios;
+    @FXML
+    private Button btnVentas;
+    @FXML
+    private Button btnInventario;
 
     @FXML
     public void cliente(ActionEvent e) throws IOException {
@@ -55,7 +68,7 @@ public class FormPrincipalController implements Initializable {
     @FXML
     public void inventario(ActionEvent e) throws IOException {
         //Llamar a una nueva ventana
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventario/FormInventario.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventario/Inventario.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
@@ -69,8 +82,8 @@ public class FormPrincipalController implements Initializable {
     
     @FXML
     public void proveedores(ActionEvent e) throws IOException {
-        //Llamar a una nueva ventana
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/FormProveedores.fxml"));
+       //Llamar a una nueva ventana
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/Proveedores.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));

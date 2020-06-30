@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>com.mevecom.sistemaguau.MainApp</mainClass>
+        <mainClass>sistemaguau.SistemaGUAU</mainClass>
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
     </properties>
@@ -34,7 +34,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
                 <configuration>
-                    <mainClass>com.mevecom.sistemaguau.MainApp</mainClass>
+                    <mainClass>sistemaguau.SistemaGUAU</mainClass>
                 </configuration>
             </plugin>
             

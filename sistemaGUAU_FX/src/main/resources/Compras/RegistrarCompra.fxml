@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.RegistrarCompraController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css"/>
+    </stylesheets>
+    <children>
+        <Label layoutX="168.0" layoutY="14.0" text="Agregar Compra">
+        </Label>
+        <Button fx:id="btnGuardar" layoutX="372.0" layoutY="284.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Guardar" />
+        <Button fx:id="btnVaciarCampos" layoutX="372.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
+        <Button fx:id="btnCancelar" layoutX="372.0" layoutY="347.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
+        <ListView fx:id="lstProductos" layoutX="70.0" layoutY="75.0" prefHeight="228.0" prefWidth="273.0" />
+        <ComboBox fx:id="cbxProductos" layoutX="92.0" layoutY="315.0" prefWidth="150.0" promptText="Productos" />
+        <TextField fx:id="txtCantidad" layoutX="255.0" layoutY="315.0" prefHeight="25.0" prefWidth="66.0" promptText="Cantidad" />
+        <Button fx:id="btnAgregarProducto" layoutX="92.0" layoutY="346.0" mnemonicParsing="false" text="Agregar Producto" />
+        <DatePicker fx:id="dateFechaCompra" layoutX="357.0" layoutY="75.0" promptText="Fecha Compra" />
+        <Button fx:id="btnQuitarProducto" layoutX="220.0" layoutY="346.0" mnemonicParsing="false" text="Quitar Producto" />
+        <ComboBox fx:id="cbxProveedor" layoutX="357.0" layoutY="117.0" prefHeight="25.0" prefWidth="174.0" promptText="Proveedor" />
+        <TextField fx:id="txtDescuento" layoutX="359.0" layoutY="164.0" prefHeight="25.0" prefWidth="174.0" promptText="Descuento" />
+        <Label fx:id="lblTotal" layoutX="381.0" layoutY="213.0" text="Total Q.0.00">
+        </Label>
+    </children>
+</AnchorPane>

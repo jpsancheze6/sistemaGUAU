@@ -38,11 +38,26 @@ public class FormUsuariosController implements Initializable {
     @FXML
     private void registrarUsuario(ActionEvent event) {
         btnEditar.setVisible(false);
+        panelCrear.setVisible(true);
+        txtNombre.setText("");
+        txtUsuario.setText("");
+        txtContrasena.setText("");
+        txtConfirmar.setText("");
+        cbAdmin.setSelected(false);
+        cbRegular.setSelected(false);
     }
     
     @FXML
     private void editarUsuario(ActionEvent event) {
         btnRegistrar.setVisible(false);
+        btnEditar.setVisible(true);
+        panelCrear.setVisible(true);
+        txtNombre.setText("");
+        txtUsuario.setText("");
+        txtContrasena.setText("");
+        txtConfirmar.setText("");
+        cbAdmin.setSelected(false);
+        cbRegular.setSelected(false);
     }
     
 }

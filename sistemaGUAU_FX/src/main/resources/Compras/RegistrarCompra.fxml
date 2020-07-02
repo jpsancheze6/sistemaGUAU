@@ -9,23 +9,39 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.RegistrarCompraController">
     <stylesheets>
-        <URL value="@/styles/Styles.css"/>
+        <URL value="@/styles/Styles.css" />
     </stylesheets>
     <children>
-        <Label layoutX="168.0" layoutY="14.0" text="Agregar Compra">
+        <Label layoutX="283.0" layoutY="14.0" text="Registrar Ventas">
         </Label>
-        <Button fx:id="btnGuardar" layoutX="372.0" layoutY="284.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Guardar" />
-        <Button fx:id="btnVaciarCampos" layoutX="372.0" layoutY="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
-        <Button fx:id="btnCancelar" layoutX="372.0" layoutY="347.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
-        <ListView fx:id="lstProductos" layoutX="70.0" layoutY="75.0" prefHeight="228.0" prefWidth="273.0" />
-        <ComboBox fx:id="cbxProductos" layoutX="92.0" layoutY="315.0" prefWidth="150.0" promptText="Productos" />
-        <TextField fx:id="txtCantidad" layoutX="255.0" layoutY="315.0" prefHeight="25.0" prefWidth="66.0" promptText="Cantidad" />
-        <Button fx:id="btnAgregarProducto" layoutX="92.0" layoutY="346.0" mnemonicParsing="false" text="Agregar Producto" />
-        <DatePicker fx:id="dateFechaCompra" layoutX="357.0" layoutY="75.0" promptText="Fecha Compra" />
-        <Button fx:id="btnQuitarProducto" layoutX="220.0" layoutY="346.0" mnemonicParsing="false" text="Quitar Producto" />
-        <ComboBox fx:id="cbxProveedor" layoutX="357.0" layoutY="117.0" prefHeight="25.0" prefWidth="174.0" promptText="Proveedor" />
-        <TextField fx:id="txtDescuento" layoutX="359.0" layoutY="164.0" prefHeight="25.0" prefWidth="174.0" promptText="Descuento" />
-        <Label fx:id="lblTotal" layoutX="381.0" layoutY="213.0" text="Total Q.0.00">
+        <TextField fx:id="txtProducto" layoutX="21.0" layoutY="86.0" prefHeight="25.0" prefWidth="244.0" promptText="Producto" />
+        <TextField fx:id="txtCantidad" layoutX="434.0" layoutY="86.0" promptText="Cantidad" />
+        <Button fx:id="btnBuscar" layoutX="274.0" layoutY="86.0" mnemonicParsing="false" text="Buscar" />
+        <Button fx:id="btnAgregar" layoutX="596.0" layoutY="86.0" mnemonicParsing="false" text="Agregar" />
+        <TableView fx:id="tblProductos" layoutX="96.0" layoutY="138.0" prefHeight="109.0" prefWidth="548.0">
+            <columns>
+                <TableColumn fx:id="tblProducto" prefWidth="358.0" text="Producto" />
+                <TableColumn minWidth="0.0" prefWidth="98.0" text="Precio" />
+                <TableColumn prefWidth="91.0" text="Existencias" />
+            </columns>
+        </TableView>
+        <Separator layoutX="57.0" layoutY="274.0" prefHeight="8.0" prefWidth="625.0" />
+        <DatePicker fx:id="Fecha" layoutX="23.0" layoutY="306.0" promptText="Fecha" />
+        <ComboBox fx:id="cmbCliente" layoutX="250.0" layoutY="306.0" prefWidth="150.0" promptText="Cliente" />
+        <TableView fx:id="tblVenta" layoutX="18.0" layoutY="370.0" prefHeight="200.0" prefWidth="465.0">
+            <columns>
+                <TableColumn prefWidth="206.0" text="Producto" />
+                <TableColumn prefWidth="84.0" text="Precio" />
+                <TableColumn prefWidth="74.0" text="Cantidad" />
+                <TableColumn prefWidth="100.0" text="Total" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnEliminar" layoutX="213.0" layoutY="580.0" mnemonicParsing="false" text="Eliminar Producto" />
+        <TextField fx:id="txtDescuento" layoutX="541.0" layoutY="358.0" promptText="Descuento" />
+        <Label fx:id="labelTotal" layoutX="567.0" layoutY="415.0" text="Total Q 0.00">
         </Label>
+        <Button fx:id="btnCancelar" layoutX="531.0" layoutY="514.0" mnemonicParsing="false" text="Cancelar" />
+        <Button fx:id="btnGuardar" layoutX="638.0" layoutY="514.0" mnemonicParsing="false" text="Guardar" />
+        <Button fx:id="btnRegresar" layoutX="656.0" layoutY="580.0" onAction="#regresar" mnemonicParsing="false" text="Regresar" />
     </children>
 </AnchorPane>

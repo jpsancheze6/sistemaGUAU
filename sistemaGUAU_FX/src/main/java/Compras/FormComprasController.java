@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 public class FormComprasController implements Initializable {
 
     @FXML
-    Button btnRegistrarCompra;
+    Button btnRegistrar;
 
     @FXML
     public void registrarCompra(ActionEvent event) throws IOException {
@@ -33,7 +33,7 @@ public class FormComprasController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegistrarCompra.getScene().getWindow();
+        Stage actual = (Stage) btnRegistrar.getScene().getWindow();
         actual.close();
     }
 
@@ -48,7 +48,7 @@ public class FormComprasController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegistrarCompra.getScene().getWindow();
+        Stage actual = (Stage) btnRegistrar.getScene().getWindow();
         actual.close();
     }
 
@@ -63,7 +63,7 @@ public class FormComprasController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegistrarCompra.getScene().getWindow();
+        Stage actual = (Stage) btnRegistrar.getScene().getWindow();
         actual.close();
     }
 

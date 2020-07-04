@@ -6,11 +6,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="AgregarProveedor" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Proveedores.ProveedoresController">
     <stylesheets>
-        <URL value="@/styles/Styles.css"/>
+        <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
       <Label layoutX="201.0" text="Proveedores">
@@ -26,7 +25,7 @@
       </TableView>
       <Button fx:id="btnCrear" layoutX="149.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Crear" />
       <Button fx:id="btnModificar" layoutX="268.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
-      <Button fx:id="btnDeshabilitar" layoutX="388.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnDeshabilitarHandle" text="Deshabilitar" />
+      <Button fx:id="btnEliminar" layoutX="388.0" layoutY="318.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
       <Button fx:id="btnRegresar" layoutX="526.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
    </children>
 </AnchorPane>

@@ -8,6 +8,8 @@ package Proveedores;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,8 +37,7 @@ public class AgregarProveedorController implements Initializable {
     private Button btnCancelar;
     @FXML
     private TextField txtNombre;
-    @FXML
-    private ComboBox<?> cmbProveedor;
+    private ComboBox<?> cmbProducto;
     @FXML
     private AnchorPane AgregarProveedor;
     @FXML
@@ -45,7 +46,11 @@ public class AgregarProveedorController implements Initializable {
     private TextField txtDireccion;
     @FXML
     private TextField txtEmpresa;
-
+    
+     private  final ObservableList<Proveedor> ProveedorList =   FXCollections.observableArrayList();
+     private final ProveedorJPO ProveedorJPO = new ProveedorJPO();
+    @FXML
+   
     /**
      * Initializes the controller class.
      */
@@ -55,11 +60,31 @@ public class AgregarProveedorController implements Initializable {
     }    
 
     @FXML
-    private void btnGuardarHandle(ActionEvent event) {
+    private void btnGuardarHandle(ActionEvent event) throws Exception
+    {
+        if (!txtNombre.getText().isEmpty()) 
+        {
+            Proveedor newProveedor= new Proveedor();
+            newProveedor.setNombre(txtNombre.getText());
+            newProveedor.setTelefono(txtTelefono.getText());
+            newProveedor.setEmpresa(txtEmpresa.getText());
+            newProveedor.setEmpresa(cmbProducto.getSelectionModel().getSelectedItem().toString());
+            
+            
+            ProveedorJPO.AgregarProveedor(newProveedor);
+            
+            ProveedorList.add(newProveedor);
+        }
+        
+     
     }
 
     @FXML
     private void btnLimpiarHandle(ActionEvent event) {
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtEmpresa.setText("");
+        
     }
 
     @FXML

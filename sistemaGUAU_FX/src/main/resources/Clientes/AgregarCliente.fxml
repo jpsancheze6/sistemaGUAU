@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.AgregarClienteController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.AgregarClienteController">
     <stylesheets>
-        <URL value="@/styles/Styles.css"/>
+        <URL value="@/styles/Styles.css" />
     </stylesheets>
     <children>
         <Label layoutX="176.0" layoutY="26.0" text="Agregar Cliente">
-        </Label>
-        <TextField fx:id="txtNIT" layoutX="130.0" layoutY="126.0" promptText="NIT" />
-        <TextField fx:id="txtNombre" layoutX="130.0" layoutY="164.0" promptText="Nombre" />
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+        <TextField fx:id="txtNIT" layoutX="130.0" layoutY="159.0" promptText="NIT" />
+        <TextField fx:id="txtNombre" layoutX="130.0" layoutY="117.0" promptText="Nombre" />
         <TextField fx:id="txtDireccion" layoutX="130.0" layoutY="204.0" promptText="Dirección" />
         <TextField fx:id="txtTelefono" layoutX="130.0" layoutY="250.0" promptText="Telefono" />
         <CheckBox fx:id="cbMayorista" layoutX="372.0" layoutY="130.0" mnemonicParsing="false" text="Mayorista" />
-        <Button fx:id="btnGuardar" layoutX="348.0" layoutY="185.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Guardar" />
-        <Button fx:id="btnVaciarCampos" layoutX="348.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
+        <Button fx:id="btnGuardar" layoutX="348.0" layoutY="185.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="25.0" prefWidth="122.0" text="Guardar" />
+        <Button fx:id="btnVaciarCampos" layoutX="348.0" layoutY="217.0" mnemonicParsing="false" onAction="#btnVaciarCamposHandle" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
         <Button fx:id="btnCancelar" layoutX="348.0" layoutY="248.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
     </children>
 </AnchorPane>

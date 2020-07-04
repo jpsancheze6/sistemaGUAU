@@ -3,6 +3,8 @@ package Clientes;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
@@ -21,7 +24,28 @@ public class FormClientesController implements Initializable {
 
     @FXML
     Button btnCrearCliente;
+    @FXML
+    private TableView<?> tblClientes;
+    @FXML
+    private Button btnEditarCliente;
+    @FXML
+    private Button btnEliminar;
+    @FXML
+    private Button btnRegresar;
+    
+    private  final ObservableList<Cliente> ClienteList =   FXCollections.observableArrayList();
+    private final ClienteJPO ClienteJPO = new ClienteJPO();
+    
 
+
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+      // ClienteList.addAll(ClienteJPO.getClientes());
+    }
+
+    
+    
     @FXML
     public void crearCliente(ActionEvent event) throws IOException {
         //Llamar a una nueva ventana
@@ -67,9 +91,17 @@ public class FormClientesController implements Initializable {
         actual.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    
+    @FXML
+    private void btnEliminarHandle(ActionEvent event) throws Exception 
+    {
+       Cliente selecteditem = (Cliente) tblClientes.getSelectionModel().getSelectedItem();
+       
+        if (selecteditem!=null) 
+        {
+            ClienteJPO.EliminarCliente(selecteditem.getIdCliente());
+            ClienteList.remove(selecteditem);
+        }
     }
 
 }

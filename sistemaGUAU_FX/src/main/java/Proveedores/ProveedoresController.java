@@ -8,6 +8,8 @@ package Proveedores;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,13 +36,11 @@ public class ProveedoresController implements Initializable {
     @FXML
     private Button btnModificar;
     @FXML
-    private Button btnDeshabilitar;
-    @FXML
     private AnchorPane AgregarProveedor;
     @FXML
     private TableView<?> tblProveedores;
     @FXML
-    private Button btPrueba;
+    private Button btnEliminar;
 
     /**
      * Initializes the controller class.
@@ -48,6 +48,8 @@ public class ProveedoresController implements Initializable {
      * @param rb
      */
     
+     private  final ObservableList<Proveedor> ProveedorList =   FXCollections.observableArrayList();
+     private final ProveedorJPO ProveedorJPO = new ProveedorJPO();
     
     
     @Override
@@ -86,11 +88,6 @@ public class ProveedoresController implements Initializable {
         actual.close();
     }
 
-    @FXML
-    private void btnDeshabilitarHandle(ActionEvent event) 
-    {
-
-    }
 
     @FXML
     public void btnRegresarHandle(ActionEvent event) throws IOException 
@@ -108,11 +105,21 @@ public class ProveedoresController implements Initializable {
         actual.close();
     }
 
+    @FXML
+    private void btnEliminarHandle(ActionEvent event) throws Exception 
+    {
+        Proveedor selectedItem =  (Proveedor) tblProveedores.getSelectionModel().getSelectedItem();
+        
+        if (selectedItem != null) 
+        {
+            ProveedorJPO.EliminarProveedor(selectedItem.getIdProveedor());
+            ProveedorList.remove(selectedItem);
+        }
+        }
+    }
+
    
-
-
     
 
 
-    
-}
+

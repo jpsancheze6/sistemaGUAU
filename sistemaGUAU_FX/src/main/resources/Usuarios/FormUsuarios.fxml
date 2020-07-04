@@ -34,8 +34,8 @@
             <TextField fx:id="txtConfirmar" layoutX="82.0" layoutY="173.0" promptText="Confirmar Constraseña" />
             <CheckBox fx:id="cbAdmin" layoutX="324.0" layoutY="66.0" mnemonicParsing="false" text="Administrador" />
             <CheckBox fx:id="cbRegular" layoutX="470.0" layoutY="66.0" mnemonicParsing="false" text="Regular" />
-            <Button fx:id="btnRegistrar" layoutX="394.0" layoutY="113.0" mnemonicParsing="false" onAction="#registrarUsuario" text="Registrar Usuario" />
-            <Button fx:id="btnEditar" layoutX="402.0" layoutY="161.0" mnemonicParsing="false" onAction="#editarUsuario" text="Editar Usuario" />
+            <Button fx:id="btnRegistrar" layoutX="394.0" layoutY="113.0" mnemonicParsing="false" onAction="#crearUsuario" text="Registrar Usuario" />
+            <Button fx:id="btnEditar" layoutX="402.0" layoutY="161.0" mnemonicParsing="false" onAction="#editarUsuarioSelect" text="Editar Usuario" />
          </children>
       </Pane>
       <Separator layoutX="56.0" layoutY="131.0" prefHeight="6.0" prefWidth="474.0" />

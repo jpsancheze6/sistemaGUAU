@@ -1,8 +1,11 @@
 package Usuarios;
 
+import Ventas.Factura;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +33,8 @@ public class FormUsuariosController implements Initializable {
     private TextField txtNombre, txtUsuario, txtContrasena, txtConfirmar;
     @FXML
     private CheckBox cbAdmin, cbRegular;
+    @FXML
+    private ObservableList<Usuario> data = FXCollections.observableArrayList();
 
 
     /**
@@ -78,6 +83,22 @@ public class FormUsuariosController implements Initializable {
         //Cerrar ventana actual
         Stage actual = (Stage) btnEditar.getScene().getWindow();
         actual.close();
+    }
+    
+    //Crea un nuevo usuario
+    public void crearUsuario(ActionEvent event){
+        txtNombre.getText();
+        txtUsuario.getText();
+        txtContrasena.getText();
+        txtConfirmar.getText();
+    }
+    
+    //Editar un usuario
+    public void editarUsuarioSelect(ActionEvent event){
+        txtNombre.getText();
+        txtUsuario.getText();
+        txtContrasena.getText();
+        txtConfirmar.getText();
     }
     
 }

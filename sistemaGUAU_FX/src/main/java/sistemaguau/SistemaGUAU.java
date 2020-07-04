@@ -14,7 +14,7 @@ public class SistemaGUAU extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Login/FormLogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Principal/FormPrincipal.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

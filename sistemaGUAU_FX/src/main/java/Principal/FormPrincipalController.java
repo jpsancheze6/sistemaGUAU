@@ -1,7 +1,9 @@
 package Principal;
 
+import Ventas.FormVentasController;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -110,7 +112,7 @@ public class FormPrincipalController implements Initializable {
     }
 
     @FXML
-    public void ventas(ActionEvent e) throws IOException {
+    public void ventas(ActionEvent e) throws IOException{
         //Llamar a una nueva ventana
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Ventas/FormVentas.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();

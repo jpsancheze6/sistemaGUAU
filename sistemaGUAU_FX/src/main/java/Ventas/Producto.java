@@ -5,6 +5,8 @@
  */
 package Ventas;
 
+import Compras.DetalleCompra;
+import Compras.Proveedor;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -14,6 +16,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,6 +40,12 @@ import javax.persistence.Table;
     @NamedQuery(name = "Producto.findByMarca", query = "SELECT p FROM Producto p WHERE p.marca = :marca"),
     @NamedQuery(name = "Producto.findByPeso", query = "SELECT p FROM Producto p WHERE p.peso = :peso")})
 public class Producto implements Serializable {
+
+    @JoinColumn(name = "Proveedor_id", referencedColumnName = "idProveedor")
+    @ManyToOne(optional = false)
+    private Proveedor proveedorid;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoid")
+    private List<DetalleCompra> detalleCompraList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -179,6 +189,22 @@ public class Producto implements Serializable {
     @Override
     public String toString() {
         return "Ventas.Producto[ idProducto=" + idProducto + " ]";
+    }
+
+    public Proveedor getProveedorid() {
+        return proveedorid;
+    }
+
+    public void setProveedorid(Proveedor proveedorid) {
+        this.proveedorid = proveedorid;
+    }
+
+    public List<DetalleCompra> getDetalleCompraList() {
+        return detalleCompraList;
+    }
+
+    public void setDetalleCompraList(List<DetalleCompra> detalleCompraList) {
+        this.detalleCompraList = detalleCompraList;
     }
     
 }

@@ -8,6 +8,10 @@
     <class>Ventas.Proveedor</class>
     <class>Ventas.DetalleFactura</class>
     <class>Ventas.Producto</class>
+    <class>Compras.Proveedor</class>
+    <class>Compras.DetalleCompra</class>
+    <class>Compras.ReciboCompra</class>
+    <class>Compras.Usuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/mevecon?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

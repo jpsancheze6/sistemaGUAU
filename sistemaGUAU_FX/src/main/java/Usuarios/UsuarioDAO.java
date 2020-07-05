@@ -1,5 +1,6 @@
 package Usuarios;
 
+import Usuarios.exceptions.IllegalOrphanException;
 import Usuarios.exceptions.NonexistentEntityException;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -14,8 +15,8 @@ public class UsuarioDAO {
     private final EntityManagerFactory emf;
 
     public UsuarioDAO() {
-        emf = Persistence.createEntityManagerFactory("com.mevecom_sistemaGUAU_FX_jar_1.0PU");
-        this.controlador_usuario = new UsuarioJpaController(emf);
+        this.emf = Persistence.createEntityManagerFactory("com.mevecom_sistemaGUAU_FX_jar_1.0PU");
+        this.controlador_usuario = new UsuarioJpaController(this.emf);
     }
     
     public void agregarUsuario(Usuario usuario){
@@ -26,7 +27,7 @@ public class UsuarioDAO {
         this.controlador_usuario.edit(usuario);
     }
     
-    public void eliminarUsuario(int usuario) throws NonexistentEntityException{
+    public void eliminarUsuario(int usuario) throws NonexistentEntityException, IllegalOrphanException{
         this.controlador_usuario.destroy(usuario);
     }
     

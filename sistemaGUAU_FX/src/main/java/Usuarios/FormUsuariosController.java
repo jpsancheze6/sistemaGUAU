@@ -2,6 +2,8 @@ package Usuarios;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +33,7 @@ public class FormUsuariosController implements Initializable {
     @FXML
     private CheckBox cbAdmin, cbRegular;
 
+    public final UsuarioDAO usuario_dao = new UsuarioDAO();
 
     /**
      * Initializes the controller class.
@@ -50,6 +53,16 @@ public class FormUsuariosController implements Initializable {
         txtConfirmar.setText("");
         cbAdmin.setSelected(false);
         cbRegular.setSelected(false);
+        List<Usuario> a = usuario_dao.obtenerUsuarios();
+        for (Iterator<Usuario> iterator = a.iterator(); iterator.hasNext();) {
+            Usuario next = iterator.next();
+            System.out.println(next.getNombre());
+        }
+    }
+    
+    @FXML
+    private void guardarUsuario(){
+        System.out.println("SI jejee");
     }
     
     @FXML

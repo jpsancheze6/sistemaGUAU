@@ -20,7 +20,7 @@ public class ClienteJPO {
 
     public ClienteJPO() 
     {
-        emf= Persistence.createEntityManagerFactory("FXProyecto");
+        emf= Persistence.createEntityManagerFactory("com.mevecom_sistemaGUAU_FX_jar_1.0PU");
         
         clientesController = new ClienteJpaController(emf);
     }

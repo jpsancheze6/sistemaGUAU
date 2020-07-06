@@ -19,10 +19,10 @@
         <Button fx:id="btnEditar" layoutX="415.0" layoutY="331.0" mnemonicParsing="false" onAction="#editarCompra" text="Editar Venta" />
         <TableView fx:id="tblVentas" layoutX="46.0" layoutY="73.0" prefHeight="229.0" prefWidth="656.0">
             <columns>
-                <TableColumn fx:id="tblProducto" prefWidth="90.0" text="ID" />
-                <TableColumn minWidth="0.0" prefWidth="298.0" text="Productos" />
-                <TableColumn prefWidth="154.0" text="Fecha" />
-                <TableColumn prefWidth="113.0" text="Total" />
+                <TableColumn fx:id="colId" prefWidth="90.0" text="ID" />
+                <TableColumn fx:id="colProveedor" minWidth="0.0" prefWidth="298.0" text="Proveedor" />
+                <TableColumn fx:id="colFecha" prefWidth="154.0" text="Fecha" />
+                <TableColumn fx:id="colTotal" prefWidth="113.0" text="Total" />
             </columns>
         </TableView>
         <Button fx:id="btnRegresar" layoutX="655.0" layoutY="374.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />

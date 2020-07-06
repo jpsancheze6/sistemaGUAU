@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -12,8 +14,11 @@ import javafx.stage.Stage;
  */
 public class SistemaGUAU extends Application {
     
+    public static EntityManagerFactory emf;
+    
     @Override
     public void start(Stage stage) throws Exception {
+        emf = Persistence.createEntityManagerFactory("com.mevecom_sistemaGUAU_FX_jar_1.0PU");
         Parent root = FXMLLoader.load(getClass().getResource("/Login/FormLogin.fxml"));
 
         Scene scene = new Scene(root);

@@ -16,7 +16,7 @@ public class ClienteDAO {
     private final EntityManagerFactory emf;
 
     public ClienteDAO() {
-        emf = Persistence.createEntityManagerFactory("com.mevecom_sistemaGUAU_FX_jar_1.0PU");
+        emf = Persistence.createEntityManagerFactory("mevecom");
         clientesController = new ClienteJpaController(emf);
     }
 

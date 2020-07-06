@@ -26,6 +26,8 @@ public class AgregarClienteController implements Initializable {
     @FXML
     Button btnGuardar;
 
+    private final ClienteDAO cliente_dao = new ClienteDAO();
+
     @FXML
     public void regresar(ActionEvent event) throws IOException {
         //Llamar a una nueva ventana
@@ -47,11 +49,19 @@ public class AgregarClienteController implements Initializable {
         btnGuardar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                ClienteDAO cliente_dao = new ClienteDAO();
-                Cliente a = new Cliente(3, "Jejeje", "CF", "NaN", "Ciudad", "Bueno", true);
+                Cliente a = new Cliente();
+                a.setDireccion("Ciudad");
+                a.setMayorista(true);
+                a.setNit("CF");
+                a.setNombre("Jejeje");
+                a.setTelefono("NaN");
+                a.setTipocliente("Bueno");
 
                 try {
-                    cliente_dao.AgregarCliente(a);
+                    //cliente_dao.AgregarCliente(a);
+                    Cliente b = cliente_dao.getClienteByID(1);
+                    System.out.println(b.getNombre());
+                    //cliente_dao.EliminarCliente(2);
                 } catch (Exception ex) {
                     Logger.getLogger(AgregarClienteController.class.getName()).log(Level.SEVERE, null, ex);
                 }

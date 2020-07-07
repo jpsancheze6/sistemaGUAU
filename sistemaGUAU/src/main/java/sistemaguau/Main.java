@@ -8,7 +8,6 @@ import JPA.Proveedor;
 import Usuarios.UsuarioDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.SQLException;
 
 /**
  *
@@ -19,7 +18,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args)  {
        
 //        ProveedorDAO proveedor_dao = new ProveedorDAO();
 //        Proveedor a = new Proveedor();

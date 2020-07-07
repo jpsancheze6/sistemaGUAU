@@ -6,7 +6,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-06T10:45:19")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-06T20:45:57")
 @StaticMetamodel(DetalleFactura.class)
 public class DetalleFactura_ { 
 
@@ -14,6 +14,6 @@ public class DetalleFactura_ {
     public static volatile SingularAttribute<DetalleFactura, Float> subtotal;
     public static volatile SingularAttribute<DetalleFactura, Producto> productoid;
     public static volatile SingularAttribute<DetalleFactura, Integer> id;
-    public static volatile SingularAttribute<DetalleFactura, Integer> cantidad;
+    public static volatile SingularAttribute<DetalleFactura, Float> cantidad;
 
 }

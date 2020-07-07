@@ -26,7 +26,6 @@ sistemaguau\SistemaGUAU.class
 Proveedores\ModificarProveedorController.class
 JPA\ReciboCompra.class
 JPA\ReciboCompra_.class
-Clientes\AgregarClienteController$1.class
 Inventario\AgregarProductoController.class
 JPA\Proveedor_.class
 Ventas\RegistrarVentaController.class

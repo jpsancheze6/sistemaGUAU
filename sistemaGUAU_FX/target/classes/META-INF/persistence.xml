@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.mevecom_sistemaGUAU_FX_jar_1.0PU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>JPA.DetalleFactura</class>
+    <class>JPA.Usuario</class>
+    <class>JPA.DetallesActualizacion</class>
+    <class>JPA.Proveedor</class>
+    <class>JPA.ActualizacionInventario</class>
+    <class>JPA.Cliente</class>
+    <class>JPA.Producto</class>
+    <class>JPA.Factura</class>
+    <class>JPA.ReciboCompra</class>
+    <class>JPA.DetalleCompra</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mevecon?serverTimezone=UTC&amp;useLegacyDatetimeCode=false"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="Jose.6799"/>
+    </properties>
+  </persistence-unit>
+</persistence>

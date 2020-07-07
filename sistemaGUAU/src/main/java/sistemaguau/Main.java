@@ -20,37 +20,34 @@ public class Main {
      */
     public static void main(String[] args)  {
        
-//        ProveedorDAO proveedor_dao = new ProveedorDAO();
-//        Proveedor a = new Proveedor();
-//        a.setNombre("Proveedor1");
-//        a.setTelefono("755687");
-//        a.setEmpresa("Purina");
-//
-//        
-//        try {
-//            proveedor_dao.AgregarProveedor(a);
-//        } catch (Exception ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-////-----------------------------------------------------------------
-
-
-        byte[] contra = "Contra".getBytes();
-        UsuarioDAO usuario_dao = new UsuarioDAO();
-        Usuario a = new Usuario();
-        a.setNombre("Usuario1");
-        a.setNombreusuario("US1");
-        a.setContraseña(contra);
-
-
+        ProveedorDAO proveedor_dao = new ProveedorDAO();
+        Proveedor a = new Proveedor();
+        a.setNombre("Proveedor 2");
+        a.setTelefono("98765432");
+        a.setEmpresa("Areca");
+        
         try {
-            usuario_dao.AgregarUsuario(a);
-            System.out.println("funciono");
+            proveedor_dao.AgregarProveedor(a);
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+////-----------------------------------------------------------------
 
 
+//        byte[] contra = "Contra".getBytes();
+//        UsuarioDAO usuario_dao = new UsuarioDAO();
+//        Usuario a = new Usuario();
+//        a.setNombre("Usuario1");
+//        a.setNombreusuario("US1");
+//        a.setContraseña(contra);
+//
+//
+//        try {
+//            usuario_dao.AgregarUsuario(a);
+//            System.out.println("funciono");
+//        } catch (Exception ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
 }

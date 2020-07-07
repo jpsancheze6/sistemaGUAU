@@ -6,9 +6,11 @@ JPA\Cliente.class
 JPA\ReciboCompra.class
 JPA\ReciboCompra_.class
 JPA\ReciboCompraJpaController.class
+Proveedores\ProveedorDAO.class
 JPA\DetalleCompra_.class
 JPA\Proveedor.class
 JPA\ClienteJpaController.class
+Usuarios\UsuarioDAO.class
 JPA\Proveedor_.class
 JPA\FacturaJpaController.class
 JPA\Cliente_.class

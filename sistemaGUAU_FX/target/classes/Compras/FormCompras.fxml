@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Compras.FormComprasController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+    <children>
+        <Label layoutX="334.0" layoutY="14.0" text="Compras">
+        </Label>
+        <Button fx:id="btnRegistrar" layoutX="279.0" layoutY="331.0" mnemonicParsing="false" onAction="#registrarCompra" text="Registrar Venta" />
+        <Button fx:id="btnEditar" layoutX="415.0" layoutY="331.0" mnemonicParsing="false" onAction="#editarCompra" text="Editar Venta" />
+        <TableView fx:id="tblVentas" layoutX="46.0" layoutY="73.0" prefHeight="229.0" prefWidth="656.0">
+            <columns>
+                <TableColumn fx:id="tblProducto" prefWidth="90.0" text="ID" />
+                <TableColumn minWidth="0.0" prefWidth="298.0" text="Productos" />
+                <TableColumn prefWidth="154.0" text="Fecha" />
+                <TableColumn prefWidth="113.0" text="Total" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnRegresar" layoutX="655.0" layoutY="374.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+    </children>
+</AnchorPane>

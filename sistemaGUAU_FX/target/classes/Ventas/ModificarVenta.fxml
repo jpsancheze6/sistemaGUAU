@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="740.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ventas.FormVentasController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+    <children>
+        <Label layoutX="281.0" layoutY="14.0" text="Modificar Ventas">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+        <TextField fx:id="txtProducto" layoutX="21.0" layoutY="86.0" prefHeight="25.0" prefWidth="244.0" promptText="Producto" />
+        <TextField fx:id="txtCantidad" layoutX="434.0" layoutY="86.0" promptText="Cantidad" />
+        <Button fx:id="btnBuscar" layoutX="274.0" layoutY="86.0" mnemonicParsing="false" text="Buscar" />
+        <Button fx:id="btnAgregar" layoutX="596.0" layoutY="86.0" mnemonicParsing="false" text="Agregar" />
+        <TableView fx:id="tblProductos" layoutX="96.0" layoutY="138.0" prefHeight="109.0" prefWidth="548.0">
+            <columns>
+                <TableColumn fx:id="tblProducto" prefWidth="358.0" text="Producto" />
+                <TableColumn minWidth="0.0" prefWidth="98.0" text="Precio" />
+                <TableColumn prefWidth="91.0" text="Existencias" />
+            </columns>
+        </TableView>
+        <Separator layoutX="57.0" layoutY="274.0" prefHeight="8.0" prefWidth="625.0" />
+        <DatePicker fx:id="Fecha" layoutX="23.0" layoutY="306.0" promptText="Fecha" />
+        <ComboBox fx:id="cmbCliente" layoutX="250.0" layoutY="306.0" prefWidth="150.0" promptText="Cliente" />
+        <TableView fx:id="tblVenta" layoutX="18.0" layoutY="370.0" prefHeight="200.0" prefWidth="465.0">
+            <columns>
+                <TableColumn prefWidth="206.0" text="Producto" />
+                <TableColumn prefWidth="84.0" text="Precio" />
+                <TableColumn prefWidth="74.0" text="Cantidad" />
+                <TableColumn prefWidth="100.0" text="Total" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnEliminar" layoutX="213.0" layoutY="580.0" mnemonicParsing="false" text="Eliminar Producto" />
+        <TextField fx:id="txtDescuento" layoutX="541.0" layoutY="358.0" promptText="Descuento" />
+        <Label fx:id="labelTotal" layoutX="567.0" layoutY="415.0" text="Total Q 0.00">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+        <Button fx:id="btnCancelar" layoutX="531.0" layoutY="514.0" mnemonicParsing="false" text="Cancelar" />
+        <Button fx:id="btnGuardar" layoutX="638.0" layoutY="514.0" mnemonicParsing="false" text="Guardar" />
+      <Button fx:id="btnRegresar" layoutX="651.0" layoutY="580.0" mnemonicParsing="false" text="Regresar" />
+    </children>
+</AnchorPane>

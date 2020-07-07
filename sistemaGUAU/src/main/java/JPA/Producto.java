@@ -57,7 +57,7 @@ public class Producto implements Serializable {
     private boolean disponibilidad;
     @Basic(optional = false)
     @Column(name = "Existencias")
-    private String existencias;
+    private float existencias;
     @Basic(optional = false)
     @Column(name = "Precio")
     private float precio;
@@ -90,7 +90,7 @@ public class Producto implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public Producto(Integer idProducto, String nombre, boolean disponibilidad, String existencias, float precio, String tipoanimal, String marca, float peso, String unidadreferencia) {
+    public Producto(Integer idProducto, String nombre, boolean disponibilidad, float existencias, float precio, String tipoanimal, String marca, float peso, String unidadreferencia) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.disponibilidad = disponibilidad;
@@ -126,11 +126,11 @@ public class Producto implements Serializable {
         this.disponibilidad = disponibilidad;
     }
 
-    public String getExistencias() {
+    public float getExistencias() {
         return existencias;
     }
 
-    public void setExistencias(String existencias) {
+    public void setExistencias(float existencias) {
         this.existencias = existencias;
     }
 

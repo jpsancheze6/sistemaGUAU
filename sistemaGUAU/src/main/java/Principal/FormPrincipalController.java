@@ -96,7 +96,7 @@ public class FormPrincipalController implements Initializable {
     @FXML
     public void proveedores(ActionEvent e) throws IOException {
         //Llamar a una nueva ventana
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/Proveedores.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/FormProveedores.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));

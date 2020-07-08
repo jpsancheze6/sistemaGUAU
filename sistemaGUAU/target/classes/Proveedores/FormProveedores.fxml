@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Proveedores.FormProveedoresController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <Label fx:id="labelTitulo" layoutX="205.0" layoutY="6.0" text="Proveedores">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font></Label>
+      <Button fx:id="btnCrear" layoutX="159.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
+      <Button fx:id="btnModificar" layoutX="278.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
+      <Button fx:id="btnEliminar" layoutX="398.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
+      <Button fx:id="btnRegresar" layoutX="523.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
+      <TableView fx:id="tblProveedores" layoutX="14.0" layoutY="60.0" prefHeight="235.0" prefWidth="574.0">
+        <columns>
+          <TableColumn prefWidth="260.0" text="Nombre" />
+          <TableColumn prefWidth="116.0" text="Telefono" />
+            <TableColumn prefWidth="197.60001220703123" text="Empresa" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

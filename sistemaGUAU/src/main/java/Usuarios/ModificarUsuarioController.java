@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Proveedores;
+package Usuarios;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -25,7 +24,7 @@ import javafx.stage.Stage;
  *
  * @author GuillePC
  */
-public class ModificarProveedorController implements Initializable {
+public class ModificarUsuarioController implements Initializable {
 
     @FXML
     private Button btnGuardar;
@@ -36,11 +35,9 @@ public class ModificarProveedorController implements Initializable {
     @FXML
     private TextField txtNombre;
     @FXML
-    private TextField txtTelefono;
+    private TextField txtUsuario;
     @FXML
-    private TextField txtEmpresa;
-    @FXML
-    private ComboBox<?> cmbProducto;
+    private TextField txtContra;
     @FXML
     private Label labelTitulo;
 
@@ -57,13 +54,19 @@ public class ModificarProveedorController implements Initializable {
     }
 
     @FXML
-    private void btnLimpiarHandle(ActionEvent event) {
+    private void btnLimpiarHandle(ActionEvent event) 
+    {
+        txtNombre.setText("");
+        txtUsuario.setText("");
+        txtContra.setText("");
+        
     }
 
     @FXML
-    private void btnCancelarHandle(ActionEvent event) throws IOException {
-         //Llamar a una nueva ventana
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/Proveedores.fxml"));
+    private void btnCancelarHandle(ActionEvent event) throws IOException 
+    {
+        //Llamar a una nueva ventana
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Usuarios/FromUsuario.fxml"));
 //        Parent root1 = (Parent) fxmlLoader.load();
 //        Stage stage = new Stage();
 //        stage.setScene(new Scene(root1));

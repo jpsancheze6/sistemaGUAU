@@ -2,30 +2,23 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Proveedores.AgregarProveedorController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Proveedores.AgregarProveedorController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <Button fx:id="btnGuardar" layoutX="461.0" layoutY="126.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
-      <Button fx:id="btnLimpiar" layoutX="461.0" layoutY="159.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
-      <Button fx:id="btnCancelar" layoutX="461.0" layoutY="198.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
-      <TextField fx:id="txtNombre" layoutX="179.0" layoutY="84.0" promptText="Nombre" />
-      <TextField fx:id="txtTelefono" layoutX="179.0" layoutY="126.0" promptText="Telefono" />
-      <TextField fx:id="txtEmpresa" layoutX="179.0" layoutY="169.0" promptText="Empresa" />
-      <ComboBox fx:id="cmbProveedor" layoutX="178.0" layoutY="228.0" prefWidth="150.0" />
-      <Label layoutX="179.0" layoutY="203.0" text="Producto">
-         <font>
-            <Font name="System Italic" size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="labelTitulo" layoutX="166.0" layoutY="14.0" text="Agregar Proveedor">
+      <Button fx:id="btnGuardar" layoutX="249.0" layoutY="230.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+      <Button fx:id="btnLimpiar" layoutX="250.0" layoutY="274.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+      <Button fx:id="btnCancelar" layoutX="250.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
+      <TextField fx:id="txtNombre" layoutX="225.0" layoutY="81.0" promptText="Nombre" />
+      <TextField fx:id="txtTelefono" layoutX="225.0" layoutY="123.0" promptText="Telefono" />
+      <TextField fx:id="txtEmpresa" layoutX="225.0" layoutY="166.0" promptText="Empresa" />
+      <Label fx:id="labelTitulo" layoutX="138.0" layoutY="14.0" text="Agregar Proveedor">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>

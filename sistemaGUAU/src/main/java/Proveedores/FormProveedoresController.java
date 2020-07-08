@@ -33,11 +33,12 @@ public class FormProveedoresController implements Initializable {
     @FXML
     private Button btnModificar;
     @FXML
-    private Button btnDeshabilitar;
-    @FXML
     private Button btnRegresar;
     @FXML
+    private Button btnEliminar;
+    @FXML
     private TableView<?> tblProveedores;
+
 
     /**
      * Initializes the controller class.
@@ -55,7 +56,7 @@ public class FormProveedoresController implements Initializable {
     @FXML
     private void btnCrearHandle(ActionEvent event) throws IOException 
     {
-//        //Llamar a una nueva ventana
+        //Llamar a una nueva ventana
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/AgregarProveedor.fxml"));
 //        Parent root1 = (Parent) fxmlLoader.load();
 //        Stage stage = new Stage();
@@ -71,7 +72,7 @@ public class FormProveedoresController implements Initializable {
     @FXML
     private void btnModificarHandle(ActionEvent event) throws IOException 
     {
-//          //Llamar a una nueva ventana
+          //Llamar a una nueva ventana
 //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/ModificarProveedor.fxml"));
 //        Parent root1 = (Parent) fxmlLoader.load();
 //        Stage stage = new Stage();
@@ -84,9 +85,6 @@ public class FormProveedoresController implements Initializable {
 //        actual.close();
     }
 
-    @FXML
-    private void btnDeshabilitarHandle(ActionEvent event) {
-    }
 
     @FXML
     private void btnRegresarHandle(ActionEvent event) throws IOException 
@@ -101,6 +99,10 @@ public class FormProveedoresController implements Initializable {
 //        //Cerrar ventana actual
 //        Stage actual = (Stage) btnRegresar.getScene().getWindow();
 //        actual.close();
+    }
+
+    @FXML
+    private void btnEliminarHandle(ActionEvent event) {
     }
     
 }

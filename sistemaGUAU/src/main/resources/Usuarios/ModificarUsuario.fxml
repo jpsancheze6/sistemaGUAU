@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Usuarios.ModificarUsuarioController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="btnGuardar" layoutX="269.0" layoutY="242.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+      <Button fx:id="btnLimpiar" layoutX="270.0" layoutY="286.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+      <Button fx:id="btnCancelar" layoutX="270.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
+      <TextField fx:id="txtNombre" layoutX="245.0" layoutY="101.0" promptText="Nombre" />
+      <TextField fx:id="txtUsuario" layoutX="245.0" layoutY="143.0" promptText="Usuario" />
+      <TextField fx:id="txtContra" layoutX="245.0" layoutY="186.0" promptText="Contraseña" />
+      <Label fx:id="labelTitulo" layoutX="168.0" layoutY="27.0" text="Modificar Usuario">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

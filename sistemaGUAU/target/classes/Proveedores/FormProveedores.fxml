@@ -19,8 +19,8 @@
          </font></Label>
       <Button fx:id="btnCrear" layoutX="159.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
       <Button fx:id="btnModificar" layoutX="278.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
-      <Button fx:id="btnDeshabilitar" layoutX="398.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnDeshabilitarHandle" text="Deshabilitar" />
-      <Button fx:id="btnRegresar" layoutX="525.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
+      <Button fx:id="btnEliminar" layoutX="398.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
+      <Button fx:id="btnRegresar" layoutX="523.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
       <TableView fx:id="tblProveedores" layoutX="14.0" layoutY="60.0" prefHeight="235.0" prefWidth="574.0">
         <columns>
           <TableColumn prefWidth="260.0" text="Nombre" />

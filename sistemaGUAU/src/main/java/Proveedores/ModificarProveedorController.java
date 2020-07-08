@@ -58,12 +58,15 @@ public class ModificarProveedorController implements Initializable {
 
     @FXML
     private void btnLimpiarHandle(ActionEvent event) {
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtEmpresa.setText("");
     }
 
     @FXML
     private void btnCancelarHandle(ActionEvent event) throws IOException {
          //Llamar a una nueva ventana
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/Proveedores.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/FromProveedor.fxml"));
 //        Parent root1 = (Parent) fxmlLoader.load();
 //        Stage stage = new Stage();
 //        stage.setScene(new Scene(root1));

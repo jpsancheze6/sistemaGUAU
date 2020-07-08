@@ -5,6 +5,7 @@
  */
 package Proveedores;
 
+import JPA.Proveedor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,10 +16,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -40,8 +41,6 @@ public class AgregarProveedorController implements Initializable {
     @FXML
     private TextField txtEmpresa;
     @FXML
-    private ComboBox<?> cmbProveedor;
-    @FXML
     private Label labelTitulo;
 
     /**
@@ -53,17 +52,34 @@ public class AgregarProveedorController implements Initializable {
     }    
 
     @FXML
-    private void btnGuardarHandle(ActionEvent event) {
+    private void btnGuardarHandle(ActionEvent event) 
+    {
+//        ProveedorDAO proveedor_dao = new ProveedorDAO();
+//        Proveedor newProveedor = new Proveedor();
+//        newProveedor.setNombre(txtNombre.getText());
+//        newProveedor.setTelefono(txtTelefono.getText());
+//        newProveedor.setEmpresa(txtEmpresa.getText());
+//        
+//        try 
+//        {
+//          proveedor_dao.AgregarProveedor(newProveedor);
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, "Error"+ex);
+//        }
+//    
     }
 
     @FXML
     private void btnLimpiarHandle(ActionEvent event) {
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtEmpresa.setText("");
     }
 
     @FXML
     private void btnCancelarHandle(ActionEvent event) throws IOException {
-         //Llamar a una nueva ventana
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/Proveedores.fxml"));
+//         //Llamar newProveedor una nueva ventana
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/FormProveedores.fxml"));
 //        Parent root1 = (Parent) fxmlLoader.load();
 //        Stage stage = new Stage();
 //        stage.setScene(new Scene(root1));

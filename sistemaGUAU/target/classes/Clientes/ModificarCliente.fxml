@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.ModificarClienteController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css"/>
+    </stylesheets>
+    <children>
+        <Label layoutX="144.0" layoutY="24.0" text="Modificar Cliente">
+        </Label>
+        <TextField fx:id="txtNIT" layoutX="130.0" layoutY="126.0" promptText="NIT" />
+        <TextField fx:id="txtNombre" layoutX="130.0" layoutY="164.0" promptText="Nombre" />
+        <TextField fx:id="txtDireccion" layoutX="130.0" layoutY="204.0" promptText="Dirección" />
+        <TextField fx:id="txtTelefono" layoutX="130.0" layoutY="250.0" promptText="Telefono" />
+        <TextField fx:id="txtTIpoCliente" layoutX="130.0" layoutY="294.0" promptText="Tipo Cliente" />
+        <CheckBox fx:id="cbMayorista" layoutX="372.0" layoutY="130.0" mnemonicParsing="false" text="Mayorista" />
+        <Button fx:id="btnActualizar" layoutX="348.0" layoutY="185.0" mnemonicParsing="false" onAction="#actualizarCliente" prefHeight="25.0" prefWidth="122.0" text="Actualizar" />
+        <Button fx:id="btnVaciarCampos" layoutX="348.0" layoutY="217.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
+        <Button fx:id="btnCancelar" layoutX="348.0" layoutY="248.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
+    </children>
+</AnchorPane>

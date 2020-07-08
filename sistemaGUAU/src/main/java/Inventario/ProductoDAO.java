@@ -1,4 +1,4 @@
-package Producto;
+package Inventario;
 
 import JPA.Producto;
 import JPA.ProductoJpaController;

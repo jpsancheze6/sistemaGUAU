@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="APaneModificarProducto" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Inventario.ModificarProductoController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <Button fx:id="btnGuardar" layoutX="441.0" layoutY="137.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+      <Button fx:id="btnLimpiar" layoutX="441.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+      <Button fx:id="btnCancelar" layoutX="441.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
+      <TextField fx:id="txtNombre" layoutX="32.0" layoutY="119.0" promptText="Nombre" />
+      <TextField fx:id="txtExistencias" layoutX="32.0" layoutY="161.0" promptText="Existencias" />
+      <TextField fx:id="txtPrecio" layoutX="32.0" layoutY="201.0" promptText="Precio" />
+      <TextField fx:id="txtAnimal" layoutX="32.0" layoutY="242.0" promptText="Animal" />
+      <TextField fx:id="txtMarca" layoutX="192.0" layoutY="122.0" promptText="Marca" />
+      <TextField fx:id="txtPeso" layoutX="192.0" layoutY="161.0" promptText="Peso" />
+      <TextField fx:id="txtReferencia" layoutX="193.0" layoutY="201.0" promptText="Unidad Referencia" />
+      <ComboBox fx:id="cmbProveedor" layoutX="192.0" layoutY="272.0" onAction="#cmbProveedor" prefWidth="150.0" />
+      <Label layoutX="192.0" layoutY="246.0" text="Proveedor" />
+      <Label layoutX="247.0" layoutY="26.0" text="Modificar Producto">
+      </Label>
+      <CheckBox fx:id="cbxHabilitado" layoutX="34.0" layoutY="297.0" mnemonicParsing="false" text="Habilitado" />
+   </children>
+</AnchorPane>

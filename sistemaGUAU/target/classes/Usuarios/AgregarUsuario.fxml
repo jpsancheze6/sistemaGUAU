@@ -12,12 +12,12 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <Button fx:id="btnGuardar" layoutX="259.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
-      <Button fx:id="btnLimpiar" layoutX="260.0" layoutY="276.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
-      <Button fx:id="btnCancelar" layoutX="260.0" layoutY="322.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
-      <TextField fx:id="txtNombre" layoutX="235.0" layoutY="91.0" promptText="Nombre" />
-      <TextField fx:id="txtUsuario" layoutX="235.0" layoutY="133.0" promptText="Usuario" />
-      <TextField fx:id="txtContra" layoutX="235.0" layoutY="176.0" promptText="Contraseña" />
+      <Button fx:id="btnGuardar" layoutX="429.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+      <Button fx:id="btnLimpiar" layoutX="429.0" layoutY="173.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+      <Button fx:id="btnCancelar" layoutX="429.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
+      <TextField fx:id="txtNombre" layoutX="189.0" layoutY="118.0" onKeyTyped="#txtNombreTyped" promptText="Nombre" />
+      <TextField fx:id="txtUsuario" disable="true" editable="false" layoutX="189.0" layoutY="174.0" promptText="Usuario" />
+      <TextField fx:id="txtContra" layoutX="189.0" layoutY="237.0" onKeyTyped="#txtContraTyped" promptText="Contraseña" />
       <Label fx:id="labelTitulo" layoutX="171.0" layoutY="30.0" text="Agregar Usuario">
          <font>
             <Font name="System Bold" size="36.0" />

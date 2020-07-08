@@ -56,49 +56,49 @@ public class FormProveedoresController implements Initializable {
     @FXML
     private void btnCrearHandle(ActionEvent event) throws IOException 
     {
-        //Llamar a una nueva ventana
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/AgregarProveedor.fxml"));
-//        Parent root1 = (Parent) fxmlLoader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root1));
-//        stage.setTitle("MEVECOM <>");
-//        stage.setResizable(false);
-//        stage.show();
-//        //Cerrar ventana actual
-//        Stage actual = (Stage) btnCrear.getScene().getWindow();
-//        actual.close();
+       // Llamar a una nueva ventana
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/AgregarProveedor.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.setTitle("MEVECOM <>");
+        stage.setResizable(false);
+        stage.show();
+        //Cerrar ventana actual
+        Stage actual = (Stage) btnCrear.getScene().getWindow();
+        actual.close();
     }
 
     @FXML
     private void btnModificarHandle(ActionEvent event) throws IOException 
     {
           //Llamar a una nueva ventana
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/ModificarProveedor.fxml"));
-//        Parent root1 = (Parent) fxmlLoader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root1));
-//        stage.setTitle("MEVECOM <>");
-//        stage.setResizable(false);
-//        stage.show();
-//        //Cerrar ventana actual
-//        Stage actual = (Stage) btnModificar.getScene().getWindow();
-//        actual.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Proveedores/ModificarProveedor.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.setTitle("MEVECOM <>");
+        stage.setResizable(false);
+        stage.show();
+        //Cerrar ventana actual
+        Stage actual = (Stage) btnModificar.getScene().getWindow();
+        actual.close();
     }
 
 
     @FXML
     private void btnRegresarHandle(ActionEvent event) throws IOException 
     {
-//         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Principal/FormPrincipal.fxml"));
-//        Parent root1 = (Parent) fxmlLoader.load();
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root1));
-//        stage.setTitle("MEVECOM <>");
-//        stage.setResizable(false);
-//        stage.show();
-//        //Cerrar ventana actual
-//        Stage actual = (Stage) btnRegresar.getScene().getWindow();
-//        actual.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Principal/FormPrincipal.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.setTitle("MEVECOM <>");
+        stage.setResizable(false);
+        stage.show();
+        //Cerrar ventana actual
+        Stage actual = (Stage) btnRegresar.getScene().getWindow();
+        actual.close();
     }
 
     @FXML

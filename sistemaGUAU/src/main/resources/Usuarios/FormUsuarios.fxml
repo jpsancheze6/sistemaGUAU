@@ -13,20 +13,20 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <Label fx:id="labelTitulo" layoutX="248.0" layoutY="14.0" text="Usuarios">
+      <Label fx:id="labelTitulo" layoutX="238.0" text="Usuarios">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <Button fx:id="btnCrear" layoutX="169.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
-      <Button fx:id="btnModificar" layoutX="287.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
-      <Button fx:id="btnEliminar" layoutX="407.0" layoutY="325.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
-      <Button fx:id="btnRegresar" layoutX="523.0" layoutY="364.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
-      <TableView layoutX="14.0" layoutY="70.0" prefHeight="224.0" prefWidth="574.0">
+      <Button fx:id="btnCrear" layoutX="159.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
+      <Button fx:id="btnModificar" layoutX="278.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
+      <Button fx:id="btnEliminar" layoutX="398.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
+      <Button fx:id="btnRegresar" layoutX="523.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
+      <TableView fx:id="tblUsuarios" layoutX="14.0" layoutY="60.0" prefHeight="235.0" prefWidth="574.0">
         <columns>
-          <TableColumn prefWidth="60.800048828125" text="ID" />
-          <TableColumn prefWidth="264.0" text="Nombre" />
-            <TableColumn prefWidth="248.0" text="Usuario" />
+          <TableColumn fx:id="Id" prefWidth="60.800048828125" text="ID" />
+          <TableColumn fx:id="Nombre" prefWidth="264.0" text="Nombre" />
+            <TableColumn fx:id="Usuario" prefWidth="248.0" text="Usuario" />
         </columns>
       </TableView>
    </children>

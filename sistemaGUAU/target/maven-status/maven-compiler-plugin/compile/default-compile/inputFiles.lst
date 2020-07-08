@@ -12,6 +12,7 @@ C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\Factura.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Usuarios\AgregarUsuarioController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\Producto.java
+C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Principal\FormPrincipalController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\exceptions\PreexistingEntityException.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Login\FormLoginController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Proveedores\AgregarProveedorController.java
@@ -19,13 +20,16 @@ C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Proveedores\ModificarProveedorController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\DetalleCompra.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Usuarios\FormUsuariosController.java
+C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Clientes\ModificarClienteController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Compras\ComprasDAO.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Ventas\VentasDAO.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\ProductoJpaController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\exceptions\IllegalOrphanException.java
+C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Clientes\AgregarClienteController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\FacturaJpaController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Proveedores\FormProveedoresController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\DetallesActualizacion.java
+C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Clientes\FormClientesController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\ActualizacionInventario.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\JPA\DetallesActualizacionJpaController.java
 C:\Users\nemoc\Desktop\Proyecto Analisis 2\Proyecto\sistemaGUAU\sistemaGUAU\src\main\java\Producto\ProductoDAO.java

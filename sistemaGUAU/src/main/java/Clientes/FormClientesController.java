@@ -25,7 +25,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.json.simple.JSONObject;
 
 /**
  * FXML Controller class
@@ -102,7 +101,7 @@ public class FormClientesController implements Initializable {
         //}
 
     }
-    
+
     @FXML
     public void regresar(ActionEvent event) throws IOException {
         //Llamar a una nueva ventana
@@ -131,7 +130,6 @@ public class FormClientesController implements Initializable {
             Cliente next = iterator.next();
             modelo_clientes.add(next);
         }
-
         tblClientes.setItems(modelo_clientes);
 
     }

@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Lob
     @Column(name = "Contrase\u00f1a")
-    private byte[] contraseÃ±a;
+    private byte[] contraseña;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioid")
     private List<ActualizacionInventario> actualizacionInventarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
@@ -66,11 +66,11 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String nombre, String nombreusuario, byte[] contraseÃ±a) {
+    public Usuario(Integer idUsuario, String nombre, String nombreusuario, byte[] contraseña) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.nombreusuario = nombreusuario;
-        this.contraseÃ±a = contraseÃ±a;
+        this.contraseña = contraseña;
     }
 
     public Integer getIdUsuario() {
@@ -97,12 +97,12 @@ public class Usuario implements Serializable {
         this.nombreusuario = nombreusuario;
     }
 
-    public byte[] getContraseÃ±a() {
-        return contraseÃ±a;
+    public byte[] getContraseña() {
+        return contraseña;
     }
 
-    public void setContraseÃ±a(byte[] contraseÃ±a) {
-        this.contraseÃ±a = contraseÃ±a;
+    public void setContraseña(byte[] contraseña) {
+        this.contraseña = contraseña;
     }
 
     @XmlTransient

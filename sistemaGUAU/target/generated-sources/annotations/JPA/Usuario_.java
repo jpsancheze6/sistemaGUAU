@@ -8,15 +8,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-07T23:46:54")
-=======
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-07T21:02:39")
->>>>>>> Formularios
-=======
 @Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-08T08:04:32")
->>>>>>> FXMLUsuarioProveedor
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
@@ -25,7 +17,7 @@ public class Usuario_ {
     public static volatile ListAttribute<Usuario, ReciboCompra> reciboCompraList;
     public static volatile ListAttribute<Usuario, Factura> facturaList;
     public static volatile SingularAttribute<Usuario, String> nombre;
-    public static volatile SingularAttribute<Usuario, byte[]> contraseÃ±a;
+    public static volatile SingularAttribute<Usuario, byte[]> contraseña;
     public static volatile ListAttribute<Usuario, ActualizacionInventario> actualizacionInventarioList;
 
 }

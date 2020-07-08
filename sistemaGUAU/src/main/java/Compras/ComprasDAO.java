@@ -24,23 +24,23 @@ public class ComprasDAO {
         recibo_controller = new ReciboCompraJpaController(emf);
     }
     
-    public void AgregarFactura(ReciboCompra recibo) throws Exception {
+    public void AgregarCompra(ReciboCompra recibo) throws Exception {
         recibo_controller.create(recibo);
     }
 
-    public void EditarFactura(ReciboCompra recibo) throws Exception {
+    public void EditarCompra(ReciboCompra recibo) throws Exception {
         recibo_controller.edit(recibo);
     }
 
-    public void EliminarFactura(int ReciboID) throws Exception {
+    public void EliminarCompra(int ReciboID) throws Exception {
         recibo_controller.destroy(ReciboID);
     }
 
-    public List<ReciboCompra> getFacturas() {
+    public List<ReciboCompra> getRecibos() {
         return recibo_controller.findReciboCompraEntities();
     }
 
-    public ReciboCompra getFacturaByID(int ReciboID) {
+    public ReciboCompra getReciboByID(int ReciboID) {
         return recibo_controller.findReciboCompra(ReciboID);
     }
 }

@@ -27,7 +27,7 @@
             <Font size="24.0" />
          </font></Label>
         <Button fx:id="btnRegistrar" layoutX="279.0" layoutY="331.0" mnemonicParsing="false" onAction="#registrarVenta" text="Registrar Venta" />
-        <Button fx:id="btnEditar" layoutX="415.0" layoutY="331.0" mnemonicParsing="false" onAction="#modificarVenta" text="Editar Venta" />
+        <Button fx:id="btnEditar" layoutX="415.0" layoutY="331.0" mnemonicParsing="false" onAction="#revisarVenta" text="Revisar Venta" />
         <TableView fx:id="tblVentas" layoutX="46.0" layoutY="73.0" prefHeight="229.0" prefWidth="656.0">
             <columns>
                 <TableColumn fx:id="colID" prefWidth="90.0" text="ID" />

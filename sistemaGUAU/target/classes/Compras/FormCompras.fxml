@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="731.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Compras.FormComprasController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.FormComprasController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
@@ -17,8 +17,8 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-        <Button fx:id="btnRegistrar" layoutX="262.0" layoutY="331.0" mnemonicParsing="false" text="Registrar Venta" />
-        <Button fx:id="btnEditar" layoutX="406.0" layoutY="331.0" mnemonicParsing="false" text="Editar Venta" />
+        <Button fx:id="btnRegistrar" layoutX="262.0" layoutY="331.0" mnemonicParsing="false" onAction="#registrarCompra" text="Registrar Compra" />
+        <Button fx:id="btnEditar" layoutX="406.0" layoutY="331.0" mnemonicParsing="false" onAction="#revisarCompra" text="Ver Compra" />
         <TableView fx:id="tblCompras" layoutX="46.0" layoutY="73.0" prefHeight="229.0" prefWidth="656.0">
             <columns>
                 <TableColumn fx:id="colID" prefWidth="90.0" text="ID" />
@@ -27,6 +27,6 @@
                 <TableColumn fx:id="colTotal" prefWidth="113.0" text="Total" />
             </columns>
         </TableView>
-        <Button fx:id="btnRegresar" layoutX="645.0" layoutY="356.0" mnemonicParsing="false" text="Regresar" />
+        <Button fx:id="btnRegresar" layoutX="645.0" layoutY="356.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
     </children>
 </AnchorPane>

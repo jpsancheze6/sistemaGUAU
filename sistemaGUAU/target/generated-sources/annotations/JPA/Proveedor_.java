@@ -6,7 +6,11 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
+<<<<<<< HEAD
 @Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-07T23:46:54")
+=======
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-07T21:02:39")
+>>>>>>> Formularios
 @StaticMetamodel(Proveedor.class)
 public class Proveedor_ { 
 

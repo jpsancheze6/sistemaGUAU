@@ -7,6 +7,7 @@ Proveedores\ProveedorDAO.class
 JPA\DetalleCompra_.class
 JPA\Proveedor.class
 JPA\ClienteJpaController.class
+<<<<<<< HEAD
 Principal\FormPrincipalController.class
 JPA\FacturaJpaController.class
 JPA\Producto_.class
@@ -28,19 +29,45 @@ JPA\ReciboCompra_.class
 Inventario\AgregarProductoController.class
 Usuarios\UsuarioDAO.class
 JPA\Proveedor_.class
+=======
+JPA\FacturaJpaController.class
+JPA\Producto_.class
+JPA\DetalleFactura.class
+Compras\RevisarCompraController.class
+Clientes\ClienteDAO.class
+JPA\Factura_.class
+JPA\exceptions\IllegalOrphanException.class
+Compras\FormComprasController.class
+Ventas\RevisarVentaController.class
+Compras\ComprasDAO.class
+Ventas\VentasDAO.class
+JPA\Usuario.class
+sistemaguau\Main.class
+JPA\ReciboCompra.class
+JPA\ReciboCompra_.class
+Usuarios\UsuarioDAO.class
+JPA\Proveedor_.class
+Ventas\RegistrarVentaController.class
+>>>>>>> Formularios
 JPA\Cliente_.class
 JPA\DetalleCompra.class
 JPA\ProductoJpaController.class
 JPA\DetallesActualizacion.class
+Ventas\FormVentasController.class
 JPA\ActualizacionInventarioJpaController.class
 JPA\DetalleFacturaJpaController.class
+<<<<<<< HEAD
 Inventario\ModificarProductoController.class
+=======
+>>>>>>> Formularios
 JPA\Factura.class
 JPA\DetalleFactura_.class
 JPA\DetallesActualizacionJpaController.class
 JPA\Usuario_.class
 JPA\exceptions\NonexistentEntityException.class
+Producto\ProductoDAO.class
 JPA\exceptions\PreexistingEntityException.class
+Compras\RegistrarCompraController.class
 JPA\DetallesActualizacion_.class
 JPA\Producto.class
 JPA\ActualizacionInventario.class

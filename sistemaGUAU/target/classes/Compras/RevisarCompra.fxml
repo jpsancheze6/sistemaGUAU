@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.RevisarCompraController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+    <children>
+        <Label layoutX="317.0" layoutY="14.0" text="Compra">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+        <TableView fx:id="tblCompra" layoutX="28.0" layoutY="133.0" prefHeight="222.0" prefWidth="663.0">
+            <columns>
+                <TableColumn fx:id="colProducto" prefWidth="371.0" text="Producto" />
+                <TableColumn fx:id="colPrecio" prefWidth="108.0" text="Precio" />
+                <TableColumn fx:id="colCantidad" prefWidth="72.0" text="Cantidad" />
+                <TableColumn fx:id="colTotal" prefWidth="111.0" text="Total" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnRegresar" layoutX="633.0" layoutY="367.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+      <TextField fx:id="txtProveedor" disable="true" layoutX="112.0" layoutY="72.0" prefHeight="25.0" prefWidth="212.0" />
+      <TextField fx:id="txtTotal" disable="true" layoutX="502.0" layoutY="72.0" prefHeight="25.0" prefWidth="131.0" />
+      <Label layoutX="47.0" layoutY="76.0" text="Proveedor:" />
+      <Label layoutX="467.0" layoutY="76.0" text="Total:" />
+    </children>
+</AnchorPane>

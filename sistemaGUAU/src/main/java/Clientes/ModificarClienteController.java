@@ -6,28 +6,23 @@
 package Clientes;
 
 import JPA.Cliente;
-import com.google.protobuf.TextFormat.ParseException;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -84,6 +79,26 @@ public class ModificarClienteController implements Initializable {
         }
     }
 
+    public static void showInformation(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Información");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+    public static void showWarning(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
     @FXML
     public void actualizarCliente() {
         String nit = txtNIT.getText();
@@ -102,10 +117,13 @@ public class ModificarClienteController implements Initializable {
             cliente.setTipocliente(tipo_cliente);
             try {
                 cliente_dao.EditarCliente(cliente);
+                showInformation("Correcto", "Cliente actualizado con éxito.");
                 regresar(new ActionEvent());
             } catch (Exception ex) {
                 System.out.println(ex);
             }
+        }else{
+            showWarning("Error", "Por favor llene todos los campos.");
         }
     }
 
@@ -123,7 +141,7 @@ public class ModificarClienteController implements Initializable {
         Stage actual = (Stage) btnActualizar.getScene().getWindow();
         actual.close();
     }
-    
+
     @FXML
     public void limpiarCampos(ActionEvent event) {
         this.txtNIT.setText("");

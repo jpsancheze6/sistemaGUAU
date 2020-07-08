@@ -18,10 +18,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -99,11 +101,34 @@ public class AgregarProductoController implements Initializable {
             try {
                 producto_dao.AgregarProducto(producto);
                 btnCancelarHandle(new ActionEvent());
+                showInformation("Terminado", "Producto registrado con éxito");
             } catch (Exception ex) {
                 Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else{
+            showWarning("Datos incompletos", "Por favor llene todos los campos");
         }
 
+    }
+
+    public static void showWarning(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+    public static void showInformation(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Información");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 
     @FXML

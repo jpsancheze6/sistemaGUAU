@@ -1,6 +1,7 @@
 package Inventario;
 
 import JPA.Producto;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -54,7 +55,7 @@ public class InventarioController implements Initializable {
     private TableColumn<Producto, Float> peso;
 
     private ProductoDAO inventario_dao = new ProductoDAO();
-    
+
     /**
      * Initializes the controller class.
      */
@@ -76,7 +77,7 @@ public class InventarioController implements Initializable {
         }
         tblProductos.setItems(modelo_clientes);
     }
-    
+
     private ObservableList<Producto> modelo_clientes = FXCollections.observableArrayList();
 
     @FXML
@@ -96,7 +97,7 @@ public class InventarioController implements Initializable {
 
     @FXML
     private void btnModificarHandle(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventario/AgregarProducto.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventario/ModificarProducto.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
@@ -106,6 +107,17 @@ public class InventarioController implements Initializable {
         //Cerrar ventana actual
         Stage actual = (Stage) btnRegresar.getScene().getWindow();
         actual.close();
+
+        Producto cliente_seleccionado = (Producto) tblProductos.getSelectionModel().getSelectedItem();
+        Producto cliente_enviar = inventario_dao.getProductoByID(cliente_seleccionado.getIdProducto());
+        try (FileWriter fileWriter = new FileWriter("producto.txt")) {
+            System.out.println(cliente_enviar.getIdProducto());
+            fileWriter.write(cliente_enviar.getIdProducto());
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("No se pudo guardar");
+        }
+
     }
 
     @FXML

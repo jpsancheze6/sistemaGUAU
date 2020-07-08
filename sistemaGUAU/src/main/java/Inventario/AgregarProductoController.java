@@ -21,7 +21,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -51,7 +50,6 @@ public class AgregarProductoController implements Initializable {
     private TextField txtPeso;
     @FXML
     private TextField txtReferencia;
-
     @FXML
     private ComboBox<String> cmbProveedor;
 
@@ -110,6 +108,14 @@ public class AgregarProductoController implements Initializable {
 
     @FXML
     private void btnLimpiarHandle(ActionEvent event) {
+        txtNombre.setText("");
+        txtExistencias.setText(""); //
+        txtPrecio.setText(""); //
+        txtAnimal.setText("");
+        txtMarca.setText("");
+        txtPeso.setText(""); //
+        txtReferencia.setText("");
+        cmbProveedor.getSelectionModel().clearSelection();
     }
 
     @FXML

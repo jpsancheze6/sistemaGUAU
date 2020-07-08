@@ -30,7 +30,7 @@
       <TextField fx:id="txtReferencia" layoutX="193.0" layoutY="201.0" promptText="Unidad Referencia" />
       <ComboBox fx:id="cmbProveedor" layoutX="192.0" layoutY="272.0" onAction="#cmbProveedor" prefWidth="150.0" />
       <Label layoutX="192.0" layoutY="246.0" text="Proveedor" />
-      <Label layoutX="247.0" layoutY="26.0" text="Agregar Producto">
+      <Label layoutX="247.0" layoutY="26.0" text="Modificar Producto">
       </Label>
       <CheckBox fx:id="cbxHabilitado" layoutX="34.0" layoutY="297.0" mnemonicParsing="false" text="Habilitado" />
    </children>

@@ -73,6 +73,7 @@ public class ModificarProductoController implements Initializable {
             int id = fileReader.read();
             System.out.println("-> " + id);
             this.producto = producto_dao.getProductoByID(id);
+            this.producto.setIdProducto(id);
 
             txtNombre.setText(this.producto.getNombre());
             txtExistencias.setText(this.producto.getExistencias() + "");
@@ -113,7 +114,6 @@ public class ModificarProductoController implements Initializable {
         int seleccion = cmbProveedor.getSelectionModel().getSelectedIndex(); // -1 && >=0
 
         if (nombre.length() != 0 && existencias.length() != 0 && precio.length() != 0 && animal.length() != 0 && marca.length() != 0 && peso.length() != 0 && seleccion >= 0 && unidad_referencia.length() != 0) {
-            Producto producto = new Producto();
             producto.setNombre(nombre);
             producto.setExistencias(Float.parseFloat(existencias));
             producto.setPrecio(Float.parseFloat(precio));
@@ -121,9 +121,10 @@ public class ModificarProductoController implements Initializable {
             producto.setMarca(marca);
             producto.setPeso(Float.parseFloat(peso));
             producto.setUnidadreferencia(unidad_referencia);
+            
             String[] a = cmbProveedor.getSelectionModel().getSelectedItem().split("-");
             int id_proveedor = Integer.parseInt(a[0]);
-            producto.setProveedorid(proveedor_dao.getProveedorByID(id_proveedor));
+            System.out.println("iD  ->" + producto.getIdProducto());
             producto.setDisponibilidad(cbxHabilitado.isSelected());
             try {
                 producto_dao.EditarProducto(producto);

@@ -97,6 +97,16 @@ public class InventarioController implements Initializable {
 
     @FXML
     private void btnModificarHandle(ActionEvent event) throws IOException {
+        Producto cliente_seleccionado = (Producto) tblProductos.getSelectionModel().getSelectedItem();
+        Producto cliente_enviar = inventario_dao.getProductoByID(cliente_seleccionado.getIdProducto());
+        try (FileWriter fileWriter = new FileWriter("producto.txt")) {
+            System.out.println(cliente_enviar.getIdProducto());
+            fileWriter.write(cliente_enviar.getIdProducto());
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("No se pudo guardar");
+        }
+        
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventario/ModificarProducto.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -107,16 +117,6 @@ public class InventarioController implements Initializable {
         //Cerrar ventana actual
         Stage actual = (Stage) btnRegresar.getScene().getWindow();
         actual.close();
-
-        Producto cliente_seleccionado = (Producto) tblProductos.getSelectionModel().getSelectedItem();
-        Producto cliente_enviar = inventario_dao.getProductoByID(cliente_seleccionado.getIdProducto());
-        try (FileWriter fileWriter = new FileWriter("producto.txt")) {
-            System.out.println(cliente_enviar.getIdProducto());
-            fileWriter.write(cliente_enviar.getIdProducto());
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println("No se pudo guardar");
-        }
 
     }
 

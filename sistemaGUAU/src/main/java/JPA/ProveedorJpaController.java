@@ -33,6 +33,9 @@ public class ProveedorJpaController implements Serializable {
     }
 
     public void create(Proveedor proveedor) {
+        if (proveedor.getReciboCompraList() == null) {
+            proveedor.setReciboCompraList(new ArrayList<ReciboCompra>());
+        }
         if (proveedor.getProductoList() == null) {
             proveedor.setProductoList(new ArrayList<Producto>());
         }
@@ -40,6 +43,12 @@ public class ProveedorJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            List<ReciboCompra> attachedReciboCompraList = new ArrayList<ReciboCompra>();
+            for (ReciboCompra reciboCompraListReciboCompraToAttach : proveedor.getReciboCompraList()) {
+                reciboCompraListReciboCompraToAttach = em.getReference(reciboCompraListReciboCompraToAttach.getClass(), reciboCompraListReciboCompraToAttach.getIdRecibo());
+                attachedReciboCompraList.add(reciboCompraListReciboCompraToAttach);
+            }
+            proveedor.setReciboCompraList(attachedReciboCompraList);
             List<Producto> attachedProductoList = new ArrayList<Producto>();
             for (Producto productoListProductoToAttach : proveedor.getProductoList()) {
                 productoListProductoToAttach = em.getReference(productoListProductoToAttach.getClass(), productoListProductoToAttach.getIdProducto());
@@ -47,6 +56,15 @@ public class ProveedorJpaController implements Serializable {
             }
             proveedor.setProductoList(attachedProductoList);
             em.persist(proveedor);
+            for (ReciboCompra reciboCompraListReciboCompra : proveedor.getReciboCompraList()) {
+                Proveedor oldProveedoridOfReciboCompraListReciboCompra = reciboCompraListReciboCompra.getProveedorid();
+                reciboCompraListReciboCompra.setProveedorid(proveedor);
+                reciboCompraListReciboCompra = em.merge(reciboCompraListReciboCompra);
+                if (oldProveedoridOfReciboCompraListReciboCompra != null) {
+                    oldProveedoridOfReciboCompraListReciboCompra.getReciboCompraList().remove(reciboCompraListReciboCompra);
+                    oldProveedoridOfReciboCompraListReciboCompra = em.merge(oldProveedoridOfReciboCompraListReciboCompra);
+                }
+            }
             for (Producto productoListProducto : proveedor.getProductoList()) {
                 Proveedor oldProveedoridOfProductoListProducto = productoListProducto.getProveedorid();
                 productoListProducto.setProveedorid(proveedor);
@@ -70,9 +88,19 @@ public class ProveedorJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Proveedor persistentProveedor = em.find(Proveedor.class, proveedor.getIdProveedor());
+            List<ReciboCompra> reciboCompraListOld = persistentProveedor.getReciboCompraList();
+            List<ReciboCompra> reciboCompraListNew = proveedor.getReciboCompraList();
             List<Producto> productoListOld = persistentProveedor.getProductoList();
             List<Producto> productoListNew = proveedor.getProductoList();
             List<String> illegalOrphanMessages = null;
+            for (ReciboCompra reciboCompraListOldReciboCompra : reciboCompraListOld) {
+                if (!reciboCompraListNew.contains(reciboCompraListOldReciboCompra)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain ReciboCompra " + reciboCompraListOldReciboCompra + " since its proveedorid field is not nullable.");
+                }
+            }
             for (Producto productoListOldProducto : productoListOld) {
                 if (!productoListNew.contains(productoListOldProducto)) {
                     if (illegalOrphanMessages == null) {
@@ -84,6 +112,13 @@ public class ProveedorJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
+            List<ReciboCompra> attachedReciboCompraListNew = new ArrayList<ReciboCompra>();
+            for (ReciboCompra reciboCompraListNewReciboCompraToAttach : reciboCompraListNew) {
+                reciboCompraListNewReciboCompraToAttach = em.getReference(reciboCompraListNewReciboCompraToAttach.getClass(), reciboCompraListNewReciboCompraToAttach.getIdRecibo());
+                attachedReciboCompraListNew.add(reciboCompraListNewReciboCompraToAttach);
+            }
+            reciboCompraListNew = attachedReciboCompraListNew;
+            proveedor.setReciboCompraList(reciboCompraListNew);
             List<Producto> attachedProductoListNew = new ArrayList<Producto>();
             for (Producto productoListNewProductoToAttach : productoListNew) {
                 productoListNewProductoToAttach = em.getReference(productoListNewProductoToAttach.getClass(), productoListNewProductoToAttach.getIdProducto());
@@ -92,6 +127,17 @@ public class ProveedorJpaController implements Serializable {
             productoListNew = attachedProductoListNew;
             proveedor.setProductoList(productoListNew);
             proveedor = em.merge(proveedor);
+            for (ReciboCompra reciboCompraListNewReciboCompra : reciboCompraListNew) {
+                if (!reciboCompraListOld.contains(reciboCompraListNewReciboCompra)) {
+                    Proveedor oldProveedoridOfReciboCompraListNewReciboCompra = reciboCompraListNewReciboCompra.getProveedorid();
+                    reciboCompraListNewReciboCompra.setProveedorid(proveedor);
+                    reciboCompraListNewReciboCompra = em.merge(reciboCompraListNewReciboCompra);
+                    if (oldProveedoridOfReciboCompraListNewReciboCompra != null && !oldProveedoridOfReciboCompraListNewReciboCompra.equals(proveedor)) {
+                        oldProveedoridOfReciboCompraListNewReciboCompra.getReciboCompraList().remove(reciboCompraListNewReciboCompra);
+                        oldProveedoridOfReciboCompraListNewReciboCompra = em.merge(oldProveedoridOfReciboCompraListNewReciboCompra);
+                    }
+                }
+            }
             for (Producto productoListNewProducto : productoListNew) {
                 if (!productoListOld.contains(productoListNewProducto)) {
                     Proveedor oldProveedoridOfProductoListNewProducto = productoListNewProducto.getProveedorid();
@@ -133,6 +179,13 @@ public class ProveedorJpaController implements Serializable {
                 throw new NonexistentEntityException("The proveedor with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
+            List<ReciboCompra> reciboCompraListOrphanCheck = proveedor.getReciboCompraList();
+            for (ReciboCompra reciboCompraListOrphanCheckReciboCompra : reciboCompraListOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Proveedor (" + proveedor + ") cannot be destroyed since the ReciboCompra " + reciboCompraListOrphanCheckReciboCompra + " in its reciboCompraList field has a non-nullable proveedorid field.");
+            }
             List<Producto> productoListOrphanCheck = proveedor.getProductoList();
             for (Producto productoListOrphanCheckProducto : productoListOrphanCheck) {
                 if (illegalOrphanMessages == null) {

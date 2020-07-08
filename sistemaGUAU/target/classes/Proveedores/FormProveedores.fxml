@@ -21,11 +21,12 @@
       <Button fx:id="btnModificar" layoutX="278.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
       <Button fx:id="btnEliminar" layoutX="398.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
       <Button fx:id="btnRegresar" layoutX="523.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
-      <TableView fx:id="tblProveedores" layoutX="14.0" layoutY="60.0" prefHeight="235.0" prefWidth="574.0">
+      <TableView fx:id="tblProveedores" layoutX="14.0" layoutY="60.0" prefHeight="227.0" prefWidth="538.0">
         <columns>
-          <TableColumn prefWidth="260.0" text="Nombre" />
-          <TableColumn prefWidth="116.0" text="Telefono" />
-            <TableColumn prefWidth="197.60001220703123" text="Empresa" />
+          <TableColumn fx:id="Id" prefWidth="46.39996337890625" text="ID" />
+          <TableColumn fx:id="Nombre" prefWidth="264.79998779296875" text="Nombre" />
+            <TableColumn fx:id="Telefono" prefWidth="88.0" text="Telefono" />
+            <TableColumn fx:id="Empresa" prefWidth="138.39999999999998" text="Empresa" />
         </columns>
       </TableView>
    </children>

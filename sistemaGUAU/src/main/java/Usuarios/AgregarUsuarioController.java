@@ -66,7 +66,7 @@ public class AgregarUsuarioController implements Initializable {
               Usuario newUsuario = new Usuario();
             newUsuario.setNombre(txtNombre.getText());
             newUsuario.setNombreusuario(txtUsuario.getText());
-            newUsuario.setContraseña(contra);
+            newUsuario.setPassword(contra);
             try {
                 usuario_dao.AgregarUsuario(newUsuario);
                 btnCancelarHandle(event);

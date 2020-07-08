@@ -33,9 +33,6 @@ public class UsuarioJpaController implements Serializable {
     }
 
     public void create(Usuario usuario) {
-        if (usuario.getActualizacionInventarioList() == null) {
-            usuario.setActualizacionInventarioList(new ArrayList<ActualizacionInventario>());
-        }
         if (usuario.getFacturaList() == null) {
             usuario.setFacturaList(new ArrayList<Factura>());
         }
@@ -46,12 +43,6 @@ public class UsuarioJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            List<ActualizacionInventario> attachedActualizacionInventarioList = new ArrayList<ActualizacionInventario>();
-            for (ActualizacionInventario actualizacionInventarioListActualizacionInventarioToAttach : usuario.getActualizacionInventarioList()) {
-                actualizacionInventarioListActualizacionInventarioToAttach = em.getReference(actualizacionInventarioListActualizacionInventarioToAttach.getClass(), actualizacionInventarioListActualizacionInventarioToAttach.getIdActualizacion());
-                attachedActualizacionInventarioList.add(actualizacionInventarioListActualizacionInventarioToAttach);
-            }
-            usuario.setActualizacionInventarioList(attachedActualizacionInventarioList);
             List<Factura> attachedFacturaList = new ArrayList<Factura>();
             for (Factura facturaListFacturaToAttach : usuario.getFacturaList()) {
                 facturaListFacturaToAttach = em.getReference(facturaListFacturaToAttach.getClass(), facturaListFacturaToAttach.getIdFactura());
@@ -65,15 +56,6 @@ public class UsuarioJpaController implements Serializable {
             }
             usuario.setReciboCompraList(attachedReciboCompraList);
             em.persist(usuario);
-            for (ActualizacionInventario actualizacionInventarioListActualizacionInventario : usuario.getActualizacionInventarioList()) {
-                Usuario oldUsuarioidOfActualizacionInventarioListActualizacionInventario = actualizacionInventarioListActualizacionInventario.getUsuarioid();
-                actualizacionInventarioListActualizacionInventario.setUsuarioid(usuario);
-                actualizacionInventarioListActualizacionInventario = em.merge(actualizacionInventarioListActualizacionInventario);
-                if (oldUsuarioidOfActualizacionInventarioListActualizacionInventario != null) {
-                    oldUsuarioidOfActualizacionInventarioListActualizacionInventario.getActualizacionInventarioList().remove(actualizacionInventarioListActualizacionInventario);
-                    oldUsuarioidOfActualizacionInventarioListActualizacionInventario = em.merge(oldUsuarioidOfActualizacionInventarioListActualizacionInventario);
-                }
-            }
             for (Factura facturaListFactura : usuario.getFacturaList()) {
                 Usuario oldUsuarioidUsuarioOfFacturaListFactura = facturaListFactura.getUsuarioidUsuario();
                 facturaListFactura.setUsuarioidUsuario(usuario);
@@ -106,21 +88,11 @@ public class UsuarioJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Usuario persistentUsuario = em.find(Usuario.class, usuario.getIdUsuario());
-            List<ActualizacionInventario> actualizacionInventarioListOld = persistentUsuario.getActualizacionInventarioList();
-            List<ActualizacionInventario> actualizacionInventarioListNew = usuario.getActualizacionInventarioList();
             List<Factura> facturaListOld = persistentUsuario.getFacturaList();
             List<Factura> facturaListNew = usuario.getFacturaList();
             List<ReciboCompra> reciboCompraListOld = persistentUsuario.getReciboCompraList();
             List<ReciboCompra> reciboCompraListNew = usuario.getReciboCompraList();
             List<String> illegalOrphanMessages = null;
-            for (ActualizacionInventario actualizacionInventarioListOldActualizacionInventario : actualizacionInventarioListOld) {
-                if (!actualizacionInventarioListNew.contains(actualizacionInventarioListOldActualizacionInventario)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain ActualizacionInventario " + actualizacionInventarioListOldActualizacionInventario + " since its usuarioid field is not nullable.");
-                }
-            }
             for (Factura facturaListOldFactura : facturaListOld) {
                 if (!facturaListNew.contains(facturaListOldFactura)) {
                     if (illegalOrphanMessages == null) {
@@ -140,13 +112,6 @@ public class UsuarioJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            List<ActualizacionInventario> attachedActualizacionInventarioListNew = new ArrayList<ActualizacionInventario>();
-            for (ActualizacionInventario actualizacionInventarioListNewActualizacionInventarioToAttach : actualizacionInventarioListNew) {
-                actualizacionInventarioListNewActualizacionInventarioToAttach = em.getReference(actualizacionInventarioListNewActualizacionInventarioToAttach.getClass(), actualizacionInventarioListNewActualizacionInventarioToAttach.getIdActualizacion());
-                attachedActualizacionInventarioListNew.add(actualizacionInventarioListNewActualizacionInventarioToAttach);
-            }
-            actualizacionInventarioListNew = attachedActualizacionInventarioListNew;
-            usuario.setActualizacionInventarioList(actualizacionInventarioListNew);
             List<Factura> attachedFacturaListNew = new ArrayList<Factura>();
             for (Factura facturaListNewFacturaToAttach : facturaListNew) {
                 facturaListNewFacturaToAttach = em.getReference(facturaListNewFacturaToAttach.getClass(), facturaListNewFacturaToAttach.getIdFactura());
@@ -162,17 +127,6 @@ public class UsuarioJpaController implements Serializable {
             reciboCompraListNew = attachedReciboCompraListNew;
             usuario.setReciboCompraList(reciboCompraListNew);
             usuario = em.merge(usuario);
-            for (ActualizacionInventario actualizacionInventarioListNewActualizacionInventario : actualizacionInventarioListNew) {
-                if (!actualizacionInventarioListOld.contains(actualizacionInventarioListNewActualizacionInventario)) {
-                    Usuario oldUsuarioidOfActualizacionInventarioListNewActualizacionInventario = actualizacionInventarioListNewActualizacionInventario.getUsuarioid();
-                    actualizacionInventarioListNewActualizacionInventario.setUsuarioid(usuario);
-                    actualizacionInventarioListNewActualizacionInventario = em.merge(actualizacionInventarioListNewActualizacionInventario);
-                    if (oldUsuarioidOfActualizacionInventarioListNewActualizacionInventario != null && !oldUsuarioidOfActualizacionInventarioListNewActualizacionInventario.equals(usuario)) {
-                        oldUsuarioidOfActualizacionInventarioListNewActualizacionInventario.getActualizacionInventarioList().remove(actualizacionInventarioListNewActualizacionInventario);
-                        oldUsuarioidOfActualizacionInventarioListNewActualizacionInventario = em.merge(oldUsuarioidOfActualizacionInventarioListNewActualizacionInventario);
-                    }
-                }
-            }
             for (Factura facturaListNewFactura : facturaListNew) {
                 if (!facturaListOld.contains(facturaListNewFactura)) {
                     Usuario oldUsuarioidUsuarioOfFacturaListNewFactura = facturaListNewFactura.getUsuarioidUsuario();
@@ -225,13 +179,6 @@ public class UsuarioJpaController implements Serializable {
                 throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<ActualizacionInventario> actualizacionInventarioListOrphanCheck = usuario.getActualizacionInventarioList();
-            for (ActualizacionInventario actualizacionInventarioListOrphanCheckActualizacionInventario : actualizacionInventarioListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Usuario (" + usuario + ") cannot be destroyed since the ActualizacionInventario " + actualizacionInventarioListOrphanCheckActualizacionInventario + " in its actualizacionInventarioList field has a non-nullable usuarioid field.");
-            }
             List<Factura> facturaListOrphanCheck = usuario.getFacturaList();
             for (Factura facturaListOrphanCheckFactura : facturaListOrphanCheck) {
                 if (illegalOrphanMessages == null) {

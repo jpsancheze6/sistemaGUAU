@@ -40,6 +40,11 @@ public class ReciboCompraJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Proveedor proveedorid = reciboCompra.getProveedorid();
+            if (proveedorid != null) {
+                proveedorid = em.getReference(proveedorid.getClass(), proveedorid.getIdProveedor());
+                reciboCompra.setProveedorid(proveedorid);
+            }
             Usuario usuarioidUsuario = reciboCompra.getUsuarioidUsuario();
             if (usuarioidUsuario != null) {
                 usuarioidUsuario = em.getReference(usuarioidUsuario.getClass(), usuarioidUsuario.getIdUsuario());
@@ -52,6 +57,10 @@ public class ReciboCompraJpaController implements Serializable {
             }
             reciboCompra.setDetalleCompraList(attachedDetalleCompraList);
             em.persist(reciboCompra);
+            if (proveedorid != null) {
+                proveedorid.getReciboCompraList().add(reciboCompra);
+                proveedorid = em.merge(proveedorid);
+            }
             if (usuarioidUsuario != null) {
                 usuarioidUsuario.getReciboCompraList().add(reciboCompra);
                 usuarioidUsuario = em.merge(usuarioidUsuario);
@@ -79,6 +88,8 @@ public class ReciboCompraJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             ReciboCompra persistentReciboCompra = em.find(ReciboCompra.class, reciboCompra.getIdRecibo());
+            Proveedor proveedoridOld = persistentReciboCompra.getProveedorid();
+            Proveedor proveedoridNew = reciboCompra.getProveedorid();
             Usuario usuarioidUsuarioOld = persistentReciboCompra.getUsuarioidUsuario();
             Usuario usuarioidUsuarioNew = reciboCompra.getUsuarioidUsuario();
             List<DetalleCompra> detalleCompraListOld = persistentReciboCompra.getDetalleCompraList();
@@ -95,6 +106,10 @@ public class ReciboCompraJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
+            if (proveedoridNew != null) {
+                proveedoridNew = em.getReference(proveedoridNew.getClass(), proveedoridNew.getIdProveedor());
+                reciboCompra.setProveedorid(proveedoridNew);
+            }
             if (usuarioidUsuarioNew != null) {
                 usuarioidUsuarioNew = em.getReference(usuarioidUsuarioNew.getClass(), usuarioidUsuarioNew.getIdUsuario());
                 reciboCompra.setUsuarioidUsuario(usuarioidUsuarioNew);
@@ -107,6 +122,14 @@ public class ReciboCompraJpaController implements Serializable {
             detalleCompraListNew = attachedDetalleCompraListNew;
             reciboCompra.setDetalleCompraList(detalleCompraListNew);
             reciboCompra = em.merge(reciboCompra);
+            if (proveedoridOld != null && !proveedoridOld.equals(proveedoridNew)) {
+                proveedoridOld.getReciboCompraList().remove(reciboCompra);
+                proveedoridOld = em.merge(proveedoridOld);
+            }
+            if (proveedoridNew != null && !proveedoridNew.equals(proveedoridOld)) {
+                proveedoridNew.getReciboCompraList().add(reciboCompra);
+                proveedoridNew = em.merge(proveedoridNew);
+            }
             if (usuarioidUsuarioOld != null && !usuarioidUsuarioOld.equals(usuarioidUsuarioNew)) {
                 usuarioidUsuarioOld.getReciboCompraList().remove(reciboCompra);
                 usuarioidUsuarioOld = em.merge(usuarioidUsuarioOld);
@@ -165,6 +188,11 @@ public class ReciboCompraJpaController implements Serializable {
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
+            }
+            Proveedor proveedorid = reciboCompra.getProveedorid();
+            if (proveedorid != null) {
+                proveedorid.getReciboCompraList().remove(reciboCompra);
+                proveedorid = em.merge(proveedorid);
             }
             Usuario usuarioidUsuario = reciboCompra.getUsuarioidUsuario();
             if (usuarioidUsuario != null) {

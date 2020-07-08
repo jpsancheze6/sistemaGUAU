@@ -5,9 +5,14 @@
  */
 package Proveedores;
 
+import JPA.Proveedor;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +21,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -37,21 +44,38 @@ public class FormProveedoresController implements Initializable {
     @FXML
     private Button btnEliminar;
     @FXML
-    private TableView<?> tblProveedores;
+    private TableView<Proveedor> tblProveedores;
+    @FXML
+    private TableColumn<Proveedor, Integer> Id;
+    @FXML
+    private TableColumn<Proveedor, String> Nombre;
+    @FXML
+    private TableColumn<Proveedor, String> Telefono;
+    @FXML
+    private TableColumn<Proveedor, String> Empresa;
 
+    private ProveedorDAO proveedor_dao = new ProveedorDAO();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Id.setCellValueFactory(new PropertyValueFactory<>("idProveedor"));
+        Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        Telefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        Empresa.setCellValueFactory(new PropertyValueFactory<>("empresa"));
         
-        
-        
-        
-        
+          List<Proveedor> lista_proveedores = proveedor_dao.getProveedor();
+
+        for (Iterator<Proveedor> iterator = lista_proveedores.iterator(); iterator.hasNext();) {
+            Proveedor next = iterator.next();
+            modelo_Usuarios.add(next);
+        }
+
+        tblProveedores.setItems(modelo_Usuarios);
     }    
+    private ObservableList<Proveedor> modelo_Usuarios = FXCollections.observableArrayList();
 
     @FXML
     private void btnCrearHandle(ActionEvent event) throws IOException 

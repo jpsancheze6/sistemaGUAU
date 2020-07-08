@@ -25,26 +25,12 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        ClienteDAO cliente_dao = new ClienteDAO();
-        //        String nit = "1269253-0";
-        //        String nombre = "Prueba";
-        //        String telefono = "123";
-        //        String direccion = "Gotham";
-        //        String tipo_cliente = "Frecuente";
-        //        boolean mayorista = true;
-        //
-        //        Cliente a = new Cliente();
-        //        a.setDireccion(direccion);
-        //        a.setMayorista(mayorista);
-        //        a.setNit(nit);
-        //        a.setNombre(nombre);
-        //        a.setTelefono(telefono);
-        //        a.setTipocliente(tipo_cliente);
-        try {
-            cliente_dao.getClientes();
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        //ClienteDAO cliente_dao = new ClienteDAO();
+        //try {
+        //    cliente_dao.getClientes();
+        //} catch (Exception ex) {
+        //    System.out.println(ex);
+        //}
 
         launch(args);
     }

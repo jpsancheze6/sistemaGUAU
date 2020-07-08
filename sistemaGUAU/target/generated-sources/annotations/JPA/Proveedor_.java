@@ -1,0 +1,21 @@
+package JPA;
+
+import JPA.Producto;
+import JPA.ReciboCompra;
+import javax.annotation.processing.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2020-07-08T10:28:08", comments="EclipseLink-2.7.7.v20200504-rNA")
+@StaticMetamodel(Proveedor.class)
+public class Proveedor_ { 
+
+    public static volatile ListAttribute<Proveedor, Producto> productoList;
+    public static volatile SingularAttribute<Proveedor, Integer> idProveedor;
+    public static volatile ListAttribute<Proveedor, ReciboCompra> reciboCompraList;
+    public static volatile SingularAttribute<Proveedor, String> telefono;
+    public static volatile SingularAttribute<Proveedor, String> empresa;
+    public static volatile SingularAttribute<Proveedor, String> nombre;
+
+}

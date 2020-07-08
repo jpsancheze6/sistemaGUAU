@@ -3,12 +3,12 @@ package JPA;
 import JPA.DetalleCompra;
 import JPA.DetalleFactura;
 import JPA.Proveedor;
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2020-07-08T10:28:08", comments="EclipseLink-2.7.7.v20200504-rNA")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-07-08T10:42:33")
 @StaticMetamodel(Producto.class)
 public class Producto_ { 
 

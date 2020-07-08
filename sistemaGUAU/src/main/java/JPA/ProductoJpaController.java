@@ -33,9 +33,6 @@ public class ProductoJpaController implements Serializable {
     }
 
     public void create(Producto producto) {
-        if (producto.getDetallesActualizacionList() == null) {
-            producto.setDetallesActualizacionList(new ArrayList<DetallesActualizacion>());
-        }
         if (producto.getDetalleFacturaList() == null) {
             producto.setDetalleFacturaList(new ArrayList<DetalleFactura>());
         }
@@ -51,12 +48,6 @@ public class ProductoJpaController implements Serializable {
                 proveedorid = em.getReference(proveedorid.getClass(), proveedorid.getIdProveedor());
                 producto.setProveedorid(proveedorid);
             }
-            List<DetallesActualizacion> attachedDetallesActualizacionList = new ArrayList<DetallesActualizacion>();
-            for (DetallesActualizacion detallesActualizacionListDetallesActualizacionToAttach : producto.getDetallesActualizacionList()) {
-                detallesActualizacionListDetallesActualizacionToAttach = em.getReference(detallesActualizacionListDetallesActualizacionToAttach.getClass(), detallesActualizacionListDetallesActualizacionToAttach.getId());
-                attachedDetallesActualizacionList.add(detallesActualizacionListDetallesActualizacionToAttach);
-            }
-            producto.setDetallesActualizacionList(attachedDetallesActualizacionList);
             List<DetalleFactura> attachedDetalleFacturaList = new ArrayList<DetalleFactura>();
             for (DetalleFactura detalleFacturaListDetalleFacturaToAttach : producto.getDetalleFacturaList()) {
                 detalleFacturaListDetalleFacturaToAttach = em.getReference(detalleFacturaListDetalleFacturaToAttach.getClass(), detalleFacturaListDetalleFacturaToAttach.getId());
@@ -73,15 +64,6 @@ public class ProductoJpaController implements Serializable {
             if (proveedorid != null) {
                 proveedorid.getProductoList().add(producto);
                 proveedorid = em.merge(proveedorid);
-            }
-            for (DetallesActualizacion detallesActualizacionListDetallesActualizacion : producto.getDetallesActualizacionList()) {
-                Producto oldProductoidOfDetallesActualizacionListDetallesActualizacion = detallesActualizacionListDetallesActualizacion.getProductoid();
-                detallesActualizacionListDetallesActualizacion.setProductoid(producto);
-                detallesActualizacionListDetallesActualizacion = em.merge(detallesActualizacionListDetallesActualizacion);
-                if (oldProductoidOfDetallesActualizacionListDetallesActualizacion != null) {
-                    oldProductoidOfDetallesActualizacionListDetallesActualizacion.getDetallesActualizacionList().remove(detallesActualizacionListDetallesActualizacion);
-                    oldProductoidOfDetallesActualizacionListDetallesActualizacion = em.merge(oldProductoidOfDetallesActualizacionListDetallesActualizacion);
-                }
             }
             for (DetalleFactura detalleFacturaListDetalleFactura : producto.getDetalleFacturaList()) {
                 Producto oldProductoidOfDetalleFacturaListDetalleFactura = detalleFacturaListDetalleFactura.getProductoid();
@@ -117,21 +99,11 @@ public class ProductoJpaController implements Serializable {
             Producto persistentProducto = em.find(Producto.class, producto.getIdProducto());
             Proveedor proveedoridOld = persistentProducto.getProveedorid();
             Proveedor proveedoridNew = producto.getProveedorid();
-            List<DetallesActualizacion> detallesActualizacionListOld = persistentProducto.getDetallesActualizacionList();
-            List<DetallesActualizacion> detallesActualizacionListNew = producto.getDetallesActualizacionList();
             List<DetalleFactura> detalleFacturaListOld = persistentProducto.getDetalleFacturaList();
             List<DetalleFactura> detalleFacturaListNew = producto.getDetalleFacturaList();
             List<DetalleCompra> detalleCompraListOld = persistentProducto.getDetalleCompraList();
             List<DetalleCompra> detalleCompraListNew = producto.getDetalleCompraList();
             List<String> illegalOrphanMessages = null;
-            for (DetallesActualizacion detallesActualizacionListOldDetallesActualizacion : detallesActualizacionListOld) {
-                if (!detallesActualizacionListNew.contains(detallesActualizacionListOldDetallesActualizacion)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain DetallesActualizacion " + detallesActualizacionListOldDetallesActualizacion + " since its productoid field is not nullable.");
-                }
-            }
             for (DetalleFactura detalleFacturaListOldDetalleFactura : detalleFacturaListOld) {
                 if (!detalleFacturaListNew.contains(detalleFacturaListOldDetalleFactura)) {
                     if (illegalOrphanMessages == null) {
@@ -155,13 +127,6 @@ public class ProductoJpaController implements Serializable {
                 proveedoridNew = em.getReference(proveedoridNew.getClass(), proveedoridNew.getIdProveedor());
                 producto.setProveedorid(proveedoridNew);
             }
-            List<DetallesActualizacion> attachedDetallesActualizacionListNew = new ArrayList<DetallesActualizacion>();
-            for (DetallesActualizacion detallesActualizacionListNewDetallesActualizacionToAttach : detallesActualizacionListNew) {
-                detallesActualizacionListNewDetallesActualizacionToAttach = em.getReference(detallesActualizacionListNewDetallesActualizacionToAttach.getClass(), detallesActualizacionListNewDetallesActualizacionToAttach.getId());
-                attachedDetallesActualizacionListNew.add(detallesActualizacionListNewDetallesActualizacionToAttach);
-            }
-            detallesActualizacionListNew = attachedDetallesActualizacionListNew;
-            producto.setDetallesActualizacionList(detallesActualizacionListNew);
             List<DetalleFactura> attachedDetalleFacturaListNew = new ArrayList<DetalleFactura>();
             for (DetalleFactura detalleFacturaListNewDetalleFacturaToAttach : detalleFacturaListNew) {
                 detalleFacturaListNewDetalleFacturaToAttach = em.getReference(detalleFacturaListNewDetalleFacturaToAttach.getClass(), detalleFacturaListNewDetalleFacturaToAttach.getId());
@@ -184,17 +149,6 @@ public class ProductoJpaController implements Serializable {
             if (proveedoridNew != null && !proveedoridNew.equals(proveedoridOld)) {
                 proveedoridNew.getProductoList().add(producto);
                 proveedoridNew = em.merge(proveedoridNew);
-            }
-            for (DetallesActualizacion detallesActualizacionListNewDetallesActualizacion : detallesActualizacionListNew) {
-                if (!detallesActualizacionListOld.contains(detallesActualizacionListNewDetallesActualizacion)) {
-                    Producto oldProductoidOfDetallesActualizacionListNewDetallesActualizacion = detallesActualizacionListNewDetallesActualizacion.getProductoid();
-                    detallesActualizacionListNewDetallesActualizacion.setProductoid(producto);
-                    detallesActualizacionListNewDetallesActualizacion = em.merge(detallesActualizacionListNewDetallesActualizacion);
-                    if (oldProductoidOfDetallesActualizacionListNewDetallesActualizacion != null && !oldProductoidOfDetallesActualizacionListNewDetallesActualizacion.equals(producto)) {
-                        oldProductoidOfDetallesActualizacionListNewDetallesActualizacion.getDetallesActualizacionList().remove(detallesActualizacionListNewDetallesActualizacion);
-                        oldProductoidOfDetallesActualizacionListNewDetallesActualizacion = em.merge(oldProductoidOfDetallesActualizacionListNewDetallesActualizacion);
-                    }
-                }
             }
             for (DetalleFactura detalleFacturaListNewDetalleFactura : detalleFacturaListNew) {
                 if (!detalleFacturaListOld.contains(detalleFacturaListNewDetalleFactura)) {
@@ -248,13 +202,6 @@ public class ProductoJpaController implements Serializable {
                 throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            List<DetallesActualizacion> detallesActualizacionListOrphanCheck = producto.getDetallesActualizacionList();
-            for (DetallesActualizacion detallesActualizacionListOrphanCheckDetallesActualizacion : detallesActualizacionListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Producto (" + producto + ") cannot be destroyed since the DetallesActualizacion " + detallesActualizacionListOrphanCheckDetallesActualizacion + " in its detallesActualizacionList field has a non-nullable productoid field.");
-            }
             List<DetalleFactura> detalleFacturaListOrphanCheck = producto.getDetalleFacturaList();
             for (DetalleFactura detalleFacturaListOrphanCheckDetalleFactura : detalleFacturaListOrphanCheck) {
                 if (illegalOrphanMessages == null) {

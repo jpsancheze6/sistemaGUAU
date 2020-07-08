@@ -74,8 +74,6 @@ public class Producto implements Serializable {
     @Column(name = "Unidad_referencia")
     private String unidadreferencia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoid")
-    private List<DetallesActualizacion> detallesActualizacionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoid")
     private List<DetalleFactura> detalleFacturaList;
     @JoinColumn(name = "Proveedor_id", referencedColumnName = "idProveedor")
     @ManyToOne(optional = false)
@@ -172,15 +170,6 @@ public class Producto implements Serializable {
 
     public void setUnidadreferencia(String unidadreferencia) {
         this.unidadreferencia = unidadreferencia;
-    }
-
-    @XmlTransient
-    public List<DetallesActualizacion> getDetallesActualizacionList() {
-        return detallesActualizacionList;
-    }
-
-    public void setDetallesActualizacionList(List<DetallesActualizacion> detallesActualizacionList) {
-        this.detallesActualizacionList = detallesActualizacionList;
     }
 
     @XmlTransient

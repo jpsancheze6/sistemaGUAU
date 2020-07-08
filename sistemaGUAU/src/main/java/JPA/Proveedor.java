@@ -52,6 +52,8 @@ public class Proveedor implements Serializable {
     @Column(name = "Empresa")
     private String empresa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedorid")
+    private List<ReciboCompra> reciboCompraList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedorid")
     private List<Producto> productoList;
 
     public Proveedor() {
@@ -98,6 +100,15 @@ public class Proveedor implements Serializable {
 
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
+    }
+
+    @XmlTransient
+    public List<ReciboCompra> getReciboCompraList() {
+        return reciboCompraList;
+    }
+
+    public void setReciboCompraList(List<ReciboCompra> reciboCompraList) {
+        this.reciboCompraList = reciboCompraList;
     }
 
     @XmlTransient

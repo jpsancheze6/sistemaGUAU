@@ -53,6 +53,9 @@ public class ReciboCompra implements Serializable {
     @Basic(optional = false)
     @Column(name = "Total")
     private float total;
+    @JoinColumn(name = "Proveedor_id", referencedColumnName = "idProveedor")
+    @ManyToOne(optional = false)
+    private Proveedor proveedorid;
     @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
     @ManyToOne(optional = false)
     private Usuario usuarioidUsuario;
@@ -94,6 +97,14 @@ public class ReciboCompra implements Serializable {
 
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    public Proveedor getProveedorid() {
+        return proveedorid;
+    }
+
+    public void setProveedorid(Proveedor proveedorid) {
+        this.proveedorid = proveedorid;
     }
 
     public Usuario getUsuarioidUsuario() {

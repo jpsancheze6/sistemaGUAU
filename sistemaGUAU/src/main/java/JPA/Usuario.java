@@ -50,10 +50,8 @@ public class Usuario implements Serializable {
     private String nombreusuario;
     @Basic(optional = false)
     @Lob
-    @Column(name = "Contrase\u00f1a")
-    private byte[] contraseña;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioid")
-    private List<ActualizacionInventario> actualizacionInventarioList;
+    @Column(name = "Password")
+    private byte[] password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
     private List<Factura> facturaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
@@ -66,11 +64,11 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String nombre, String nombreusuario, byte[] contraseña) {
+    public Usuario(Integer idUsuario, String nombre, String nombreusuario, byte[] password) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.nombreusuario = nombreusuario;
-        this.contraseña = contraseña;
+        this.password = password;
     }
 
     public Integer getIdUsuario() {
@@ -97,21 +95,12 @@ public class Usuario implements Serializable {
         this.nombreusuario = nombreusuario;
     }
 
-    public byte[] getContraseña() {
-        return contraseña;
+    public byte[] getPassword() {
+        return password;
     }
 
-    public void setContraseña(byte[] contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    @XmlTransient
-    public List<ActualizacionInventario> getActualizacionInventarioList() {
-        return actualizacionInventarioList;
-    }
-
-    public void setActualizacionInventarioList(List<ActualizacionInventario> actualizacionInventarioList) {
-        this.actualizacionInventarioList = actualizacionInventarioList;
+    public void setPassword(byte[] password) {
+        this.password = password;
     }
 
     @XmlTransient

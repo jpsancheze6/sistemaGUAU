@@ -3,19 +3,17 @@
   <persistence-unit name="com.mevecon_sistemaGUAU_jar_1.0PU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>JPA.Producto</class>
-    <class>JPA.DetallesActualizacion</class>
-    <class>JPA.Cliente</class>
-    <class>JPA.Proveedor</class>
-    <class>JPA.Usuario</class>
     <class>JPA.DetalleFactura</class>
-    <class>JPA.ActualizacionInventario</class>
-    <class>JPA.DetalleCompra</class>
-    <class>JPA.Factura</class>
+    <class>JPA.Proveedor</class>
     <class>JPA.ReciboCompra</class>
+    <class>JPA.Cliente</class>
+    <class>JPA.Factura</class>
+    <class>JPA.Usuario</class>
+    <class>JPA.DetalleCompra</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/mevecon?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mevecon?serverTimezone=UTC&amp;useLegacyDatetimeCode=false"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="Jose.6799"/>
     </properties>
   </persistence-unit>

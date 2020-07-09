@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findByTipoanimal", query = "SELECT p FROM Producto p WHERE p.tipoanimal = :tipoanimal"),
     @NamedQuery(name = "Producto.findByMarca", query = "SELECT p FROM Producto p WHERE p.marca = :marca"),
     @NamedQuery(name = "Producto.findByPeso", query = "SELECT p FROM Producto p WHERE p.peso = :peso"),
+    @NamedQuery(name = "Producto.buscarPorNombre", query = "SELECT p FROM Producto P WHERE p.nombre LIKE :nombre"),
     @NamedQuery(name = "Producto.findByUnidadreferencia", query = "SELECT p FROM Producto p WHERE p.unidadreferencia = :unidadreferencia")})
 public class Producto implements Serializable {
 

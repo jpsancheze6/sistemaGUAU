@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -50,6 +52,8 @@ public class InventarioController implements Initializable {
     @FXML
     private TableView tblProductos;
     @FXML
+    private TextField txtNombre;
+    @FXML
     private TableColumn<Producto, Integer> id;
     @FXML
     private TableColumn<Producto, String> nombre;
@@ -70,20 +74,7 @@ public class InventarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        id.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
-        nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
-        existencias.setCellValueFactory(new PropertyValueFactory<>("Existencias"));
-        precio.setCellValueFactory(new PropertyValueFactory<>("Precio"));
-        marca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
-        peso.setCellValueFactory(new PropertyValueFactory<>("Peso"));
-
-        List<Producto> lista_clientes = inventario_dao.getProductos();
-
-        for (Iterator<Producto> iterator = lista_clientes.iterator(); iterator.hasNext();) {
-            Producto next = iterator.next();
-            modelo_clientes.add(next);
-        }
-        tblProductos.setItems(modelo_clientes);
+        agregarElementos();
     }
 
     private ObservableList<Producto> modelo_clientes = FXCollections.observableArrayList();
@@ -178,6 +169,86 @@ public class InventarioController implements Initializable {
         //Cerrar ventana actual
         Stage actual = (Stage) btnRegresar.getScene().getWindow();
         actual.close();
+    }
+
+    @FXML
+    private void buscarPorNombre(ActionEvent event) {
+        //Llamar a una nueva ventana
+        String nombre = txtNombre.getText();
+        if (nombre.length() != 0) {
+            List<Producto> a = inventario_dao.getProductos();
+            List<Producto> mostrar = new ArrayList<>();
+            for (Producto next : a) {
+                if (next.getNombre().contains(nombre)) {
+                    mostrar.add(next);
+                }
+            }
+            if (mostrar.isEmpty()) {
+                showWarning("Sin resultados", "No se encontraron valores correspondientes al nombre.");
+            } else {
+                limpiarTabla();
+                colocarValoresTabla(mostrar);
+            }
+        } else {
+            showWarning("Falta nombre", "Por favor ingrese el nombre del prodcuto");
+        }
+
+    }
+
+    public void limpiarTabla() {
+        tblProductos.getItems().clear();
+    }
+
+    public void agregarElementos() {
+        id.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
+        nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        existencias.setCellValueFactory(new PropertyValueFactory<>("Existencias"));
+        precio.setCellValueFactory(new PropertyValueFactory<>("Precio"));
+        marca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
+        peso.setCellValueFactory(new PropertyValueFactory<>("Peso"));
+
+        List<Producto> lista_clientes = inventario_dao.getProductos();
+
+        for (Iterator<Producto> iterator = lista_clientes.iterator(); iterator.hasNext();) {
+            Producto next = iterator.next();
+            modelo_clientes.add(next);
+        }
+        tblProductos.setItems(modelo_clientes);
+    }
+
+    @FXML
+    public void limpiarFiltro() {
+        txtNombre.setText("");
+        limpiarTabla();
+        agregarElementos();
+
+    }
+
+    public void colocarValoresTabla(List<Producto> lista_productos) {
+        id.setCellValueFactory(new PropertyValueFactory<>("idProducto"));
+        nombre.setCellValueFactory(new PropertyValueFactory<>("Nombre"));
+        existencias.setCellValueFactory(new PropertyValueFactory<>("Existencias"));
+        precio.setCellValueFactory(new PropertyValueFactory<>("Precio"));
+        marca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
+        peso.setCellValueFactory(new PropertyValueFactory<>("Peso"));
+
+        List<Producto> lista_clientes = lista_productos;
+
+        for (Iterator<Producto> iterator = lista_clientes.iterator(); iterator.hasNext();) {
+            Producto next = iterator.next();
+            modelo_clientes.add(next);
+        }
+        tblProductos.setItems(modelo_clientes);
+    }
+
+    public static void showWarning(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 
 }

@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="329.0" prefWidth="261.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Login.FormLoginController">
+<AnchorPane id="AnchorPane" prefHeight="329.0" prefWidth="261.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.FormLoginController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
     <children>
-        <Label layoutX="86.0" layoutY="54.0" text="Login"></Label>
-        <TextField fx:id="txtUsuario" layoutX="56.0" layoutY="147.0" promptText="Usuario" />
-        <PasswordField fx:id="txtPassword" layoutX="56.0" layoutY="200.0" promptText="Contraseña" />
-        <Button layoutX="56.0" layoutY="251.0" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />
-        <Button layoutX="144.0" layoutY="251.0" mnemonicParsing="false" text="Cancelar" />
+        <Label layoutX="26.0" layoutY="32.0" text="Iniciar Sesion">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font></Label>
+        <TextField fx:id="txtUsuario" layoutX="56.0" layoutY="117.0" promptText="Usuario" />
+        <PasswordField fx:id="txtPassword" layoutX="56.0" layoutY="165.0" promptText="Contraseña" />
+        <Button layoutX="56.0" layoutY="225.0" mnemonicParsing="false" onAction="#aceptar" text="Aceptar" />
+        <Button layoutX="143.0" layoutY="225.0" mnemonicParsing="false" text="Cancelar" />
     </children>
 </AnchorPane>

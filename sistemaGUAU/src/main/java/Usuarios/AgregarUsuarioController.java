@@ -62,6 +62,8 @@ public class AgregarUsuarioController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    //************************METODOS
     //---------------------------------------------------------------Mensaje de Confimarcion
     public static String showConfirm(String title, String message, String... options) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -111,9 +113,33 @@ public class AgregarUsuarioController implements Initializable {
         alert.showAndWait();
     }
 
+    private Boolean valiSoloLetras(String texto) {
+        boolean resp = true;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            if ((!Character.isLetter(c)) && (!Character.isSpaceChar(c))) {
+                resp = false;
+            }
+        }
+        return resp;
+
+    }
+    
+    private Boolean valiSoloLetrasyNumeros(String texto) {
+        boolean resp = true;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            if ((!Character.isLetter(c)) && (!Character.isDigit(c)) && (!Character.isSpaceChar(c))) {
+                resp = false;
+            }
+        }
+        return resp;
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
     }
 
     @FXML
@@ -122,20 +148,24 @@ public class AgregarUsuarioController implements Initializable {
 
         if ((!txtNombre.getText().isEmpty()) && (!txtUsuario.getText().isEmpty()) && (!txtContras.getText().isEmpty()) && (!txtConfirmarContra.getText().isEmpty())) {
 
-            if (txtContras.getText().equals(txtConfirmarContra.getText())) {
-                Usuario newUsuario = new Usuario();
-                newUsuario.setNombre(txtNombre.getText());
-                newUsuario.setNombreusuario(txtUsuario.getText());
-                newUsuario.setPassword(contra);
-                try {
-                    usuario_dao.AgregarUsuario(newUsuario);
-                    btnCancelarHandle(event);
-                } catch (Exception ex) {
-                    showError("Error al ingresar los datos", "Debido a un error no se puedo ingresar el usuario");
+            if (valiSoloLetras(txtNombre.getText()).equals(true)) {//---------------------------------------IF validacion
+                if (txtContras.getText().equals(txtConfirmarContra.getText())) {//---------------------------IF CONTRASENAS
+                    Usuario newUsuario = new Usuario();
+                    newUsuario.setNombre(txtNombre.getText());
+                    newUsuario.setNombreusuario(txtUsuario.getText());
+                    newUsuario.setPassword(contra);
+                    try {
+                        usuario_dao.AgregarUsuario(newUsuario);
+                        btnCancelarHandle(event);
+                    } catch (Exception ex) {
+                        showError("Error al ingresar los datos", "Debido a un error no se puedo ingresar el usuario");
+                    }
+                } else {// -----------------------------------------ELSE CONTRASE:AS
+                    showError("Confirmar contraseña", "Las contraseñas no coinciden");
+                    txtConfirmarContra.setText("");
                 }
-            } else {
-                showError("Confirmar contraseña", "Las contraseñas no coinciden");
-                txtConfirmarContra.setText("");
+            } else {// ------------------------------------------------------------------------- ELSE VALIDACION
+                showError("Error de Validacion", "El nombre NO puede contener caracteres o numeros");
             }
 
         } else {

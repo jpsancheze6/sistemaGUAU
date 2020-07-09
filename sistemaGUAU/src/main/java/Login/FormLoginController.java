@@ -5,8 +5,12 @@
  */
 package Login;
 
+import JPA.Usuario;
+import Usuarios.UsuarioDAO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,9 +18,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * FXML Controller class
@@ -30,26 +42,77 @@ public class FormLoginController implements Initializable {
     @FXML
     private PasswordField txtPassword;
 
+    UsuarioDAO usuario_dao = new UsuarioDAO();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    //------------ Error
+    public static void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+    // Warning
+    
+    public static void showWarning(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
 
     @FXML
     public void aceptar(ActionEvent e) throws IOException {
-        //Llamar a una nueva ventana
-        Parent root = FXMLLoader.load(getClass().getResource("/Principal/FormPrincipal.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("MEVECOM <>");
-        stage.setResizable(false);
-        stage.show();
-        //Cerrar ventana actual
-        Stage actual = (Stage) txtPassword.getScene().getWindow();
-        actual.close();
+
+        String nombreUsuario = txtUsuario.getText();
+        String pass = txtPassword.getText();
+        byte[] contringre = txtPassword.getText().getBytes();
+
+        if (nombreUsuario.length() != 0) {
+            List<Usuario> a = usuario_dao.getUsuarios();
+            for (Usuario next : a) {
+                if (next.getNombreusuario().equals(nombreUsuario)) {
+                    byte[] contrabuscada = next.getPassword();
+
+                    int rescompa = Arrays.compare(contringre, contrabuscada);
+
+                    if (rescompa == 0) {
+                        // Llamar a una nueva ventana
+                        Parent root = FXMLLoader.load(getClass().getResource("/Principal/FormPrincipal.fxml"));
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.setTitle("MEVECOM <>");
+                        stage.setResizable(false);
+                        stage.show();
+                        //Cerrar ventana actual
+                        Stage actual = (Stage) txtPassword.getScene().getWindow();
+                        actual.close();
+                    } else {
+                        showError("Contraseña incorrecta", "La contraseña ingresada no corresponde al Usuario");
+                        txtPassword.setText("");
+                    }
+                } else {
+                    showError("Usuario no encontrado", "El usuario ingresado no esta registrado en la Base de Datos");
+                }
+            }
+//           
+        } else {
+           showWarning("Falta nombre", "Por favor ingrese el usuario para iniciar sesion");            
+        }
+
     }
-    
+
 }

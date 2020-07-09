@@ -6,7 +6,6 @@
 package Usuarios;
 
 import JPA.Usuario;
-import static Usuarios.FormUsuariosController.showError;
 import java.awt.Robot;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -25,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import static javafx.scene.control.ButtonType.CANCEL;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;

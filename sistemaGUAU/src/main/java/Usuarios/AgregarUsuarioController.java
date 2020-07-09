@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +60,7 @@ public class AgregarUsuarioController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
     
     //************************METODOS
     //---------------------------------------------------------------Mensaje de Confimarcion
@@ -113,31 +112,28 @@ public class AgregarUsuarioController implements Initializable {
         alert.showAndWait();
     }
 
-    private Boolean valiSoloLetras(String texto) {
-        boolean resp = true;
+    private Boolean valiSoloLetrasyEspacios(String texto) {
+        boolean resp = false;
         char c;
         for (int i = 0; i < texto.length(); i++) {
             c = texto.charAt(i);
-            if ((!Character.isLetter(c)) && (!Character.isSpaceChar(c))) {
-                resp = false;
-            }
+            resp = (Character.isLetter(c)) || (Character.isSpaceChar(c));
         }
         return resp;
 
     }
-    
+
     private Boolean valiSoloLetrasyNumeros(String texto) {
-        boolean resp = true;
+        boolean resp = false;
         char c;
         for (int i = 0; i < texto.length(); i++) {
             c = texto.charAt(i);
-            if ((!Character.isLetter(c)) && (!Character.isDigit(c)) && (!Character.isSpaceChar(c))) {
-                resp = false;
-            }
+            resp = (Character.isLetter(c)) || (Character.isDigit(c));
         }
         return resp;
 
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
@@ -148,22 +144,27 @@ public class AgregarUsuarioController implements Initializable {
 
         if ((!txtNombre.getText().isEmpty()) && (!txtUsuario.getText().isEmpty()) && (!txtContras.getText().isEmpty()) && (!txtConfirmarContra.getText().isEmpty())) {
 
-            if (valiSoloLetras(txtNombre.getText()).equals(true)) {//---------------------------------------IF validacion
-                if (txtContras.getText().equals(txtConfirmarContra.getText())) {//---------------------------IF CONTRASENAS
-                    Usuario newUsuario = new Usuario();
-                    newUsuario.setNombre(txtNombre.getText());
-                    newUsuario.setNombreusuario(txtUsuario.getText());
-                    newUsuario.setPassword(contra);
-                    try {
-                        usuario_dao.AgregarUsuario(newUsuario);
-                        btnCancelarHandle(event);
-                    } catch (Exception ex) {
-                        showError("Error al ingresar los datos", "Debido a un error no se puedo ingresar el usuario");
+            if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {//---------------------------------------IF validacion
+                if (valiSoloLetrasyNumeros(txtUsuario.getText()).equals(true)) {
+                    if (txtContras.getText().equals(txtConfirmarContra.getText())) {//---------------------------IF CONTRASENAS
+                        Usuario newUsuario = new Usuario();
+                        newUsuario.setNombre(txtNombre.getText());
+                        newUsuario.setNombreusuario(txtUsuario.getText());
+                        newUsuario.setPassword(contra);
+                        try {
+                            usuario_dao.AgregarUsuario(newUsuario);
+                            btnCancelarHandle(event);
+                        } catch (Exception ex) {
+                            showError("Error al ingresar los datos", "Debido a un error no se puedo ingresar el usuario");
+                        }
+                    } else {// -----------------------------------------ELSE CONTRASE:AS
+                        showError("Confirmar contraseña", "Las contraseñas no coinciden");
+                        txtConfirmarContra.setText("");
                     }
-                } else {// -----------------------------------------ELSE CONTRASE:AS
-                    showError("Confirmar contraseña", "Las contraseñas no coinciden");
-                    txtConfirmarContra.setText("");
+                } else {
+                    showError("Error de Validacion", "El nombre no puede contener espacios o simbolos");
                 }
+
             } else {// ------------------------------------------------------------------------- ELSE VALIDACION
                 showError("Error de Validacion", "El nombre NO puede contener caracteres o numeros");
             }
@@ -195,40 +196,6 @@ public class AgregarUsuarioController implements Initializable {
         //Cerrar ventana actual
         Stage actual = (Stage) btnCancelar.getScene().getWindow();
         actual.close();
-    }
-
-    @FXML
-    private void txtNombreTyped(KeyEvent event) {
-//        char[] string = event.getCharacter().toCharArray();
-//
-//        for (char c : string) {
-//            if ((!Character.isLetter(c))) {
-//                event.consume();
-//              //  JOptionPane.showMessageDialog(null, "Solo se permiten usar letras", "Error", JOptionPane.ERROR_MESSAGE);
-//                txtNombre.setText("");
-//            } else {
-//                txtUsuario.setText(txtNombre.getText() + c);
-//            }
-//
-//        }
-    }
-
-    private void txtContraTyped(KeyEvent event) {
-////         if (txtContra.getText().length()>=8) 
-////        {
-////            event.consume();
-////        }
-//         char[] string = event.getCharacter().toCharArray();
-//
-//        for (char c : string) {
-//            if ((!Character.isLetter(c)) && (!Character.isDigit(c))) {
-//                event.consume();
-//                 JOptionPane.showMessageDialog(null, "Solo se permiten usar letras y numeros", "Error", JOptionPane.ERROR_MESSAGE);
-//                txtContra.setText("");
-//            } 
-//
-//        }
-//       
     }
 
 }

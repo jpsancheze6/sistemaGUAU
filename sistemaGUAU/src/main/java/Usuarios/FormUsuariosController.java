@@ -11,7 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -152,7 +151,9 @@ public class FormUsuariosController implements Initializable {
     private void btnModificarHandle(ActionEvent event) throws IOException {
 
         if (!tblUsuarios.getSelectionModel().isEmpty()) {
+            
             String Respuesta = showConfirm("¿Modificar Usuario?", null, "Si", "No");
+            
             if (Respuesta.equals("Si")) {
                 Usuario usuario_seleccionado = tblUsuarios.getSelectionModel().getSelectedItem();
                 Usuario usuario_enviar = usuario_dao.getUsuarioByID(usuario_seleccionado.getIdUsuario());

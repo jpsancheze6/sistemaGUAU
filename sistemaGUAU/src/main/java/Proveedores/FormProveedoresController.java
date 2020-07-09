@@ -6,10 +6,13 @@
 package Proveedores;
 
 import JPA.Proveedor;
+import java.awt.Robot;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,13 +22,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -58,12 +65,60 @@ public class FormProveedoresController implements Initializable {
     private ProveedorDAO proveedor_dao = new ProveedorDAO();
 
     private List<Proveedor> lista_proveedores = proveedor_dao.getProveedor();
-    
-    private ObservableList<Proveedor> modelo_Usuarios = FXCollections.observableArrayList();
+
+    private ObservableList<Proveedor> modelo_Proveedores = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
      */
+    public static String showConfirm(String title, String message, String... options) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.DECORATED);
+        alert.setTitle("CONFIRMAR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        //To make enter key press the actual focused button, not the first one. Just like pressing "space".
+        alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                event.consume();
+                try {
+                    Robot r = new Robot();
+                    r.keyPress(java.awt.event.KeyEvent.VK_SPACE);
+                    r.keyRelease(java.awt.event.KeyEvent.VK_SPACE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        List<ButtonType> buttons = new ArrayList<>();
+        for (String option : options) {
+            buttons.add(new ButtonType(option));
+        }
+
+        alert.getButtonTypes().setAll(buttons);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        String Op = result.get().getText();
+        if (result.get().getText().equals("Si")) {
+            return "Si";
+        } else {
+            return "No";
+        }
+    }
+
+    //---------------------------------------------------------------Mensaje de Error
+    public static void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //-------------------------------------------------- Llenado de  Columnas
@@ -71,17 +126,16 @@ public class FormProveedoresController implements Initializable {
         Nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         Telefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         Empresa.setCellValueFactory(new PropertyValueFactory<>("empresa"));
-        
+
         //Llenado de tabla
         lista_proveedores.forEach((next) -> {
-            modelo_Usuarios.add(next);
+            modelo_Proveedores.add(next);
         });
 
-        tblProveedores.setItems(modelo_Usuarios);
+        tblProveedores.setItems(modelo_Proveedores);
     }
-   
-   //----------------------------------------------------------------------------------------Agregar
 
+    //----------------------------------------------------------------------------------------Agregar
     @FXML
     private void btnCrearHandle(ActionEvent event) throws IOException {
         // Llamar a una nueva ventana
@@ -102,8 +156,10 @@ public class FormProveedoresController implements Initializable {
     private void btnModificarHandle(ActionEvent event) throws IOException {
 
         if (!tblProveedores.getSelectionModel().isEmpty()) {
-            int resp = JOptionPane.showConfirmDialog(null, "¿Modificar Proveedor?", "Alerta!", JOptionPane.YES_OPTION);
-            if (resp == 0) {               
+            
+            String Respuesta = showConfirm("¿Modificar Proveedor?", null, "Si", "No");
+            
+            if (Respuesta.equals("Si")) {
                 Proveedor proveedor_seleccionado = tblProveedores.getSelectionModel().getSelectedItem();
                 Proveedor proveedor_enviar = proveedor_dao.getProveedorByID(proveedor_seleccionado.getIdProveedor());
                 try ( FileWriter fileWriter = new FileWriter("proveedor.txt")) {
@@ -126,8 +182,7 @@ public class FormProveedoresController implements Initializable {
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un proveedor", "Error", JOptionPane.ERROR_MESSAGE);
-
+           showError("Seleccione un Proveedor", null);
         }
 
     }
@@ -155,18 +210,18 @@ public class FormProveedoresController implements Initializable {
             Proveedor proveedor = tblProveedores.getSelectionModel().getSelectedItem();
 
             try {
-                int resp = JOptionPane.showConfirmDialog(null, "¿Borrar Proveedor?", "Alerta!", JOptionPane.YES_NO_OPTION);
+                 String Respuesta = showConfirm("¿Eliminar Proveedor?", null, "Si", "No");
 
-                if (resp == 0) {
+                if (Respuesta.equals("Si"))  {
                     proveedor_dao.EliminarProveedor(proveedor.getIdProveedor());
-                    modelo_Usuarios.remove(proveedor);
+                    modelo_Proveedores.remove(proveedor);
                 }
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error al Borrar" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+               showError("Error al borrar", "Debido a un error no se puedo borrar el Proveedor");
             }
 
         } else {
-             JOptionPane.showMessageDialog(null, "Seleccione un proveedor", "Error", JOptionPane.ERROR_MESSAGE);
+            showError("Seleccione un Proveedor", null);
         }
     }
 

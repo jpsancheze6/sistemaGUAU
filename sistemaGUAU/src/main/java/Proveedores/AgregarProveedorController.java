@@ -6,8 +6,12 @@
 package Proveedores;
 
 import JPA.Proveedor;
+import java.awt.Robot;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,12 +19,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -47,6 +54,87 @@ public class AgregarProveedorController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    //************************METODOS
+    //---------------------------------------------------------------Mensaje de Confimarcion
+    public static String showConfirm(String title, String message, String... options) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.DECORATED);
+        alert.setTitle("CONFIRMAR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        //To make enter key press the actual focused button, not the first one. Just like pressing "space".
+        alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                event.consume();
+                try {
+                    Robot r = new Robot();
+                    r.keyPress(java.awt.event.KeyEvent.VK_SPACE);
+                    r.keyRelease(java.awt.event.KeyEvent.VK_SPACE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        List<ButtonType> buttons = new ArrayList<>();
+        for (String option : options) {
+            buttons.add(new ButtonType(option));
+        }
+
+        alert.getButtonTypes().setAll(buttons);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        String Op = result.get().getText();
+        if (result.get().getText().equals("Si")) {
+            return "Si";
+        } else {
+            return "No";
+        }
+    }
+
+    //---------------------------------------------------------------Mensaje de Error
+    public static void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+    private Boolean valiSoloLetrasyEspacios(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isLetter(c)) || (Character.isSpaceChar(c));
+        }
+        return resp;
+
+    }
+
+    private Boolean valiSoloLetrasyNumeros(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isLetter(c)) || (Character.isDigit(c));
+        }
+        return resp;
+    }
+
+    private Boolean valiSoloNumeros(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isDigit(c));
+        }
+        return resp;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -56,21 +144,31 @@ public class AgregarProveedorController implements Initializable {
     private void btnGuardarHandle(ActionEvent event) {
         if ((!txtNombre.getText().isEmpty()) && (!txtTelefono.getText().isEmpty()) && (!txtEmpresa.getText().isEmpty())) {
 
-            ProveedorDAO proveedor_dao = new ProveedorDAO();
-            Proveedor newProveedor = new Proveedor();
-            newProveedor.setNombre(txtNombre.getText());
-            newProveedor.setTelefono(txtTelefono.getText());
-            newProveedor.setEmpresa(txtEmpresa.getText());
+            if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {
+                if (valiSoloNumeros(txtTelefono.getText())) {
+                    ProveedorDAO proveedor_dao = new ProveedorDAO();
+                    Proveedor newProveedor = new Proveedor();
+                    newProveedor.setNombre(txtNombre.getText());
+                    newProveedor.setTelefono(txtTelefono.getText());
+                    newProveedor.setEmpresa(txtEmpresa.getText());
 
-            try {
-                proveedor_dao.AgregarProveedor(newProveedor);
-                btnCancelarHandle(event);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Error al ingresar" + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                    try {
+                        proveedor_dao.AgregarProveedor(newProveedor);
+                        btnCancelarHandle(event);
+                    } catch (Exception ex) {
+                       showError("Error al Ingresar", "Debido a un error no se puedo Ingresar el proveedor");
+                    }
+
+                } else {
+                    showError("Error de Validacion", "El numero de telefono NO puede contener letras o simbolos");
+                }
+
+            } else {
+                showError("Error de Validacion", "El Nombre NO puede contener espacios o simbolos");
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Llenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+            showError("Campos Vacios", "Llenar todos los campos");
         }
 
     }
@@ -96,46 +194,4 @@ public class AgregarProveedorController implements Initializable {
         Stage actual = (Stage) btnCancelar.getScene().getWindow();
         actual.close();
     }
-
-    @FXML
-    private void txtNombreTyped(KeyEvent event) {
-        char[] string = event.getCharacter().toCharArray();
-
-        for (char c : string) {
-            if ((!Character.isLetter(c))&& (!Character.isSpaceChar(c)) ) {
-                event.consume();
-                JOptionPane.showMessageDialog(null, "Solo se permiten usar letras", "Error", JOptionPane.ERROR_MESSAGE);
-               // txtNombre.setText("");
-            }
-        }
-    }
-
-    @FXML
-    private void txtTelefonoTyped(KeyEvent event) {
-        char[] string = event.getCharacter().toCharArray();
-
-        for (char c : string) {
-            if ((!Character.isDigit(c))) {
-                event.consume();
-                JOptionPane.showMessageDialog(null, "Solo se permiten usar numeros", "Error", JOptionPane.ERROR_MESSAGE);
-                //txtTelefono.getText().charAt(c)='s';
-            }
-
-        }
-    }
-
-    @FXML
-    private void txtEmpresaTyped(KeyEvent event) {
-        char[] string = event.getCharacter().toCharArray();
-
-        for (char c : string) {
-            if ((!Character.isLetter(c)) && (!Character.isDigit(c))) {
-                event.consume();
-                 JOptionPane.showMessageDialog(null, "Solo se permiten usar letras y numeros", "Error", JOptionPane.ERROR_MESSAGE);
-               // txtEmpresa.setText("");
-            } 
-
-        }
-    }
-
 }

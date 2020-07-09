@@ -23,12 +23,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+
 
 /**
  * FXML Controller class
@@ -63,7 +58,7 @@ public class FormLoginController implements Initializable {
         alert.showAndWait();
     }
     // Warning
-    
+
     public static void showWarning(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initStyle(StageStyle.UTILITY);
@@ -80,17 +75,20 @@ public class FormLoginController implements Initializable {
         String nombreUsuario = txtUsuario.getText();
         String pass = txtPassword.getText();
         byte[] contringre = txtPassword.getText().getBytes();
+        int fin = 0;
+        boolean v =false;
 
         if (nombreUsuario.length() != 0) {
-            List<Usuario> a = usuario_dao.getUsuarios();
-            for (Usuario next : a) {
+            List<Usuario> listaUsuarios = usuario_dao.getUsuarios();
+            for (Usuario next : listaUsuarios) {
+                fin++;
                 if (next.getNombreusuario().equals(nombreUsuario)) {
+                    v=true;
                     byte[] contrabuscada = next.getPassword();
-
                     int rescompa = Arrays.compare(contringre, contrabuscada);
 
                     if (rescompa == 0) {
-                        // Llamar a una nueva ventana
+                        // Llamar listaUsuarios una nueva ventana
                         Parent root = FXMLLoader.load(getClass().getResource("/Principal/FormPrincipal.fxml"));
                         Stage stage = new Stage();
                         stage.setScene(new Scene(root));
@@ -104,13 +102,13 @@ public class FormLoginController implements Initializable {
                         showError("Contraseña incorrecta", "La contraseña ingresada no corresponde al Usuario");
                         txtPassword.setText("");
                     }
-                } else {
+                } else if ((usuario_dao.getUsuarios().size() == fin) && v==false) {
                     showError("Usuario no encontrado", "El usuario ingresado no esta registrado en la Base de Datos");
                 }
             }
 //           
         } else {
-           showWarning("Falta nombre", "Por favor ingrese el usuario para iniciar sesion");            
+            showWarning("Falta nombre", "Por favor ingrese el usuario para iniciar sesion");
         }
 
     }

@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -27,6 +28,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -102,6 +104,26 @@ public class ModificarProductoController implements Initializable {
 
     }
 
+    public static void showWarning(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+    public static void showInformation(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Información");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
     @FXML
     private void btnGuardarHandle(ActionEvent event) {
         String nombre = txtNombre.getText();
@@ -121,17 +143,20 @@ public class ModificarProductoController implements Initializable {
             producto.setMarca(marca);
             producto.setPeso(Float.parseFloat(peso));
             producto.setUnidadreferencia(unidad_referencia);
-            
+
             String[] a = cmbProveedor.getSelectionModel().getSelectedItem().split("-");
             int id_proveedor = Integer.parseInt(a[0]);
             System.out.println("iD  ->" + producto.getIdProducto());
             producto.setDisponibilidad(cbxHabilitado.isSelected());
             try {
                 producto_dao.EditarProducto(producto);
+                showInformation("Producto", "Produto actualizado con éxito.");
                 btnCancelarHandle(new ActionEvent());
             } catch (Exception ex) {
                 Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else{
+            showWarning("Datos incompletos", "Por favor llene todos los datos.");
         }
     }
 

@@ -91,6 +91,13 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
+    public List<Producto> findProductoPorNombre(String nombre) {
+        EntityManager em = null;
+        em = getEntityManager();
+        em.getTransaction().begin();
+        return (List<Producto>) em.createNamedQuery("Producto.buscarPorNombre").setParameter("nombre", nombre).getResultList();
+    }
+
     public void edit(Producto producto) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
@@ -278,5 +285,5 @@ public class ProductoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

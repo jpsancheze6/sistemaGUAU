@@ -14,10 +14,14 @@ public class ProductoDAO {
 
     private final ProductoJpaController producto_controller;
     private final EntityManagerFactory emf;
-    
+
     public ProductoDAO() {
         emf = Persistence.createEntityManagerFactory("com.mevecon_sistemaGUAU_jar_1.0PU");
         producto_controller = new ProductoJpaController(emf);
+    }
+
+    public List<Producto> obtenerProductoPorNombre(String nombre){
+        return producto_controller.findProductoPorNombre(nombre);
     }
     
     public void AgregarProducto(Producto producto) throws Exception {
@@ -39,5 +43,5 @@ public class ProductoDAO {
     public Producto getProductoByID(int ProductoID) {
         return producto_controller.findProducto(ProductoID);
     }
-    
+
 }

@@ -137,5 +137,10 @@ public class FormPrincipalController implements Initializable {
         Stage actual = (Stage) btnSalir.getScene().getWindow();
         actual.close();
     }
+    
+    @FXML
+    public void salir(ActionEvent e){
+        System.exit(0);
+    }
 
 }

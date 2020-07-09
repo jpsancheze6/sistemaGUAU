@@ -17,10 +17,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -47,7 +49,7 @@ public class AgregarClienteController implements Initializable {
     private TextField txtTIpoCliente;
     @FXML
     private Button btnCancelar;
-    
+
     private ClienteDAO cliente_dao = new ClienteDAO();
 
     /**
@@ -56,17 +58,17 @@ public class AgregarClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
     @FXML
-    public void guardarCliente(ActionEvent event){
+    public void guardarCliente(ActionEvent event) {
         String nit = txtNIT.getText();
         String nombre = txtNombre.getText();
         String telefono = txtTelefono.getText();
         String direccion = txtDireccion.getText();
         String tipo_cliente = txtTIpoCliente.getText();
         boolean mayorista = cbMayorista.isSelected();
-        
+
         if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && tipo_cliente.length() != 0) {
             Cliente a = new Cliente();
             a.setDireccion(direccion);
@@ -77,19 +79,39 @@ public class AgregarClienteController implements Initializable {
             a.setTipocliente(tipo_cliente);
             try {
                 cliente_dao.AgregarCliente(a);
+                showInformation("Realizado", "Cliente registrado con éxito.");
+                regresar(event);
             } catch (Exception ex) {
                 System.out.println(ex);
             }
+        } else {
+            showWarning("Campos incompletos", "Por favor llene todos los campos.");
         }
-        try {
-            regresar(event);
-        } catch (IOException ex) {
-            Logger.getLogger(AgregarClienteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    }
+
+    public static void showInformation(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Información");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+    public static void showWarning(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 
     @FXML
-    public void limpiarCampos(ActionEvent event){
+    public void limpiarCampos(ActionEvent event) {
         this.txtNIT.setText("");
         this.txtNombre.setText("");
         this.txtTelefono.setText("");
@@ -97,9 +119,9 @@ public class AgregarClienteController implements Initializable {
         this.txtTIpoCliente.setText("");
         this.cbMayorista.setSelected(false);
     }
-    
+
     @FXML
-    public void regresar(ActionEvent event) throws IOException{
+    public void regresar(ActionEvent event) throws IOException {
         //Llamar a una nueva ventana
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FormClientes.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
@@ -112,5 +134,5 @@ public class AgregarClienteController implements Initializable {
         Stage actual = (Stage) btnGuardar.getScene().getWindow();
         actual.close();
     }
-    
+
 }

@@ -30,11 +30,12 @@
                 <TableColumn fx:id="peso" prefWidth="99.0" text="Peso" />
             </columns>
         </TableView>
-        <TextField layoutX="586.0" layoutY="93.0" prefHeight="26.0" prefWidth="139.0" />
+        <TextField fx:id="txtNombre" layoutX="586.0" layoutY="93.0" prefHeight="26.0" prefWidth="139.0" promptText="Nombre Producto" />
         <Label layoutX="586.0" layoutY="68.0" text="Buscador" />
-        <Button fx:id="btnBuscar" layoutX="668.0" layoutY="131.0" mnemonicParsing="false" text="Buscar" />
+        <Button fx:id="btnBuscar" layoutX="630.0" layoutY="132.0" mnemonicParsing="false" onAction="#buscarPorNombre" text="Buscar" />
         <Button fx:id="btnAgregarProducto" layoutX="586.0" layoutY="303.0" mnemonicParsing="false" onAction="#btnAgregarProductoHandel" prefHeight="26.0" prefWidth="118.0" text="Agregar Producto" />
         <Button fx:id="btnModificar" layoutX="586.0" layoutY="345.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar Producto" />
         <Button fx:id="btnRegresar" layoutX="663.0" layoutY="565.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
+      <Button fx:id="btnEliminarFiltro" layoutX="612.0" layoutY="169.0" mnemonicParsing="false" onAction="#limpiarFiltro" text="Eliminar filtro" />
     </children>
 </AnchorPane>

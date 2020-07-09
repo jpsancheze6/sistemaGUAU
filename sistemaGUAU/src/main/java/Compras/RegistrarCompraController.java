@@ -27,11 +27,9 @@ import javafx.scene.control.TextField;
 public class RegistrarCompraController implements Initializable {
 
     @FXML
-    private TextField txtProducto, txtCantidad;
+    private TextField txtCantidad;
     @FXML
-    private Button btnBuscar, btnAgregar, btnCancelar, btnGuardar, btnRegresar, btnEliminar;
-    @FXML
-    private DatePicker Fecha;
+    private Button btnAgregar, btnCancelar, btnGuardar, btnRegresar, btnEliminar;
     @FXML
     private Label labelTotal;
     @FXML
@@ -42,6 +40,8 @@ public class RegistrarCompraController implements Initializable {
     private TableView<?> tblProductos;
     @FXML
     private TableColumn<?, ?> colProducto;
+    @FXML
+    private TableColumn<?, ?> colPeso;
     @FXML
     private TableColumn<?, ?> colPrecio;
     @FXML
@@ -58,6 +58,7 @@ public class RegistrarCompraController implements Initializable {
     private TableColumn<?, ?> colCantidad2;
     @FXML
     private TableColumn<?, ?> colTotal2;
+    
 
 
     /**

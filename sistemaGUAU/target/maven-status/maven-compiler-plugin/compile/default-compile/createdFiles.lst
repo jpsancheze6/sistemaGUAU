@@ -18,8 +18,10 @@ Clientes\ClienteDAO.class
 JPA\Factura_.class
 JPA\exceptions\IllegalOrphanException.class
 Proveedores\FormProveedoresController.class
+Ventas\DetalleFacturaDAO.class
 Compras\FormComprasController.class
 Ventas\RevisarVentaController.class
+Compras\DetalleCompraDAO.class
 Compras\ComprasDAO.class
 Ventas\VentasDAO.class
 JPA\Usuario.class

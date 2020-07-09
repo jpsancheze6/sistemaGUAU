@@ -6,7 +6,10 @@
 package Ventas;
 
 import JPA.Cliente;
+import static JPA.Cliente_.nombre;
 import JPA.Factura;
+import JPA.Usuario;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -87,6 +90,14 @@ public class FormVentasController implements Initializable {
 
     @FXML
     private void revisarVenta(ActionEvent event) throws IOException {
+        Factura factura_seleccionada = tblVentas.getSelectionModel().getSelectedItem();
+        Factura factura_enviar = ventas_dao.getFacturaByID(factura_seleccionada.getIdFactura());
+        try (FileWriter fileWriter = new FileWriter("factura.txt")) {
+            fileWriter.write(factura_enviar.getIdFactura());
+            fileWriter.close();
+        } catch (IOException e) {
+            // Exception handling
+        }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RevisarVenta.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();

@@ -6,10 +6,14 @@
 package Clientes;
 
 import JPA.Cliente;
+import java.awt.Robot;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +23,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -57,26 +64,52 @@ public class ModificarClienteController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public static String showConfirm(String title, String message, String... options) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.DECORATED);
+        alert.setTitle("CONFIRMAR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
 
-        try (FileReader fileReader = new FileReader("cliente.txt")) {
-            int id = fileReader.read();
-            this.cliente = cliente_dao.getClienteByID(id);
-            txtNIT.setText(this.cliente.getNit());
-            txtNombre.setText(this.cliente.getNombre());
-            txtDireccion.setText(this.cliente.getDireccion());
-            txtTelefono.setText(this.cliente.getTelefono());
-            txtTIpoCliente.setText(this.cliente.getTipocliente());
-            if (this.cliente.getMayorista()) {
-                cbMayorista.setSelected(true);
+        //To make enter key press the actual focused button, not the first one. Just like pressing "space".
+        alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                event.consume();
+                try {
+                    Robot r = new Robot();
+                    r.keyPress(java.awt.event.KeyEvent.VK_SPACE);
+                    r.keyRelease(java.awt.event.KeyEvent.VK_SPACE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (FileNotFoundException e) {
-            // Exception handling
-        } catch (IOException e) {
-            // Exception handling
+        });
+
+        List<ButtonType> buttons = new ArrayList<>();
+        for (String option : options) {
+            buttons.add(new ButtonType(option));
         }
+
+        alert.getButtonTypes().setAll(buttons);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        String Op = result.get().getText();
+        if (result.get().getText().equals("Si")) {
+            return "Si";
+        } else {
+            return "No";
+        }
+    }
+
+    //---------------------------------------------------------------Mensaje de Error
+    public static void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 
     public static void showInformation(String title, String message) {
@@ -99,6 +132,59 @@ public class ModificarClienteController implements Initializable {
         alert.showAndWait();
     }
 
+    private Boolean valiSoloLetrasyEspacios(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isLetter(c)) || (Character.isSpaceChar(c));
+        }
+        return resp;
+
+    }
+
+    private Boolean valiSoloLetrasyNumeros(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isLetter(c)) || (Character.isDigit(c));
+        }
+        return resp;
+    }
+
+    private Boolean valiSoloNumeros(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isDigit(c));
+        }
+        return resp;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+
+        try ( FileReader fileReader = new FileReader("cliente.txt")) {
+            int id = fileReader.read();
+            this.cliente = cliente_dao.getClienteByID(id);
+            txtNIT.setText(this.cliente.getNit());
+            txtNombre.setText(this.cliente.getNombre());
+            txtDireccion.setText(this.cliente.getDireccion());
+            txtTelefono.setText(this.cliente.getTelefono());
+            txtTIpoCliente.setText(this.cliente.getTipocliente());
+            if (this.cliente.getMayorista()) {
+                cbMayorista.setSelected(true);
+            }
+        } catch (FileNotFoundException e) {
+            // Exception handling
+        } catch (IOException e) {
+            // Exception handling
+        }
+    }
+
     @FXML
     public void actualizarCliente() {
         String nit = txtNIT.getText();
@@ -109,22 +195,36 @@ public class ModificarClienteController implements Initializable {
         boolean mayorista = cbMayorista.isSelected();
 
         if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && tipo_cliente.length() != 0) {
-            cliente.setDireccion(direccion);
-            cliente.setMayorista(mayorista);
-            cliente.setNit(nit);
-            cliente.setNombre(nombre);
-            cliente.setTelefono(telefono);
-            cliente.setTipocliente(tipo_cliente);
-            try {
-                cliente_dao.EditarCliente(cliente);
-                showInformation("Correcto", "Cliente actualizado con éxito.");
-                regresar(new ActionEvent());
-            } catch (Exception ex) {
-                System.out.println(ex);
+
+            if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {
+
+                if (valiSoloNumeros(txtTelefono.getText())) {
+
+                    cliente.setDireccion(direccion);
+                    cliente.setMayorista(mayorista);
+                    cliente.setNit(nit);
+                    cliente.setNombre(nombre);
+                    cliente.setTelefono(telefono);
+                    cliente.setTipocliente(tipo_cliente);
+                    try {
+                        cliente_dao.EditarCliente(cliente);
+                        showInformation("Correcto", "Cliente actualizado con éxito.");
+                        regresar(new ActionEvent());
+                    } catch (Exception ex) {
+                        showError("Error al Actualizar", "Debido a un error no se puedo Actualizar el Cliente");
+                    }
+                    
+                } else {
+                    showError("Error de Validacion", "El numero de telefono NO puede contener letras o simbolos");
+                }
+
+            } else {
+                showError("Error de Validacion", "El nombre NO puede contener espacios o simbolos");
             }
-        }else{
+        } else {
             showWarning("Error", "Por favor llene todos los campos.");
         }
+
     }
 
     @FXML

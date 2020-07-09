@@ -6,8 +6,12 @@
 package Clientes;
 
 import JPA.Cliente;
+import java.awt.Robot;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +23,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -55,39 +62,55 @@ public class AgregarClienteController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
+    
+    //************************METODOS
+    //---------------------------------------------------------------Mensaje de Confimarcion
+    public static String showConfirm(String title, String message, String... options) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initStyle(StageStyle.DECORATED);
+        alert.setTitle("CONFIRMAR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
 
-    @FXML
-    public void guardarCliente(ActionEvent event) {
-        String nit = txtNIT.getText();
-        String nombre = txtNombre.getText();
-        String telefono = txtTelefono.getText();
-        String direccion = txtDireccion.getText();
-        String tipo_cliente = txtTIpoCliente.getText();
-        boolean mayorista = cbMayorista.isSelected();
-
-        if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && tipo_cliente.length() != 0) {
-            Cliente a = new Cliente();
-            a.setDireccion(direccion);
-            a.setMayorista(mayorista);
-            a.setNit(nit);
-            a.setNombre(nombre);
-            a.setTelefono(telefono);
-            a.setTipocliente(tipo_cliente);
-            try {
-                cliente_dao.AgregarCliente(a);
-                showInformation("Realizado", "Cliente registrado con éxito.");
-                regresar(event);
-            } catch (Exception ex) {
-                System.out.println(ex);
+        //To make enter key press the actual focused button, not the first one. Just like pressing "space".
+        alert.getDialogPane().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                event.consume();
+                try {
+                    Robot r = new Robot();
+                    r.keyPress(java.awt.event.KeyEvent.VK_SPACE);
+                    r.keyRelease(java.awt.event.KeyEvent.VK_SPACE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        } else {
-            showWarning("Campos incompletos", "Por favor llene todos los campos.");
+        });
+
+        List<ButtonType> buttons = new ArrayList<>();
+        for (String option : options) {
+            buttons.add(new ButtonType(option));
         }
 
+        alert.getButtonTypes().setAll(buttons);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        String Op = result.get().getText();
+        if (result.get().getText().equals("Si")) {
+            return "Si";
+        } else {
+            return "No";
+        }
+    }
+
+    //---------------------------------------------------------------Mensaje de Error
+    public static void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 
     public static void showInformation(String title, String message) {
@@ -109,6 +132,88 @@ public class AgregarClienteController implements Initializable {
 
         alert.showAndWait();
     }
+    
+    private Boolean valiSoloLetrasyEspacios(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isLetter(c)) || (Character.isSpaceChar(c));
+        }
+        return resp;
+
+    }
+
+    private Boolean valiSoloLetrasyNumeros(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isLetter(c)) || (Character.isDigit(c));
+        }
+        return resp;
+    }
+
+    private Boolean valiSoloNumeros(String texto) {
+        boolean resp = false;
+        char c;
+        for (int i = 0; i < texto.length(); i++) {
+            c = texto.charAt(i);
+            resp = (Character.isDigit(c));
+        }
+        return resp;
+    }
+
+    
+    
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }
+
+    @FXML
+    public void guardarCliente(ActionEvent event) {
+        String nit = txtNIT.getText();
+        String nombre = txtNombre.getText();
+        String telefono = txtTelefono.getText();
+        String direccion = txtDireccion.getText();
+        String tipo_cliente = txtTIpoCliente.getText();
+        boolean mayorista = cbMayorista.isSelected();
+
+        if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && tipo_cliente.length() != 0) {
+            if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {
+                if (valiSoloNumeros(txtTelefono.getText())) {
+                    Cliente newCliente = new Cliente();
+                    newCliente.setDireccion(direccion);
+                    newCliente.setMayorista(mayorista);
+                    newCliente.setNit(nit);
+                    newCliente.setNombre(nombre);
+                    newCliente.setTelefono(telefono);
+                    newCliente.setTipocliente(tipo_cliente);
+
+                    try {
+                        cliente_dao.AgregarCliente(newCliente);
+
+                    } catch (Exception ex) {
+                        showError("Error al Ingresar", "Debido a un error no se puedo Ingresar el proveedor");
+                    }
+
+                } else {
+                    showError("Error de Validacion", "El numero de telefono NO puede contener letras o simbolos");
+                }
+
+            } else {
+                showError("Error de Validacion", "El Nombre NO puede contener espacios o simbolos");
+            }
+
+        } else {
+            showWarning("Campos incompletos", "Por favor llene todos los campos.");
+        }
+
+    }
+    
 
     @FXML
     public void limpiarCampos(ActionEvent event) {

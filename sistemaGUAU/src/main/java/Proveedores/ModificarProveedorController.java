@@ -60,6 +60,7 @@ public class ModificarProveedorController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
     public static String showConfirm(String title, String message, String... options) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initStyle(StageStyle.DECORATED);
@@ -161,6 +162,7 @@ public class ModificarProveedorController implements Initializable {
         if ((!txtNombre.getText().isEmpty()) && (!txtTelefono.getText().isEmpty()) && (!txtEmpresa.getText().isEmpty())) {
 
             if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {
+                
                 if (valiSoloNumeros(txtTelefono.getText())) {
                     
                     proveedor.setNombre(txtNombre.getText());

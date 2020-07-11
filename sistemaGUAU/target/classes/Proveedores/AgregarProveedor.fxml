@@ -6,21 +6,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Proveedores.AgregarProveedorController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <Button fx:id="btnGuardar" layoutX="429.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
-      <Button fx:id="btnLimpiar" layoutX="429.0" layoutY="173.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
-      <Button fx:id="btnCancelar" layoutX="429.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
-      <TextField fx:id="txtNombre" layoutX="189.0" layoutY="118.0" promptText="Nombre" />
-      <TextField fx:id="txtTelefono" layoutX="189.0" layoutY="174.0" promptText="Telefono" />
-      <TextField fx:id="txtEmpresa" layoutX="189.0" layoutY="237.0" promptText="Empresa" />
+      <JFXButton fx:id="btnGuardar" layoutX="429.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+      <JFXButton fx:id="btnLimpiar" layoutX="429.0" layoutY="173.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+      <JFXButton fx:id="btnCancelar" layoutX="429.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
+      <JFXTextField fx:id="txtNombre" layoutX="189.0" layoutY="118.0" promptText="Nombre" />
+      <JFXTextField fx:id="txtTelefono" layoutX="189.0" layoutY="174.0" promptText="Telefono" />
+      <JFXTextField fx:id="txtEmpresa" layoutX="189.0" layoutY="237.0" promptText="Empresa" />
       <Label fx:id="labelTitulo" layoutX="138.0" layoutY="14.0" text="Agregar Proveedor">
          <font>
-            <Font name="System Bold" size="36.0" />
+            <Font size="36.0" />
          </font>
       </Label>
    </children>

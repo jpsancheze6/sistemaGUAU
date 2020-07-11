@@ -7,6 +7,11 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.FormClientesController">
     <stylesheets>
@@ -25,9 +30,9 @@
                 <TableColumn fx:id="direccion" prefWidth="123.0" text="Dirección" />
             </columns>
         </TableView>
-        <Button fx:id="btnCrearCliente" layoutX="127.0" layoutY="323.0" mnemonicParsing="false" onAction="#crearCliente" text="Crear Cliente" />
-        <Button fx:id="btnEditarCliente" layoutX="260.0" layoutY="323.0" mnemonicParsing="false" onAction="#editarCliente" text="Editar Cliente" />
-        <Button fx:id="btnDeshabilitarCliente" layoutX="394.0" layoutY="323.0" mnemonicParsing="false" text="Deshabilitar" />
-        <Button fx:id="btnRegresar" layoutX="523.0" layoutY="361.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+        <JFXButton fx:id="btnCrearCliente" layoutX="127.0" layoutY="323.0" mnemonicParsing="false" onAction="#crearCliente" text="Crear Cliente" />
+        <JFXButton fx:id="btnEditarCliente" layoutX="260.0" layoutY="323.0" mnemonicParsing="false" onAction="#editarCliente" text="Editar Cliente" />
+        <JFXButton fx:id="btnDeshabilitarCliente" layoutX="394.0" layoutY="323.0" mnemonicParsing="false" text="Deshabilitar" />
+        <JFXButton fx:id="btnRegresar" layoutX="523.0" layoutY="361.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
     </children>
 </AnchorPane>

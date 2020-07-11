@@ -1,10 +1,21 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : 23/06/2020, 09:05:37 AM
     Author     : José Sánchez
 */
 
+.jfx-button {
+     -jfx-button-type: RAISED;
+     -fx-background-color: #5482ab;
+     -fx-text-fill: white;
+}
+#btnCancelar, #btnSalir, #btnRegresar{
+    -jfx-button-type: RAISED;
+     -fx-background-color: #ce1126;
+     -fx-text-fill: white;
+     -jfx-disable-visual-focus: true;
+}
+#btnGuardar{
+    -jfx-button-type: RAISED;
+     -fx-background-color: #7ab800;
+     -fx-text-fill: white;
+}

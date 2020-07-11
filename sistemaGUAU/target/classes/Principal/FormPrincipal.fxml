@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="Principal.FormPrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Principal.FormPrincipalController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
     <children>
-        <Button fx:id="btnCliente" layoutX="93.0" layoutY="128.0" mnemonicParsing="false" onAction="#cliente" prefHeight="65.0" prefWidth="130.0" text="Cliente" />
-        <Button fx:id="btnProveedores" layoutX="93.0" layoutY="208.0" mnemonicParsing="false" onAction="#proveedores" prefHeight="65.0" prefWidth="130.0" text="Proveedores" />
-        <Button fx:id="btnCompras" layoutX="234.0" layoutY="128.0" mnemonicParsing="false" onAction="#compras" prefHeight="65.0" prefWidth="130.0" text="Compras" />
-        <Button fx:id="btnUsuarios" layoutX="234.0" layoutY="208.0" mnemonicParsing="false" onAction="#usuarios" prefHeight="65.0" prefWidth="130.0" text="Usuarios" />
-        <Button fx:id="btnVentas" layoutX="377.0" layoutY="208.0" mnemonicParsing="false" onAction="#ventas" prefHeight="65.0" prefWidth="130.0" text="Ventas" />
-        <Button fx:id="btnInventario" layoutX="377.0" layoutY="128.0" mnemonicParsing="false" onAction="#inventario" prefHeight="65.0" prefWidth="130.0" text="Inventario" />
-        <Button fx:id="btnSalir" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#salir" text="Salir" />
+        <JFXButton fx:id="btnCliente" layoutX="93.0" layoutY="128.0" mnemonicParsing="false" onAction="#cliente" prefHeight="65.0" prefWidth="130.0" text="Cliente" />
+        <JFXButton fx:id="btnProveedores" layoutX="93.0" layoutY="208.0" mnemonicParsing="false" onAction="#proveedores" prefHeight="65.0" prefWidth="130.0" text="Proveedores" />
+        <JFXButton fx:id="btnCompras" layoutX="234.0" layoutY="128.0" mnemonicParsing="false" onAction="#compras" prefHeight="65.0" prefWidth="130.0" text="Compras" />
+        <JFXButton fx:id="btnUsuarios" layoutX="234.0" layoutY="208.0" mnemonicParsing="false" onAction="#usuarios" prefHeight="65.0" prefWidth="130.0" text="Usuarios" />
+        <JFXButton fx:id="btnVentas" layoutX="377.0" layoutY="208.0" mnemonicParsing="false" onAction="#ventas" prefHeight="65.0" prefWidth="130.0" text="Ventas" />
+        <JFXButton fx:id="btnInventario" layoutX="377.0" layoutY="128.0" mnemonicParsing="false" onAction="#inventario" prefHeight="65.0" prefWidth="130.0" text="Inventario" />
+        <JFXButton fx:id="btnSalir" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#salir" text="Salir" />
+      <Label layoutX="221.0" layoutY="31.0" text="Mevecom">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

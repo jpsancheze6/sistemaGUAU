@@ -7,27 +7,33 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Usuarios.FormUsuariosController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
-   <children>
-      <Label fx:id="labelTitulo" layoutX="238.0" text="Usuarios">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnCrear" layoutX="159.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
-      <Button fx:id="btnModificar" layoutX="278.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
-      <Button fx:id="btnEliminar" layoutX="398.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
-      <Button fx:id="btnRegresar" layoutX="523.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
-      <TableView fx:id="tblUsuarios" layoutX="14.0" layoutY="60.0" prefHeight="235.0" prefWidth="574.0">
-        <columns>
-          <TableColumn fx:id="Id" prefWidth="60.800048828125" text="ID" />
-          <TableColumn fx:id="Nombre" prefWidth="264.0" text="Nombre" />
-            <TableColumn fx:id="Usuario" prefWidth="248.0" text="Usuario" />
-        </columns>
-      </TableView>
-   </children>
+    <children>
+        <Label fx:id="labelTitulo" layoutX="238.0" text="Usuarios">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <JFXButton fx:id="btnCrear" layoutX="159.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Agregar" />
+        <JFXButton fx:id="btnModificar" layoutX="278.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnModificarHandle" text="Modificar" />
+        <JFXButton fx:id="btnEliminar" layoutX="398.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnEliminarHandle" text="Eliminar" />
+        <JFXButton fx:id="btnRegresar" layoutX="523.0" layoutY="360.0" mnemonicParsing="false" onAction="#btnRegresarHandle" text="Regresar" />
+        <TableView fx:id="tblUsuarios" layoutX="14.0" layoutY="60.0" prefHeight="235.0" prefWidth="574.0">
+            <columns>
+                <TableColumn fx:id="Id" prefWidth="60.800048828125" text="ID" />
+                <TableColumn fx:id="Nombre" prefWidth="264.0" text="Nombre" />
+                <TableColumn fx:id="Usuario" prefWidth="248.0" text="Usuario" />
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>

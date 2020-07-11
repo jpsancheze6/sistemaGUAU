@@ -7,6 +7,8 @@ import JPA.Producto;
 import JPA.Proveedor;
 import JPA.ReciboCompra;
 import Proveedores.ProveedorDAO;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,10 +24,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -37,21 +37,9 @@ import javafx.stage.Stage;
 public class RevisarCompraController implements Initializable {
 
     @FXML
-    private Button btnRegresar;
+    private JFXButton btnRegresar;
     @FXML
-    private TextField txtProveedor, txtTotal;
-    
-    private ComprasDAO recibo_dao = new ComprasDAO();
-    private DetalleReciboDAO detallerecibo_dao = new DetalleReciboDAO();
-    private ProductoDAO producto_dao = new ProductoDAO();
-    private ProveedorDAO proveedor_dao = new ProveedorDAO();
-    
-    private ObservableList<DetalleCompra> modelo_detallerecibos = FXCollections.observableArrayList(); 
-    private ObservableList<Producto> modelo_producto = FXCollections.observableArrayList(); 
-    
-    private ReciboCompra recibo;
-    private Proveedor proveedor;
-    private Producto producto;
+    private JFXTextField txtProveedor, txtTotal;
     
     //Tabla para mostrar compra seleccionada
     @FXML
@@ -65,12 +53,25 @@ public class RevisarCompraController implements Initializable {
     @FXML
     private TableColumn<DetalleCompra, Float> colTotal;
     
+    private ComprasDAO recibo_dao = new ComprasDAO();
+    private DetalleReciboDAO detallerecibo_dao = new DetalleReciboDAO();
+    private ProductoDAO producto_dao = new ProductoDAO();
+    private ProveedorDAO proveedor_dao = new ProveedorDAO();
+    
+    private ObservableList<DetalleCompra> modelo_detallerecibos = FXCollections.observableArrayList(); 
+    private ObservableList<Producto> modelo_producto = FXCollections.observableArrayList(); 
+    
+    private ReciboCompra recibo;
+    private Proveedor proveedor;
+    private Producto producto;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtProveedor.setLabelFloat(true);
+        txtTotal.setLabelFloat(true);
         colProducto.setCellValueFactory(new PropertyValueFactory<>("productoid")); 
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("subtotal")); 
         colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad")); 

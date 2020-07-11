@@ -19,11 +19,13 @@
     </stylesheets>
     <children>
         <Label layoutX="144.0" layoutY="24.0" text="Modificar Cliente">
-         <font>
-            <Font size="36.0" />
-         </font></Label>
-        <JFXTextField fx:id="txtNIT" layoutX="130.0" layoutY="159.0" promptText="NIT" />
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+         
         <JFXTextField fx:id="txtNombre" layoutX="130.0" layoutY="117.0" promptText="Nombre" />
+        <JFXTextField fx:id="txtNIT" layoutX="130.0" layoutY="159.0" promptText="NIT" />
         <JFXTextField fx:id="txtDireccion" layoutX="130.0" layoutY="204.0" promptText="Dirección" />
         <JFXTextField fx:id="txtTelefono" layoutX="130.0" layoutY="250.0" promptText="Telefono" />
         <JFXTextField fx:id="txtTIpoCliente" layoutX="130.0" layoutY="294.0" promptText="Tipo Cliente" />

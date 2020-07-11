@@ -6,6 +6,9 @@
 package Clientes;
 
 import JPA.Cliente;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,10 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -39,31 +39,54 @@ import javafx.stage.StageStyle;
 public class ModificarClienteController implements Initializable {
 
     @FXML
-    private TextField txtNIT;
+    private JFXTextField txtNIT;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
-    private TextField txtDireccion;
+    private JFXTextField txtDireccion;
     @FXML
-    private TextField txtTelefono;
+    private JFXTextField txtTelefono;
     @FXML
-    private TextField txtTIpoCliente;
+    private JFXTextField txtTIpoCliente;
     @FXML
-    private CheckBox cbMayorista;
+    private JFXCheckBox cbMayorista;
     @FXML
-    private Button btnActualizar;
+    private JFXButton btnActualizar;
     @FXML
-    private Button btnVaciarCampos;
+    private JFXButton btnVaciarCampos;
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
 
     private Cliente cliente;
 
     private ClienteDAO cliente_dao = new ClienteDAO();
 
-    /**
-     * Initializes the controller class.
-     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        txtNIT.setLabelFloat(true);
+        txtNombre.setLabelFloat(true);
+        txtDireccion.setLabelFloat(true);
+        txtTelefono.setLabelFloat(true);
+        txtTIpoCliente.setLabelFloat(true);
+        try ( FileReader fileReader = new FileReader("cliente.txt")) {
+            int id = fileReader.read();
+            this.cliente = cliente_dao.getClienteByID(id);
+            txtNIT.setText(this.cliente.getNit());
+            txtNombre.setText(this.cliente.getNombre());
+            txtDireccion.setText(this.cliente.getDireccion());
+            txtTelefono.setText(this.cliente.getTelefono());
+            txtTIpoCliente.setText(this.cliente.getTipocliente());
+            if (this.cliente.getMayorista()) {
+                cbMayorista.setSelected(true);
+            }
+        } catch (FileNotFoundException e) {
+            // Exception handling
+        } catch (IOException e) {
+            // Exception handling
+        }
+    }
+    
     public static String showConfirm(String title, String message, String... options) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initStyle(StageStyle.DECORATED);
@@ -161,28 +184,6 @@ public class ModificarClienteController implements Initializable {
             resp = (Character.isDigit(c));
         }
         return resp;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-
-        try ( FileReader fileReader = new FileReader("cliente.txt")) {
-            int id = fileReader.read();
-            this.cliente = cliente_dao.getClienteByID(id);
-            txtNIT.setText(this.cliente.getNit());
-            txtNombre.setText(this.cliente.getNombre());
-            txtDireccion.setText(this.cliente.getDireccion());
-            txtTelefono.setText(this.cliente.getTelefono());
-            txtTIpoCliente.setText(this.cliente.getTipocliente());
-            if (this.cliente.getMayorista()) {
-                cbMayorista.setSelected(true);
-            }
-        } catch (FileNotFoundException e) {
-            // Exception handling
-        } catch (IOException e) {
-            // Exception handling
-        }
     }
 
     @FXML

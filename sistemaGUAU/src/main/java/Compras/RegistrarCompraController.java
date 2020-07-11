@@ -19,6 +19,9 @@ import Usuarios.UsuarioDAO;
 import Ventas.DetalleFacturaDAO;
 import Ventas.TablaVentas;
 import Ventas.VentasDAO;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -53,15 +56,15 @@ import javafx.stage.Stage;
 public class RegistrarCompraController implements Initializable {
 
     @FXML
-    private TextField txtCantidad;
+    private JFXTextField txtCantidad;
     @FXML
-    private Button btnBuscar, btnAgregar, btnCancelar, btnGuardar, btnRegresar, btnEliminar;
+    private JFXButton btnBuscar, btnAgregar, btnCancelar, btnGuardar, btnRegresar, btnEliminar;
     @FXML
     private Label labelTotal;
     @FXML
-    private ComboBox<String> cmbProveedor;
+    private JFXComboBox<String> cmbProveedor;
     @FXML
-    private ComboBox<String> cmbUsuario;
+    private JFXComboBox<String> cmbUsuario;
     
     private VentasDAO factura_dao = new VentasDAO();
     private ComprasDAO recibo_dao = new ComprasDAO();
@@ -106,6 +109,7 @@ public class RegistrarCompraController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtCantidad.setLabelFloat(true);
         //Agregar proveedores al comboBox
         ObservableList<String> items = FXCollections.observableArrayList();
         List<Proveedor> a = proveedor_dao.getProveedor();

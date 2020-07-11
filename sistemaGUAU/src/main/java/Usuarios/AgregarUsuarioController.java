@@ -6,6 +6,9 @@
 package Usuarios;
 
 import JPA.Usuario;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.IOException;
 import java.net.URL;
@@ -20,11 +23,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -38,28 +39,31 @@ import javafx.stage.StageStyle;
 public class AgregarUsuarioController implements Initializable {
 
     @FXML
-    private Button btnGuardar;
+    private JFXButton btnGuardar;
     @FXML
-    private Button btnLimpiar;
+    private JFXButton btnLimpiar;
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
-    private TextField txtUsuario;
-
+    private JFXTextField txtUsuario;
     @FXML
     private Label labelTitulo;
 
     private UsuarioDAO usuario_dao = new UsuarioDAO();
     @FXML
-    private PasswordField txtConfirmarContra;
+    private JFXPasswordField txtConfirmarContra;
     @FXML
-    private PasswordField txtContras;
+    private JFXPasswordField txtContras;
 
-    /**
-     * Initializes the controller class.
-     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        txtConfirmarContra.setLabelFloat(true);
+        txtContras.setLabelFloat(true);
+        txtNombre.setLabelFloat(true);
+        txtUsuario.setLabelFloat(true);
+    }
     
     
     //************************METODOS
@@ -132,10 +136,6 @@ public class AgregarUsuarioController implements Initializable {
         }
         return resp;
 
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
     }
 
     @FXML

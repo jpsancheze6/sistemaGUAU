@@ -19,17 +19,17 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
     <children>
-        <JFXButton fx:id="btnGuardar" layoutX="429.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
-        <JFXButton fx:id="btnLimpiar" layoutX="429.0" layoutY="173.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
-        <JFXButton fx:id="btnCancelar" layoutX="429.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
-        <JFXTextField fx:id="txtNombre" layoutX="189.0" layoutY="104.0" promptText="Nombre" />
-        <JFXTextField fx:id="txtUsuario" layoutX="189.0" layoutY="143.0" promptText="Usuario" />
         <Label fx:id="labelTitulo" layoutX="161.0" layoutY="24.0" text="Agregar Usuario">
             <font>
                 <Font size="36.0" />
             </font>
         </Label>
+        <JFXTextField fx:id="txtNombre" layoutX="189.0" layoutY="104.0" promptText="Nombre" />
+        <JFXTextField fx:id="txtUsuario" layoutX="189.0" layoutY="143.0" promptText="Usuario" />
         <JFXPasswordField fx:id="txtContras" layoutX="189.0" layoutY="187.0" promptText="Contraseña" />
         <JFXPasswordField fx:id="txtConfirmarContra" layoutX="189.0" layoutY="236.0" promptText="Confirmar" />
+        <JFXButton fx:id="btnGuardar" layoutX="429.0" layoutY="117.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+        <JFXButton fx:id="btnLimpiar" layoutX="429.0" layoutY="173.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+        <JFXButton fx:id="btnCancelar" layoutX="429.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
     </children>
 </AnchorPane>

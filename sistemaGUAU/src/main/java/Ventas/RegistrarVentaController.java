@@ -15,6 +15,9 @@ import JPA.Proveedor;
 import JPA.Usuario;
 import Proveedores.ProveedorDAO;
 import Usuarios.UsuarioDAO;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -49,15 +52,15 @@ import javafx.stage.Stage;
 public class RegistrarVentaController implements Initializable {
 
     @FXML
-    private TextField txtCantidad, txtDescuento;
+    private JFXTextField txtCantidad, txtDescuento;
     @FXML
-    private Button btnBuscar, btnAgregar, btnEliminar, btnCancelar, btnGuardar, btnRegresar;
+    private JFXButton btnBuscar, btnAgregar, btnEliminar, btnCancelar, btnGuardar, btnRegresar;
     @FXML
-    private ComboBox<String> cmbCliente;
+    private JFXComboBox<String> cmbCliente;
     @FXML
-    private ComboBox<String> cmbProveedor;
+    private JFXComboBox<String> cmbProveedor;
     @FXML
-    private ComboBox<String> cmbUsuario;
+    private JFXComboBox<String> cmbUsuario;
     @FXML
     private Label labelTotal;
     
@@ -102,6 +105,8 @@ public class RegistrarVentaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtCantidad.setLabelFloat(true);
+        txtDescuento.setLabelFloat(true);
         //Agregar proveedores al comboBox
         ObservableList<String> items = FXCollections.observableArrayList();
         List<Proveedor> a = proveedor_dao.getProveedor();

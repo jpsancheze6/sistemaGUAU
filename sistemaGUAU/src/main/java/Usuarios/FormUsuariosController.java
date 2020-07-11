@@ -6,6 +6,7 @@
 package Usuarios;
 
 import JPA.Usuario;
+import com.jfoenix.controls.JFXButton;
 import java.awt.Robot;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -43,13 +44,13 @@ public class FormUsuariosController implements Initializable {
     @FXML
     private Label labelTitulo;
     @FXML
-    private Button btnCrear;
+    private JFXButton btnCrear;
     @FXML
-    private Button btnModificar;
+    private JFXButton btnModificar;
     @FXML
-    private Button btnEliminar;
+    private JFXButton btnEliminar;
     @FXML
-    private Button btnRegresar;
+    private JFXButton btnRegresar;
     @FXML
     private TableView<Usuario> tblUsuarios;
     @FXML

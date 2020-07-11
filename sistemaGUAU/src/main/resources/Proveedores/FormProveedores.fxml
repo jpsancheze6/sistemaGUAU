@@ -21,7 +21,7 @@
     <children>
         <Label fx:id="labelTitulo" layoutX="205.0" layoutY="6.0" text="Proveedores">
             <font>
-                <Font name="System Bold" size="36.0" />
+                <Font size="36.0" />
             </font>
         </Label>
         <JFXButton fx:id="btnCrear" layoutX="159.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnCrearHandle" prefHeight="26.0" prefWidth="66.0" text="Agregar" />

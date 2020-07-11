@@ -6,6 +6,8 @@
 package Proveedores;
 
 import JPA.Proveedor;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -39,17 +41,17 @@ import javafx.stage.StageStyle;
 public class ModificarProveedorController implements Initializable {
 
     @FXML
-    private Button btnGuardar;
+    private JFXButton btnGuardar;
     @FXML
-    private Button btnLimpiar;
+    private JFXButton btnLimpiar;
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
-    private TextField txtTelefono;
+    private JFXTextField txtTelefono;
     @FXML
-    private TextField txtEmpresa;
+    private JFXTextField txtEmpresa;
     @FXML
     private Label labelTitulo;
 
@@ -57,10 +59,24 @@ public class ModificarProveedorController implements Initializable {
 
     private ProveedorDAO proveedor_dao = new ProveedorDAO();
 
-    /**
-     * Initializes the controller class.
-     */
-    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        txtEmpresa.setLabelFloat(true);
+        txtNombre.setLabelFloat(true);
+        txtTelefono.setLabelFloat(true);
+        try (FileReader fileReader = new FileReader("proveedor.txt")) {
+            int id = fileReader.read();
+            proveedor = proveedor_dao.getProveedorByID(id);
+            txtNombre.setText(this.proveedor.getNombre());
+            txtTelefono.setText(this.proveedor.getTelefono());
+            txtEmpresa.setText(this.proveedor.getEmpresa());
+        } catch (FileNotFoundException e) {
+            // Exception handling
+        } catch (IOException e) {
+            // Exception handling
+        }
+    }
+
     public static String showConfirm(String title, String message, String... options) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initStyle(StageStyle.DECORATED);
@@ -140,31 +156,15 @@ public class ModificarProveedorController implements Initializable {
         return resp;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        try ( FileReader fileReader = new FileReader("proveedor.txt")) {
-            int id = fileReader.read();
-            proveedor = proveedor_dao.getProveedorByID(id);
-            txtNombre.setText(this.proveedor.getNombre());
-            txtTelefono.setText(this.proveedor.getTelefono());
-            txtEmpresa.setText(this.proveedor.getEmpresa());
-        } catch (FileNotFoundException e) {
-            // Exception handling
-        } catch (IOException e) {
-            // Exception handling
-        }
-    }
-
     @FXML
     private void btnGuardarHandle(ActionEvent event) {
-        
+
         if ((!txtNombre.getText().isEmpty()) && (!txtTelefono.getText().isEmpty()) && (!txtEmpresa.getText().isEmpty())) {
 
             if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {
-                
+
                 if (valiSoloNumeros(txtTelefono.getText())) {
-                    
+
                     proveedor.setNombre(txtNombre.getText());
                     proveedor.setTelefono(txtTelefono.getText());
                     proveedor.setEmpresa(txtEmpresa.getText());

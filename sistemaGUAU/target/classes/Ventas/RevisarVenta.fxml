@@ -36,7 +36,7 @@
                 <TableColumn fx:id="colTotal" prefWidth="128.0" text="Total" />
             </columns>
         </TableView>
-      <Button fx:id="btnRegresar" layoutX="625.0" layoutY="350.0" mnemonicParsing="false" text="Regresar" />
+      <Button fx:id="btnRegresar" layoutX="625.0" layoutY="350.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
       <Label layoutX="64.0" layoutY="78.0" text="Cliente:" />
       <Label layoutX="431.0" layoutY="78.0" text="Total:" />
     </children>

@@ -5,8 +5,11 @@
  */
 package Compras;
 
+import static Inventario.InventarioController.showException;
+import JPA.Factura;
 import JPA.Proveedor;
 import JPA.ReciboCompra;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -38,6 +41,7 @@ public class FormComprasController implements Initializable {
     private Button btnRegistrar, btnEditar, btnRegresar;
     
     private ComprasDAO compras_dao = new ComprasDAO(); 
+    private ObservableList<ReciboCompra> modelo_recibos = FXCollections.observableArrayList(); 
     
     //Tabla para mostrar los recibos de compras
     @FXML
@@ -45,7 +49,7 @@ public class FormComprasController implements Initializable {
     @FXML
     private TableColumn<ReciboCompra, Integer> colID;
     @FXML
-    private TableColumn<ReciboCompra, Proveedor> colProveedor;
+    private TableColumn<ReciboCompra, String> colProveedor;
     @FXML
     private TableColumn<ReciboCompra, Date> colFecha;
     @FXML
@@ -57,6 +61,10 @@ public class FormComprasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        agregarElementos();
+    }    
+    
+    public void agregarElementos(){
         colID.setCellValueFactory(new PropertyValueFactory<>("idRecibo")); 
         colProveedor.setCellValueFactory(new PropertyValueFactory<>("proveedorid")); 
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha")); 
@@ -69,8 +77,7 @@ public class FormComprasController implements Initializable {
             modelo_recibos.add(next); 
         } 
         tblCompras.setItems(modelo_recibos); 
-    }    
-    private ObservableList<ReciboCompra> modelo_recibos = FXCollections.observableArrayList(); 
+    }
     
     @FXML
     private void registrarCompra(ActionEvent event) throws IOException {
@@ -88,6 +95,16 @@ public class FormComprasController implements Initializable {
 
     @FXML
     private void revisarCompra(ActionEvent event) throws IOException {
+        try {
+            ReciboCompra recibo_seleccionado = (ReciboCompra) tblCompras.getSelectionModel().getSelectedItem();
+            ReciboCompra recibo_enviar = compras_dao.getReciboByID(recibo_seleccionado.getIdRecibo());
+            try (FileWriter fileWriter = new FileWriter("recibo.txt")) {
+                System.out.println(recibo_enviar.getIdRecibo());
+                fileWriter.write(recibo_enviar.getIdRecibo());
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("No se pudo guardar");
+            }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RevisarCompra.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -98,6 +115,9 @@ public class FormComprasController implements Initializable {
         //Cerrar ventana actual
         Stage actual = (Stage) btnEditar.getScene().getWindow();
         actual.close();
+        } catch (Exception e) {
+            showException("Error", "Por favor seleccione un recibo.", e);
+        }
     }
 
     @FXML

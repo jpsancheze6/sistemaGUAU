@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventas;
 
-import JPA.Cliente;
+import static Inventario.InventarioController.showException;
 import JPA.Factura;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -37,7 +33,10 @@ public class FormVentasController implements Initializable {
     @FXML
     private Button btnRegistrar, btnEditar, btnRegresar;
     
-    private VentasDAO ventas_dao = new VentasDAO();
+    private VentasDAO factura_dao = new VentasDAO();
+    private DetalleFacturaDAO detalleFactura_dao = new DetalleFacturaDAO();
+    private ObservableList<Factura> modelo_facturas = FXCollections.observableArrayList(); 
+    private Factura factura;
     
     //Tabla para mostra las ventas
     @FXML
@@ -45,7 +44,7 @@ public class FormVentasController implements Initializable {
     @FXML
     private TableColumn<Factura, Integer> colID;
     @FXML
-    private TableColumn<Factura, Cliente> colCliente;
+    private TableColumn<Factura, String> colCliente;
     @FXML
     private TableColumn<Factura, Date> colFecha;
     @FXML
@@ -56,21 +55,24 @@ public class FormVentasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        agregarElementos();
+    }    
+   
+    public void agregarElementos(){
         colID.setCellValueFactory(new PropertyValueFactory<>("idFactura")); 
         colCliente.setCellValueFactory(new PropertyValueFactory<>("clienteid")); 
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha")); 
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total")); 
  
-        List<Factura> lista_recibos = ventas_dao.getFacturas(); 
+        List<Factura> lista_recibos = factura_dao.getFacturas(); 
  
         for(Iterator<Factura> iterator = lista_recibos.iterator(); iterator.hasNext();) { 
             Factura next = iterator.next(); 
             modelo_facturas.add(next); 
         } 
         tblVentas.setItems(modelo_facturas); 
-    }    
-    private ObservableList<Factura> modelo_facturas = FXCollections.observableArrayList(); 
-
+    }
+    
     @FXML
     private void registrarVenta(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RegistrarVenta.fxml"));
@@ -87,6 +89,16 @@ public class FormVentasController implements Initializable {
 
     @FXML
     private void revisarVenta(ActionEvent event) throws IOException {
+        try {
+            Factura factura_seleccionada = (Factura) tblVentas.getSelectionModel().getSelectedItem();
+            Factura factura_enviar = factura_dao.getFacturaByID(factura_seleccionada.getIdFactura());
+            try (FileWriter fileWriter = new FileWriter("factura.txt")) {
+                System.out.println(factura_enviar.getIdFactura());
+                fileWriter.write(factura_enviar.getIdFactura());
+                fileWriter.close();
+            } catch (IOException e) {
+                System.out.println("No se pudo guardar");
+            }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RevisarVenta.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -97,6 +109,9 @@ public class FormVentasController implements Initializable {
         //Cerrar ventana actual
         Stage actual = (Stage) btnEditar.getScene().getWindow();
         actual.close();
+        } catch (Exception e) {
+            showException("Error", "Por favor seleccione una factura.", e);
+        }
     }
 
     @FXML

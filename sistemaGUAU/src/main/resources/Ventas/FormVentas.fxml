@@ -29,9 +29,10 @@
     </stylesheets>
     <children>
         <Label layoutX="334.0" layoutY="14.0" text="Ventas">
-         <font>
-            <Font size="36.0" />
-         </font></Label>
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
         <JFXButton fx:id="btnRegistrar" layoutX="279.0" layoutY="331.0" mnemonicParsing="false" onAction="#registrarVenta" text="Registrar Venta" />
         <JFXButton fx:id="btnEditar" layoutX="415.0" layoutY="331.0" mnemonicParsing="false" onAction="#revisarVenta" text="Revisar Venta" />
         <TableView fx:id="tblVentas" layoutX="46.0" layoutY="73.0" prefHeight="229.0" prefWidth="656.0">
@@ -39,9 +40,9 @@
                 <TableColumn fx:id="colID" prefWidth="90.0" text="ID" />
                 <TableColumn fx:id="colCliente" minWidth="0.0" prefWidth="273.0" text="Cliente" />
                 <TableColumn fx:id="colFecha" prefWidth="179.0" text="Fecha" />
-            <TableColumn fx:id="colTotal" prefWidth="113.0" text="Total" />
+                <TableColumn fx:id="colTotal" prefWidth="113.0" text="Total" />
             </columns>
         </TableView>
-      <JFXButton fx:id="btnRegresar" layoutX="655.0" layoutY="374.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+        <JFXButton fx:id="btnRegresar" layoutX="655.0" layoutY="374.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
     </children>
 </AnchorPane>

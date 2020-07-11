@@ -23,21 +23,24 @@
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
-   <children>
-      <JFXTextField fx:id="txtNombre" layoutX="32.0" layoutY="119.0" promptText="Nombre" />
-      <JFXTextField fx:id="txtExistencias" layoutX="32.0" layoutY="161.0" promptText="Existencias" />
-      <JFXTextField fx:id="txtPrecio" layoutX="32.0" layoutY="201.0" promptText="Precio" />
-      <JFXTextField fx:id="txtAnimal" layoutX="32.0" layoutY="242.0" promptText="Animal" />
-      <JFXTextField fx:id="txtMarca" layoutX="192.0" layoutY="122.0" promptText="Marca" />
-      <JFXTextField fx:id="txtPeso" layoutX="192.0" layoutY="161.0" promptText="Peso" />
-      <JFXTextField fx:id="txtReferencia" layoutX="193.0" layoutY="201.0" promptText="Unidad Referencia" />
-      <JFXComboBox fx:id="cmbProveedor" layoutX="192.0" layoutY="272.0" onAction="#cmbProveedor" prefWidth="150.0" />
-      <JFXCheckBox fx:id="cbxHabilitado" layoutX="34.0" layoutY="297.0" mnemonicParsing="false" text="Habilitado" />
-      <JFXButton fx:id="btnGuardar" layoutX="441.0" layoutY="137.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
-      <JFXButton fx:id="btnLimpiar" layoutX="441.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
-      <JFXButton fx:id="btnCancelar" layoutX="441.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
-      <Label layoutX="192.0" layoutY="246.0" text="Proveedor" />
-      <Label layoutX="247.0" layoutY="26.0" text="Modificar Producto">
-      </Label>
-   </children>
+    <children>
+        <Label layoutX="247.0" layoutY="26.0" text="Modificar Producto">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <JFXTextField fx:id="txtNombre" layoutX="32.0" layoutY="119.0" promptText="Nombre" />
+        <JFXTextField fx:id="txtExistencias" layoutX="32.0" layoutY="161.0" promptText="Existencias" />
+        <JFXTextField fx:id="txtPrecio" layoutX="32.0" layoutY="201.0" promptText="Precio" />
+        <JFXTextField fx:id="txtAnimal" layoutX="32.0" layoutY="242.0" promptText="Animal" />
+        <JFXTextField fx:id="txtMarca" layoutX="192.0" layoutY="122.0" promptText="Marca" />
+        <JFXTextField fx:id="txtPeso" layoutX="192.0" layoutY="161.0" promptText="Peso" />
+        <JFXTextField fx:id="txtReferencia" layoutX="193.0" layoutY="201.0" promptText="Unidad Referencia" />
+        <JFXComboBox fx:id="cmbProveedor" layoutX="192.0" layoutY="272.0" onAction="#cmbProveedor" prefWidth="150.0" />
+        <JFXCheckBox fx:id="cbxHabilitado" layoutX="34.0" layoutY="297.0" mnemonicParsing="false" text="Habilitado" />
+        <JFXButton fx:id="btnGuardar" layoutX="441.0" layoutY="137.0" mnemonicParsing="false" onAction="#btnGuardarHandle" prefHeight="26.0" prefWidth="99.0" text="Guardar" />
+        <JFXButton fx:id="btnLimpiar" layoutX="441.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnLimpiarHandle" prefHeight="26.0" prefWidth="99.0" text="Vaciar Campos" />
+        <JFXButton fx:id="btnCancelar" layoutX="441.0" layoutY="209.0" mnemonicParsing="false" onAction="#btnCancelarHandle" prefHeight="26.0" prefWidth="99.0" text="Cancelar" />
+        <Label layoutX="192.0" layoutY="246.0" text="Proveedor" />
+    </children>
 </AnchorPane>

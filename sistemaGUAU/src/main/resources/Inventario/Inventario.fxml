@@ -24,6 +24,9 @@
     </stylesheets>
     <children>
         <Label layoutX="290.0" layoutY="14.0" text="Inventario" textAlignment="CENTER">
+            <font>
+                <Font size="36.0" />
+            </font>
         </Label>
         <TableView fx:id="tblProductos" layoutX="8.0" layoutY="72.0" prefHeight="519.0" prefWidth="568.0">
             <columns>

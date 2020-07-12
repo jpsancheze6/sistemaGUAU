@@ -1,29 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXComboBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="740.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ventas.FormVentasController">
+<AnchorPane id="AnchorPane" prefHeight="419.0" prefWidth="740.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ventas.FormVentasController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
@@ -35,7 +20,7 @@
         </Label>
         <JFXButton fx:id="btnRegistrar" layoutX="279.0" layoutY="331.0" mnemonicParsing="false" onAction="#registrarVenta" text="Registrar Venta" />
         <JFXButton fx:id="btnEditar" layoutX="415.0" layoutY="331.0" mnemonicParsing="false" onAction="#revisarVenta" text="Revisar Venta" />
-        <TableView fx:id="tblVentas" layoutX="46.0" layoutY="73.0" prefHeight="229.0" prefWidth="656.0">
+        <TableView fx:id="tblVentas" layoutX="14.0" layoutY="73.0" prefHeight="229.0" prefWidth="716.0">
             <columns>
                 <TableColumn fx:id="colID" prefWidth="90.0" text="ID" />
                 <TableColumn fx:id="colCliente" minWidth="0.0" prefWidth="273.0" text="Cliente" />

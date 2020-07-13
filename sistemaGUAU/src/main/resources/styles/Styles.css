@@ -12,49 +12,55 @@
 }
 .jfx-button {
     -jfx-button-type: RAISED;
-    -fx-background-color: #5482ab;
+    -fx-background-color: #7e8c8d;
     -fx-text-fill: white;
 }
 #btnCancelar, #btnSalir, #btnRegresar{
     -jfx-button-type: RAISED;
-    -fx-background-color: #ce1126;
+    -fx-background-color: #c1392b;
     -fx-text-fill: white;
     -jfx-disable-visual-focus: true;
 }
 #btnGuardar{
     -jfx-button-type: RAISED;
-    -fx-background-color: #7ab800;
+    -fx-background-color: #4eb36f;
     -fx-text-fill: white;
 }
 #btnCliente{
     -fx-background-image: url("../img/clientes.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-background-color: #29b297;
 }
 #btnProveedores{
     -fx-background-image: url("../img/proveedores.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-background-color: #4eb371;
 }
 #btnCompras{
     -fx-background-image: url("../img/compras.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-background-color: #e47d20;
 }
 #btnUsuarios{
     -fx-background-image: url("../img/usuarios.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-background-color: #e84a3e;
 }
 #btnVentas{
     -fx-background-image: url("../img/ventas.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-background-color: #8f5ca1;
 }
 #btnInventario{
     -fx-background-image: url("../img/inventario.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: left;
+    -fx-background-color: #3d586d;
 }
 
 /* Tabla */

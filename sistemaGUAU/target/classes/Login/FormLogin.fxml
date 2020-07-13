@@ -13,7 +13,7 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
     <children>
-        <Label layoutX="26.0" layoutY="31.0" text="Iniciar Sesion">
+        <Label layoutX="9.0" layoutY="30.0" text="Iniciar Sesion">
          <font>
             <Font size="36.0" />
          </font></Label>

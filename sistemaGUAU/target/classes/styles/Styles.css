@@ -2,23 +2,62 @@
     Created on : 23/06/2020, 09:05:37 AM
     Author     : José Sánchez
 */
-
+/* Font */
+@font-face {
+    font-family: Montserrat;
+    src: url('Montserrat-Regular.ttf');
+}
+*{
+    -fx-font-family: 'Montserrat';
+}
 .jfx-button {
-     -jfx-button-type: RAISED;
-     -fx-background-color: #5482ab;
-     -fx-text-fill: white;
+    -jfx-button-type: RAISED;
+    -fx-background-color: #5482ab;
+    -fx-text-fill: white;
 }
 #btnCancelar, #btnSalir, #btnRegresar{
     -jfx-button-type: RAISED;
-     -fx-background-color: #ce1126;
-     -fx-text-fill: white;
-     -jfx-disable-visual-focus: true;
+    -fx-background-color: #ce1126;
+    -fx-text-fill: white;
+    -jfx-disable-visual-focus: true;
 }
 #btnGuardar{
     -jfx-button-type: RAISED;
-     -fx-background-color: #7ab800;
-     -fx-text-fill: white;
+    -fx-background-color: #7ab800;
+    -fx-text-fill: white;
 }
+#btnCliente{
+    -fx-background-image: url("../img/clientes.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+#btnProveedores{
+    -fx-background-image: url("../img/proveedores.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+#btnCompras{
+    -fx-background-image: url("../img/compras.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+#btnUsuarios{
+    -fx-background-image: url("../img/usuarios.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+#btnVentas{
+    -fx-background-image: url("../img/ventas.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+#btnInventario{
+    -fx-background-image: url("../img/inventario.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left;
+}
+
+/* Tabla */
 .table-view {
     -fx-table-color: rgba(82, 100, 174, 0.4);
     -fx-table-rippler-color: rgba(82, 100, 174, 0.6);

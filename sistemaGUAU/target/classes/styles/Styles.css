@@ -15,13 +15,19 @@
     -fx-background-color: #7e8c8d;
     -fx-text-fill: white;
 }
+#btnVaciarCampos{
+    -jfx-button-type: RAISED;
+    -fx-background-color: #7e8c8d;
+    -fx-text-fill: white;
+    -jfx-disable-visual-focus: true;
+}
 #btnCancelar, #btnSalir, #btnRegresar{
     -jfx-button-type: RAISED;
     -fx-background-color: #c1392b;
     -fx-text-fill: white;
     -jfx-disable-visual-focus: true;
 }
-#btnGuardar{
+#btnGuardar, #btnActualizar{
     -jfx-button-type: RAISED;
     -fx-background-color: #4eb36f;
     -fx-text-fill: white;

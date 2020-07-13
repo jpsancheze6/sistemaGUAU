@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXPasswordField?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXComboBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ventas.RegistrarVentaController">
+<AnchorPane id="AnchorPane" prefHeight="619.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ventas.RegistrarVentaController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
@@ -34,20 +22,20 @@
             </font>
         </Label>
         <JFXComboBox fx:id="cmbProveedor" layoutX="21.0" layoutY="86.0" prefHeight="25.0" prefWidth="244.0" promptText="Proveedor" />
-        <JFXTextField fx:id="txtCantidad" layoutX="434.0" layoutY="86.0" promptText="Cantidad" />
+        <JFXTextField fx:id="txtCantidad" layoutX="571.0" layoutY="155.0" promptText="Cantidad" />
         <JFXButton fx:id="btnBuscar" layoutX="274.0" layoutY="86.0" mnemonicParsing="false" onAction="#mostrarProductos" text="Buscar" />
-        <JFXButton fx:id="btnAgregar" layoutX="596.0" layoutY="86.0" mnemonicParsing="false" onAction="#agregarProductos" text="Agregar" />
-        <TableView fx:id="tblProductos" layoutX="96.0" layoutY="138.0" prefHeight="109.0" prefWidth="548.0">
+        <JFXButton fx:id="btnAgregar" layoutX="609.0" layoutY="200.0" mnemonicParsing="false" onAction="#agregarProductos" text="Agregar" />
+        <TableView fx:id="tblProductos" layoutX="14.0" layoutY="139.0" prefHeight="109.0" prefWidth="534.0">
             <columns>
                 <TableColumn fx:id="colProducto" prefWidth="358.0" text="Producto" />
-                <TableColumn fx:id="colPrecio" minWidth="0.0" prefWidth="98.0" text="Precio" />
-                <TableColumn fx:id="colExistencias" prefWidth="91.0" text="Existencias" />
+                <TableColumn fx:id="colPrecio" minWidth="0.0" prefWidth="84.0" text="Precio" />
+                <TableColumn fx:id="colExistencias" prefWidth="105.0" text="Existencias" />
             </columns>
         </TableView>
-        <Separator layoutX="57.0" layoutY="274.0" prefHeight="8.0" prefWidth="625.0" />
-        <JFXComboBox fx:id="cmbCliente" layoutX="300.0" layoutY="306.0" prefWidth="150.0" promptText="Cliente" />
-        <JFXComboBox fx:id="cmbUsuario" layoutX="500.0" layoutY="306.0" prefWidth="150.0" promptText="Usuario" />
-        <TableView fx:id="tblVenta" layoutX="18.0" layoutY="370.0" prefHeight="200.0" prefWidth="465.0">
+        <Separator layoutX="17.0" layoutY="274.0" prefHeight="5.0" prefWidth="665.0" />
+        <JFXComboBox fx:id="cmbCliente" layoutX="18.0" layoutY="297.0" prefWidth="150.0" promptText="Cliente" />
+        <JFXComboBox fx:id="cmbUsuario" layoutX="275.0" layoutY="297.0" prefWidth="150.0" promptText="Usuario" />
+        <TableView fx:id="tblVenta" layoutX="18.0" layoutY="340.0" prefHeight="230.0" prefWidth="534.0">
             <columns>
                 <TableColumn fx:id="colProducto2" prefWidth="206.0" text="Producto" />
                 <TableColumn fx:id="colPrecio2" prefWidth="84.0" text="Precio" />
@@ -55,15 +43,14 @@
                 <TableColumn fx:id="colTotal2" prefWidth="100.0" text="Total" />
             </columns>
         </TableView>
-        <JFXButton fx:id="btnEliminar" layoutX="213.0" layoutY="580.0" mnemonicParsing="false" text="Eliminar Producto" />
-        <JFXTextField fx:id="txtDescuento" layoutX="541.0" layoutY="358.0" promptText="Descuento" />
-        <Label fx:id="labelTotal" layoutX="567.0" layoutY="415.0" text="Total Q 0.00">
+        <JFXButton fx:id="btnEliminar" layoutX="245.0" layoutY="580.0" mnemonicParsing="false" text="Eliminar Producto" />
+        <JFXTextField fx:id="txtDescuento" layoutX="571.0" layoutY="340.0" promptText="Descuento" />
+        <Label fx:id="labelTotal" layoutX="590.0" layoutY="399.0" text="Total Q 0.00">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
-        <JFXButton fx:id="btnCancelar" layoutX="531.0" layoutY="514.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-        <JFXButton fx:id="btnGuardar" layoutX="638.0" layoutY="514.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
-        <JFXButton fx:id="btnRegresar" layoutX="651.0" layoutY="580.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+        <JFXButton fx:id="btnCancelar" layoutX="608.0" layoutY="545.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+        <JFXButton fx:id="btnGuardar" layoutX="609.0" layoutY="482.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
     </children>
 </AnchorPane>

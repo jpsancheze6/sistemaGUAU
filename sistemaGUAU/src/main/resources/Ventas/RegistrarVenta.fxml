@@ -48,7 +48,7 @@
                 <TableColumn fx:id="colTotal2" prefWidth="100.0" text="Total" />
             </columns>
         </TableView>
-        <Button fx:id="btnEliminar" layoutX="213.0" layoutY="580.0" mnemonicParsing="false" text="Eliminar Producto" />
+        <Button fx:id="btnEliminar" layoutX="213.0" layoutY="580.0" mnemonicParsing="false" onAction="#eliminarProductos" text="Eliminar Producto" />
         <TextField fx:id="txtDescuento" layoutX="541.0" layoutY="358.0" promptText="Descuento" />
         <Label fx:id="labelTotal" layoutX="567.0" layoutY="415.0" text="Total Q 0.00">
          <font>

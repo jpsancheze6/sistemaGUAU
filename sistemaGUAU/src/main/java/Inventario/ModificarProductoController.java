@@ -25,12 +25,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -60,7 +54,7 @@ public class ModificarProductoController implements Initializable {
     @FXML
     private JFXTextField txtPeso;
     @FXML
-    private JFXTextField txtReferencia;
+    private JFXComboBox cmbUnidad;
     @FXML
     private JFXComboBox<String> cmbProveedor;
     @FXML
@@ -81,7 +75,8 @@ public class ModificarProductoController implements Initializable {
         txtNombre.setLabelFloat(true);
         txtPeso.setLabelFloat(true);
         txtPrecio.setLabelFloat(true);
-        txtReferencia.setLabelFloat(true);
+        cmbProveedor.setLabelFloat(true);
+        cmbUnidad.setLabelFloat(true);
         try (FileReader fileReader = new FileReader("producto.txt")) {
             int id = fileReader.read();
             System.out.println("-> " + id);
@@ -94,10 +89,16 @@ public class ModificarProductoController implements Initializable {
             txtAnimal.setText(this.producto.getTipoanimal());
             txtMarca.setText(this.producto.getMarca());
             txtPeso.setText(this.producto.getPeso() + "");
-            txtReferencia.setText(this.producto.getUnidadreferencia());
             if (this.producto.getDisponibilidad()) {
                 cbxHabilitado.setSelected(true);
             }
+            ObservableList<String> unidades = FXCollections.observableArrayList();
+            unidades.add("Seleccione unidad");
+            unidades.add("Libras");
+            unidades.add("Kilogramos");
+            unidades.add("Quintales");
+            unidades.add("Bolsas");
+            cmbUnidad.setItems(unidades);
         } catch (FileNotFoundException e) {
             System.out.println("No");
         } catch (IOException e) {
@@ -143,10 +144,10 @@ public class ModificarProductoController implements Initializable {
         String animal = txtAnimal.getText();
         String marca = txtMarca.getText();
         String peso = txtPeso.getText(); //
-        String unidad_referencia = txtReferencia.getText();
+        String unidad_referencia = cmbUnidad.getSelectionModel().getSelectedItem().toString();
         int seleccion = cmbProveedor.getSelectionModel().getSelectedIndex(); // -1 && >=0
 
-        if (nombre.length() != 0 && existencias.length() != 0 && precio.length() != 0 && animal.length() != 0 && marca.length() != 0 && peso.length() != 0 && seleccion >= 0 && unidad_referencia.length() != 0) {
+        if (nombre.length() != 0 && existencias.length() != 0 && precio.length() != 0 && animal.length() != 0 && marca.length() != 0 && peso.length() != 0 && seleccion >= 0 && cmbUnidad.getSelectionModel().getSelectedIndex() != 0) {
             producto.setNombre(nombre);
             producto.setExistencias(Float.parseFloat(existencias));
             producto.setPrecio(Float.parseFloat(precio));
@@ -166,7 +167,7 @@ public class ModificarProductoController implements Initializable {
             } catch (Exception ex) {
                 Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             showWarning("Datos incompletos", "Por favor llene todos los datos.");
         }
     }
@@ -179,7 +180,7 @@ public class ModificarProductoController implements Initializable {
         txtAnimal.setText("");
         txtMarca.setText("");
         txtPeso.setText(""); //
-        txtReferencia.setText("");
+        cmbUnidad.getSelectionModel().select(0);
         cmbProveedor.getSelectionModel().clearSelection();
         cbxHabilitado.setSelected(false);
     }

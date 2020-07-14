@@ -189,20 +189,17 @@ public class RegistrarCompraController implements Initializable {
             float precioP = producto_enviar.getPrecio();
             float cantidadP = Integer.valueOf(txtCantidad.getText());
             float existencias = producto_enviar.getExistencias();
-            if(cantidadP < existencias){
-                float totalP = precioP*cantidadP;
-                finalP = finalP + totalP;
-                productosVenta.add(new TablaVentas(idP, nombreP, precioP, cantidadP, totalP));
-                tblCompra.setItems(productosVenta);
-                txtCantidad.setText("");   
-                labelTotal.setText("Total: " + String.valueOf(finalP));
-                //Actualizar existencias
-                float existenciasP = existencias-cantidadP;
-                producto_enviar.setExistencias(existenciasP);
-                producto_dao.EditarProducto(producto_enviar);
-                mostrarProductos2();
-            }else
-                showWarning("ERROR", "La cantidad es mayor que las existencias disponibles");
+            float totalP = precioP*cantidadP;
+            finalP = finalP + totalP;
+            productosVenta.add(new TablaVentas(idP, nombreP, precioP, cantidadP, totalP));
+            tblCompra.setItems(productosVenta);
+            txtCantidad.setText("");   
+            labelTotal.setText("Total: " + String.valueOf(finalP));
+            //Actualizar existencias
+            float existenciasP = existencias+cantidadP;
+            producto_enviar.setExistencias(existenciasP);
+            producto_dao.EditarProducto(producto_enviar);
+            mostrarProductos2();
             } catch (Exception e) {
                 showException("Error", "Por favor seleccione un producto.", e);
             }
@@ -226,7 +223,7 @@ public class RegistrarCompraController implements Initializable {
         tblCompra.getItems().removeAll(tblCompra.getSelectionModel().getSelectedItem());
         //Actualizar existencias
         float existencias = producto_enviar.getExistencias();
-        float existenciasP = existencias+cantidad;
+        float existenciasP = existencias-cantidad;
         producto_enviar.setExistencias(existenciasP);
         producto_dao.EditarProducto(producto_enviar);
         mostrarProductos2();

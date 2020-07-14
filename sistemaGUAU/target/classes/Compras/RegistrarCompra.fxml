@@ -40,7 +40,7 @@
                 <TableColumn fx:id="colTotal2" prefWidth="100.0" text="Total" />
             </columns>
         </TableView>
-        <JFXButton fx:id="btnEliminar" layoutX="270.0" layoutY="581.0" mnemonicParsing="false" text="Eliminar Producto" />
+        <JFXButton fx:id="btnEliminar" layoutX="270.0" layoutY="581.0" mnemonicParsing="false" onAction="#eliminarProductos" text="Eliminar Producto" />
         <Label fx:id="labelTotal" layoutX="611.0" layoutY="368.0" text="Total Q 0.00">
             <font>
                 <Font size="18.0" />

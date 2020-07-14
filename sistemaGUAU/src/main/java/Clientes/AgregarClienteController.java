@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,10 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -70,7 +65,7 @@ public class AgregarClienteController implements Initializable {
         txtTelefono.setLabelFloat(true);
         txtTIpoCliente.setLabelFloat(true);
     }
-    
+
     //************************METODOS
     //---------------------------------------------------------------Mensaje de Confimarcion
     public static String showConfirm(String title, String message, String... options) {
@@ -140,7 +135,7 @@ public class AgregarClienteController implements Initializable {
 
         alert.showAndWait();
     }
-    
+
     private Boolean valiSoloLetrasyEspacios(String texto) {
         boolean resp = false;
         char c;
@@ -194,7 +189,8 @@ public class AgregarClienteController implements Initializable {
 
                     try {
                         cliente_dao.AgregarCliente(newCliente);
-
+                        showInformation("Terminado", "Cliente registrado con éxito");
+                        regresar(event);
                     } catch (Exception ex) {
                         showError("Error al Ingresar", "Debido a un error no se puedo Ingresar el proveedor");
                     }
@@ -212,7 +208,6 @@ public class AgregarClienteController implements Initializable {
         }
 
     }
-    
 
     @FXML
     public void limpiarCampos(ActionEvent event) {

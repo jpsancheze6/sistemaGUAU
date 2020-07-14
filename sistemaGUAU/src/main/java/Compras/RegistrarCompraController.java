@@ -8,6 +8,7 @@ import static Inventario.AgregarProductoController.showWarning;
 import static Inventario.InventarioController.showException;
 import Inventario.ProductoDAO;
 import JPA.Cliente;
+import JPA.DetalleCompra;
 import JPA.DetalleFactura;
 import JPA.Factura;
 import JPA.Producto;
@@ -70,11 +71,12 @@ public class RegistrarCompraController implements Initializable {
     
     private VentasDAO factura_dao = new VentasDAO();
     private ComprasDAO recibo_dao = new ComprasDAO();
-    private DetalleFacturaDAO detallefactura_dao = new DetalleFacturaDAO();
+    private DetalleReciboDAO detallerecibo_dao = new DetalleReciboDAO();
     private ProductoDAO producto_dao = new ProductoDAO();
     private ClienteDAO cliente_dao = new ClienteDAO();
     private ProveedorDAO proveedor_dao = new ProveedorDAO();
     private UsuarioDAO usuario_dao = new UsuarioDAO();
+    private TablaVentas tablaventas_dao;
     
     private ObservableList<DetalleFactura> modelo_detallefacturas = FXCollections.observableArrayList(); 
     private ObservableList<Producto> modelo_producto = FXCollections.observableArrayList(); 
@@ -154,6 +156,10 @@ public class RegistrarCompraController implements Initializable {
     //Muestran los productos del proveedor
     @FXML
     private void mostrarProductos(ActionEvent event){
+        mostrarProductos2();
+    }
+    
+    public void mostrarProductos2(){
         tblProductos.getItems().clear();
         colProducto.setCellValueFactory(new PropertyValueFactory<>("nombre")); 
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio")); 
@@ -182,21 +188,55 @@ public class RegistrarCompraController implements Initializable {
             String nombreP = producto_enviar.getNombre();
             float precioP = producto_enviar.getPrecio();
             float cantidadP = Integer.valueOf(txtCantidad.getText());
-            float totalP = precioP*cantidadP;
-            finalP = finalP + totalP;
-            productosVenta.add(new TablaVentas(idP, nombreP, precioP, cantidadP, totalP));
-            tblCompra.setItems(productosVenta);
-            txtCantidad.setText("");   
-            labelTotal.setText("Total: " + String.valueOf(finalP));
+            float existencias = producto_enviar.getExistencias();
+            if(cantidadP < existencias){
+                float totalP = precioP*cantidadP;
+                finalP = finalP + totalP;
+                productosVenta.add(new TablaVentas(idP, nombreP, precioP, cantidadP, totalP));
+                tblCompra.setItems(productosVenta);
+                txtCantidad.setText("");   
+                labelTotal.setText("Total: " + String.valueOf(finalP));
+                //Actualizar existencias
+                float existenciasP = existencias-cantidadP;
+                producto_enviar.setExistencias(existenciasP);
+                producto_dao.EditarProducto(producto_enviar);
+                mostrarProductos2();
+            }else
+                showWarning("ERROR", "La cantidad es mayor que las existencias disponibles");
             } catch (Exception e) {
                 showException("Error", "Por favor seleccione un producto.", e);
             }
+    }
+    
+    //Eliminar productos del recibo
+    @FXML
+    private void eliminarProductos(ActionEvent event) throws Exception{
+        colProducto2.setCellValueFactory(new PropertyValueFactory<>("nombreProducto")); 
+        colPrecio2.setCellValueFactory(new PropertyValueFactory<>("precioProducto")); 
+        colCantidad2.setCellValueFactory(new PropertyValueFactory<>("cantidad")); 
+        colTotal2.setCellValueFactory(new PropertyValueFactory<>("total")); 
+        TablaVentas producto_seleccionado = (TablaVentas) tblCompra.getSelectionModel().getSelectedItem();
+        Producto producto_enviar = producto_dao.getProductoByID(producto_seleccionado.getIdProducto());
+        float precio = producto_enviar.getPrecio();
+        float cantidad = producto_seleccionado.getCantidad();
+        finalP = finalP - (precio*cantidad);
+        System.out.println(finalP);
+        labelTotal.setText("");
+        labelTotal.setText("Total: " + String.valueOf(finalP));
+        tblCompra.getItems().removeAll(tblCompra.getSelectionModel().getSelectedItem());
+        //Actualizar existencias
+        float existencias = producto_enviar.getExistencias();
+        float existenciasP = existencias+cantidad;
+        producto_enviar.setExistencias(existenciasP);
+        producto_dao.EditarProducto(producto_enviar);
+        mostrarProductos2();
     }
     
     @FXML
     private void guardar(ActionEvent event) throws IOException {
         int seleccionUsuario = cmbUsuario.getSelectionModel().getSelectedIndex() + 1; // -1 && >=0
         int seleccionProveedor = cmbProveedor.getSelectionModel().getSelectedIndex() + 1;
+        DetalleCompra nuevoDetalle = new DetalleCompra();
         Date fechaP = new Date();
         if (seleccionUsuario != 0 && seleccionProveedor != 0 && finalP != 0) {
             ReciboCompra nuevoRecibo = new ReciboCompra();
@@ -210,6 +250,14 @@ public class RegistrarCompraController implements Initializable {
             nuevoRecibo.setUsuarioidUsuario(usuario_dao.getUsuarioByID(id_usuario));
             try {
                 recibo_dao.AgregarCompra(nuevoRecibo);
+                for(int i = 0; i < tblCompra.getItems().size(); i++) {
+                    tablaventas_dao = tblCompra.getItems().get(i);
+                    nuevoDetalle.setReciboid(recibo_dao.getReciboByID(nuevoRecibo.getIdRecibo()));
+                    nuevoDetalle.setProductoid(producto_dao.getProductoByID(tablaventas_dao.getIdProducto()));
+                    nuevoDetalle.setCantidad((int)tablaventas_dao.getCantidad());
+                    nuevoDetalle.setSubtotal(tablaventas_dao.getTotal());
+                    detallerecibo_dao.AgregarDetalleRecibo(nuevoDetalle);
+                }
                 cancelar(new ActionEvent());
                 showInformation("Terminado", "Recibo registrada con éxito");
             } catch (Exception ex) {

@@ -20,6 +20,10 @@ public class TablaVentas {
         this.total = total;
     }
 
+    public TablaVentas() {
+        
+    }
+
     public int getIdProducto() {
         return idProducto;
     }

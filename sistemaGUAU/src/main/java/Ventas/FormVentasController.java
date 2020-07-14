@@ -2,6 +2,7 @@ package Ventas;
 
 import static Inventario.InventarioController.showException;
 import JPA.Factura;
+import com.jfoenix.controls.JFXButton;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,7 +31,7 @@ import javafx.stage.Stage;
 public class FormVentasController implements Initializable {
 
     @FXML
-    private Button btnRegistrar, btnEditar, btnRegresar;
+    private JFXButton btnRegistrar, btnEditar, btnRegresar;
     
     private VentasDAO factura_dao = new VentasDAO();
     private DetalleFacturaDAO detalleFactura_dao = new DetalleFacturaDAO();

@@ -6,6 +6,7 @@
 package Clientes;
 
 import JPA.Cliente;
+import com.jfoenix.controls.JFXButton;
 import java.awt.Robot;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -49,13 +50,13 @@ public class FormClientesController implements Initializable {
     @FXML
     private TableView<Cliente> tblClientes;
     @FXML
-    private Button btnCrearCliente;
+    private JFXButton btnCrearCliente;
     @FXML
-    private Button btnEditarCliente;
+    private JFXButton btnEditarCliente;
     @FXML
-    private Button btnDeshabilitarCliente;
+    private JFXButton btnDeshabilitarCliente;
     @FXML
-    private Button btnRegresar;
+    private JFXButton btnRegresar;
 
     @FXML
     private TableColumn<Cliente, Integer> id;

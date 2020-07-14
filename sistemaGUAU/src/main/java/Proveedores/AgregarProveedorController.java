@@ -6,6 +6,8 @@
 package Proveedores;
 
 import JPA.Proveedor;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.IOException;
 import java.net.URL;
@@ -37,23 +39,27 @@ import javafx.stage.StageStyle;
 public class AgregarProveedorController implements Initializable {
 
     @FXML
-    private Button btnGuardar;
+    private JFXButton btnGuardar;
     @FXML
-    private Button btnLimpiar;
+    private JFXButton btnLimpiar;
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
-    private TextField txtTelefono;
+    private JFXTextField txtTelefono;
     @FXML
-    private TextField txtEmpresa;
+    private JFXTextField txtEmpresa;
     @FXML
     private Label labelTitulo;
 
-    /**
-     * Initializes the controller class.
-     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        txtEmpresa.setLabelFloat(true);
+        txtNombre.setLabelFloat(true);
+        txtTelefono.setLabelFloat(true);
+    }
+    
     //************************METODOS
     //---------------------------------------------------------------Mensaje de Confimarcion
     public static String showConfirm(String title, String message, String... options) {
@@ -133,11 +139,6 @@ public class AgregarProveedorController implements Initializable {
             resp = (Character.isDigit(c));
         }
         return resp;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML

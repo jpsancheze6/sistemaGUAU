@@ -1,6 +1,8 @@
 package Inventario;
 
 import JPA.Producto;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,17 +44,17 @@ public class InventarioController implements Initializable {
     @FXML
     private AnchorPane APaneInventario;
     @FXML
-    private Button btnBuscar;
+    private JFXButton btnBuscar;
     @FXML
-    private Button btnAgregarProducto;
+    private JFXButton btnAgregarProducto;
     @FXML
-    private Button btnModificar;
+    private JFXButton btnModificar;
     @FXML
-    private Button btnRegresar;
+    private JFXButton btnRegresar;
     @FXML
     private TableView tblProductos;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
     private TableColumn<Producto, Integer> id;
     @FXML
@@ -74,6 +76,7 @@ public class InventarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        txtNombre.setLabelFloat(true);
         agregarElementos();
     }
 

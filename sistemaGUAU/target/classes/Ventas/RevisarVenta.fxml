@@ -16,6 +16,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="395.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ventas.RevisarVentaController">
     <stylesheets>
@@ -23,11 +29,12 @@
     </stylesheets>
     <children>
         <Label layoutX="328.0" layoutY="14.0" text="Venta">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-        <TextField fx:id="txtCliente" disable="true" layoutX="112.0" layoutY="74.0" prefHeight="25.0" prefWidth="197.0" />
-        <TextField fx:id="txtTotal" disable="true" layoutX="466.0" layoutY="74.0" />
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <JFXTextField fx:id="txtCliente" disable="true" layoutX="112.0" layoutY="74.0" prefHeight="25.0" prefWidth="197.0" />
+        <JFXTextField fx:id="txtTotal" disable="true" layoutX="466.0" layoutY="74.0" />
         <TableView fx:id="tblVenta" layoutX="20.0" layoutY="121.0" prefHeight="201.0" prefWidth="676.0">
             <columns>
                 <TableColumn fx:id="colProducto" prefWidth="357.0" text="Producto" />
@@ -36,8 +43,8 @@
                 <TableColumn fx:id="colTotal" prefWidth="128.0" text="Total" />
             </columns>
         </TableView>
-      <Button fx:id="btnRegresar" layoutX="625.0" layoutY="350.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
-      <Label layoutX="64.0" layoutY="78.0" text="Cliente:" />
-      <Label layoutX="431.0" layoutY="78.0" text="Total:" />
+        <JFXButton fx:id="btnRegresar" layoutX="625.0" layoutY="350.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
+        <Label layoutX="64.0" layoutY="78.0" text="Cliente:" />
+        <Label layoutX="431.0" layoutY="78.0" text="Total:" />
     </children>
 </AnchorPane>

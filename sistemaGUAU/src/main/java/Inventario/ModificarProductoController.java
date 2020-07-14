@@ -3,6 +3,10 @@ package Inventario;
 import JPA.Producto;
 import JPA.Proveedor;
 import Proveedores.ProveedorDAO;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -38,29 +42,29 @@ import javafx.stage.StageStyle;
 public class ModificarProductoController implements Initializable {
 
     @FXML
-    private Button btnGuardar;
+    private JFXButton btnGuardar;
     @FXML
-    private Button btnLimpiar;
+    private JFXButton btnLimpiar;
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
-    private TextField txtExistencias;
+    private JFXTextField txtExistencias;
     @FXML
-    private TextField txtPrecio;
+    private JFXTextField txtPrecio;
     @FXML
-    private TextField txtAnimal;
+    private JFXTextField txtAnimal;
     @FXML
-    private TextField txtMarca;
+    private JFXTextField txtMarca;
     @FXML
-    private TextField txtPeso;
+    private JFXTextField txtPeso;
     @FXML
-    private TextField txtReferencia;
+    private JFXTextField txtReferencia;
     @FXML
-    private ComboBox<String> cmbProveedor;
+    private JFXComboBox<String> cmbProveedor;
     @FXML
-    private CheckBox cbxHabilitado;
+    private JFXCheckBox cbxHabilitado;
 
     private ProveedorDAO proveedor_dao = new ProveedorDAO();
     private ProductoDAO producto_dao = new ProductoDAO();
@@ -71,6 +75,13 @@ public class ModificarProductoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtAnimal.setLabelFloat(true);
+        txtExistencias.setLabelFloat(true);
+        txtMarca.setLabelFloat(true);
+        txtNombre.setLabelFloat(true);
+        txtPeso.setLabelFloat(true);
+        txtPrecio.setLabelFloat(true);
+        txtReferencia.setLabelFloat(true);
         try (FileReader fileReader = new FileReader("producto.txt")) {
             int id = fileReader.read();
             System.out.println("-> " + id);

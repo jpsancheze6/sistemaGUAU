@@ -6,6 +6,8 @@ import JPA.Cliente;
 import JPA.DetalleFactura;
 import JPA.Factura;
 import JPA.Producto;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,9 +38,9 @@ import javafx.stage.Stage;
 public class RevisarVentaController implements Initializable {
 
     @FXML
-    private Button btnRegresar;
+    private JFXButton btnRegresar;
     @FXML
-    private TextField txtCliente, txtTotal;
+    private JFXTextField txtCliente, txtTotal;
     
     private VentasDAO factura_dao = new VentasDAO();
     private DetalleFacturaDAO detallefactura_dao = new DetalleFacturaDAO();
@@ -70,6 +72,8 @@ public class RevisarVentaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        txtCliente.setLabelFloat(true);
+        txtTotal.setLabelFloat(true);
         colProducto.setCellValueFactory(new PropertyValueFactory<>("productoid")); 
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("subtotal")); 
         colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad")); 

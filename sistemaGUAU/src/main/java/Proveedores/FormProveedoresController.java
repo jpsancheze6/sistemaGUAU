@@ -6,6 +6,7 @@
 package Proveedores;
 
 import JPA.Proveedor;
+import com.jfoenix.controls.JFXButton;
 import java.awt.Robot;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -44,13 +45,13 @@ public class FormProveedoresController implements Initializable {
     @FXML
     private Label labelTitulo;
     @FXML
-    private Button btnCrear;
+    private JFXButton btnCrear;
     @FXML
-    private Button btnModificar;
+    private JFXButton btnModificar;
     @FXML
-    private Button btnRegresar;
+    private JFXButton btnRegresar;
     @FXML
-    private Button btnEliminar;
+    private JFXButton btnEliminar;
     @FXML
     private TableView<Proveedor> tblProveedores;
     @FXML

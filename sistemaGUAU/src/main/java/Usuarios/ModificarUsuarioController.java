@@ -6,6 +6,9 @@
 package Usuarios;
 
 import JPA.Usuario;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -40,15 +43,15 @@ import javafx.stage.StageStyle;
 public class ModificarUsuarioController implements Initializable {
 
     @FXML
-    private Button btnGuardar;
+    private JFXButton btnGuardar;
     @FXML
-    private Button btnLimpiar;
+    private JFXButton btnLimpiar;
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
-    private TextField txtUsuario;
+    private JFXTextField txtUsuario;
     @FXML
     private Label labelTitulo;
 
@@ -56,13 +59,31 @@ public class ModificarUsuarioController implements Initializable {
 
     private UsuarioDAO usuario_dao = new UsuarioDAO();
     @FXML
-    private PasswordField txtContras;
+    private JFXPasswordField txtContras;
     @FXML
-    private PasswordField txtConfirmarContra;
+    private JFXPasswordField txtConfirmarContra;
 
-    /**
-     * Initializes the controller class.
-     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        txtConfirmarContra.setLabelFloat(true);
+        txtContras.setLabelFloat(true);
+        txtNombre.setLabelFloat(true);
+        txtUsuario.setLabelFloat(true);
+        
+        try ( FileReader fileReader = new FileReader("usuario.txt")) {
+            int id = fileReader.read();
+            usuario = usuario_dao.getUsuarioByID(id);
+            txtNombre.setText(this.usuario.getNombre());
+            txtUsuario.setText(this.usuario.getNombreusuario());
+            txtContras.setText("");
+
+        } catch (FileNotFoundException e) {
+            // Exception handling
+        } catch (IOException e) {
+            // Exception handling
+        }
+    }
+    
     //---------------------------------------------------------------Mensaje de Confimarcion
     public static String showConfirm(String title, String message, String... options) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -110,23 +131,6 @@ public class ModificarUsuarioController implements Initializable {
         alert.setContentText(message);
 
         alert.showAndWait();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        try ( FileReader fileReader = new FileReader("usuario.txt")) {
-            int id = fileReader.read();
-            usuario = usuario_dao.getUsuarioByID(id);
-            txtNombre.setText(this.usuario.getNombre());
-            txtUsuario.setText(this.usuario.getNombreusuario());
-            txtContras.setText("");
-
-        } catch (FileNotFoundException e) {
-            // Exception handling
-        } catch (IOException e) {
-            // Exception handling
-        }
     }
 
     //-------------------------------------------------Guardar

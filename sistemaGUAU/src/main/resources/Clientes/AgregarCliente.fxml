@@ -7,6 +7,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Clientes.AgregarClienteController">
     <stylesheets>
@@ -14,17 +19,18 @@
     </stylesheets>
     <children>
         <Label layoutX="167.0" layoutY="24.0" text="Agregar Cliente">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font></Label>
-        <TextField fx:id="txtNIT" layoutX="130.0" layoutY="159.0" promptText="NIT" />
-        <TextField fx:id="txtNombre" layoutX="130.0" layoutY="117.0" promptText="Nombre" />
-        <TextField fx:id="txtDireccion" layoutX="130.0" layoutY="204.0" promptText="Dirección" />
-        <TextField fx:id="txtTelefono" layoutX="130.0" layoutY="250.0" promptText="Telefono" />
-        <TextField fx:id="txtTIpoCliente" layoutX="130.0" layoutY="294.0" promptText="Tipo Cliente" />
-        <CheckBox fx:id="cbMayorista" layoutX="372.0" layoutY="130.0" mnemonicParsing="false" text="Mayorista" />
-        <Button fx:id="btnGuardar" layoutX="348.0" layoutY="172.0" mnemonicParsing="false" onAction="#guardarCliente" prefHeight="25.0" prefWidth="122.0" text="Guardar" />
-        <Button fx:id="btnVaciarCampos" layoutX="348.0" layoutY="217.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
-        <Button fx:id="btnCancelar" layoutX="348.0" layoutY="263.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <JFXTextField fx:id="txtNombre" layoutX="130.0" layoutY="117.0" promptText="Nombre" />
+        <JFXTextField fx:id="txtNIT" layoutX="130.0" layoutY="159.0" promptText="NIT" />
+        <JFXTextField fx:id="txtDireccion" layoutX="130.0" layoutY="204.0" promptText="Dirección" />
+        <JFXTextField fx:id="txtTelefono" layoutX="130.0" layoutY="250.0" promptText="Telefono" />
+        <JFXTextField fx:id="txtTIpoCliente" layoutX="130.0" layoutY="294.0" promptText="Tipo Cliente" />
+        <JFXCheckBox fx:id="cbMayorista" layoutX="372.0" layoutY="130.0" mnemonicParsing="false" text="Mayorista" />
+        <JFXButton fx:id="btnGuardar" layoutX="348.0" layoutY="172.0" mnemonicParsing="false" onAction="#guardarCliente" prefHeight="25.0" prefWidth="122.0" text="Guardar" />
+        <JFXButton fx:id="btnVaciarCampos" layoutX="348.0" layoutY="217.0" mnemonicParsing="false" onAction="#limpiarCampos" prefHeight="25.0" prefWidth="122.0" text="Vaciar Campos" />
+        <JFXButton fx:id="btnCancelar" layoutX="348.0" layoutY="263.0" mnemonicParsing="false" onAction="#regresar" prefHeight="25.0" prefWidth="122.0" text="Cancelar" />
     </children>
 </AnchorPane>

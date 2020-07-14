@@ -5,6 +5,7 @@
  */
 package Principal;
 
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,10 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -26,19 +26,19 @@ import javafx.stage.Stage;
 public class FormPrincipalController implements Initializable {
 
     @FXML
-    private Button btnCliente;
+    private JFXButton btnCliente;
     @FXML
-    private Button btnProveedores;
+    private JFXButton btnProveedores;
     @FXML
-    private Button btnCompras;
+    private JFXButton btnCompras;
     @FXML
-    private Button btnUsuarios;
+    private JFXButton btnUsuarios;
     @FXML
-    private Button btnVentas;
+    private JFXButton btnVentas;
     @FXML
-    private Button btnInventario;
+    private JFXButton btnInventario;
     @FXML
-    private Button btnSalir;
+    private JFXButton btnSalir;
 
     /**
      * Initializes the controller class.
@@ -46,6 +46,12 @@ public class FormPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        btnCliente.setAlignment(Pos.CENTER_RIGHT);
+        btnCompras.setAlignment(Pos.CENTER_RIGHT);
+        btnInventario.setAlignment(Pos.CENTER_RIGHT);
+        btnProveedores.setAlignment(Pos.CENTER_RIGHT);
+        btnUsuarios.setAlignment(Pos.CENTER_RIGHT);
+        btnVentas.setAlignment(Pos.CENTER_RIGHT);
     }
 
     @FXML

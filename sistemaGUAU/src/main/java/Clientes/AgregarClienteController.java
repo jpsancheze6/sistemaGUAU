@@ -6,6 +6,9 @@
 package Clientes;
 
 import JPA.Cliente;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.IOException;
 import java.net.URL;
@@ -39,29 +42,34 @@ import javafx.stage.StageStyle;
 public class AgregarClienteController implements Initializable {
 
     @FXML
-    private TextField txtNIT;
+    private JFXTextField txtNIT;
     @FXML
-    private TextField txtNombre;
+    private JFXTextField txtNombre;
     @FXML
-    private TextField txtDireccion;
+    private JFXTextField txtDireccion;
     @FXML
-    private TextField txtTelefono;
+    private JFXTextField txtTelefono;
     @FXML
-    private CheckBox cbMayorista;
+    private JFXCheckBox cbMayorista;
     @FXML
-    private Button btnGuardar;
+    private JFXButton btnGuardar;
     @FXML
-    private Button btnVaciarCampos;
+    private JFXButton btnVaciarCampos;
     @FXML
-    private TextField txtTIpoCliente;
+    private JFXTextField txtTIpoCliente;
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
 
     private ClienteDAO cliente_dao = new ClienteDAO();
 
-    /**
-     * Initializes the controller class.
-     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        txtNIT.setLabelFloat(true);
+        txtNombre.setLabelFloat(true);
+        txtDireccion.setLabelFloat(true);
+        txtTelefono.setLabelFloat(true);
+        txtTIpoCliente.setLabelFloat(true);
+    }
     
     //************************METODOS
     //---------------------------------------------------------------Mensaje de Confimarcion
@@ -162,15 +170,6 @@ public class AgregarClienteController implements Initializable {
             resp = (Character.isDigit(c));
         }
         return resp;
-    }
-
-    
-    
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML

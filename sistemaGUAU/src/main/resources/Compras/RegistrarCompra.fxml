@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.RegistrarCompraController">
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="731.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Compras.RegistrarCompraController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
     <children>
-        <Label layoutX="283.0" layoutY="14.0" text="Registrar Compra">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-        <TextField fx:id="txtCantidad" layoutX="274.0" layoutY="265.0" promptText="Cantidad" />
-        <Button fx:id="btnBuscar" layoutX="274.0" layoutY="86.0" mnemonicParsing="false" onAction="#mostrarProductos"  text="Buscar" />
-        <Button fx:id="btnAgregar" layoutX="431.0" layoutY="265.0" mnemonicParsing="false" onAction="#agregarProductos"  text="Agregar" />
-        <TableView fx:id="tblProductos" layoutX="96.0" layoutY="138.0" prefHeight="109.0" prefWidth="548.0">
+        <Label layoutX="270.0" layoutY="14.0" text="Registrar Compra">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Label>
+        <JFXTextField fx:id="txtCantidad" layoutX="600.0" layoutY="181.0" prefHeight="25.0" prefWidth="118.0" promptText="Cantidad" />
+        <JFXButton fx:id="btnBuscar" layoutX="274.0" layoutY="86.0" mnemonicParsing="false" onAction="#mostrarProductos" text="Buscar" />
+        <JFXButton fx:id="btnAgregar" layoutX="631.0" layoutY="223.0" mnemonicParsing="false" onAction="#agregarProductos" text="Agregar" />
+        <TableView fx:id="tblProductos" layoutX="38.0" layoutY="132.0" prefHeight="164.0" prefWidth="548.0">
             <columns>
                 <TableColumn fx:id="colProducto" prefWidth="358.0" text="Producto" />
                 <TableColumn fx:id="colPrecio" minWidth="0.0" prefWidth="98.0" text="Precio" />
@@ -28,7 +32,7 @@
             </columns>
         </TableView>
         <Separator layoutX="58.0" layoutY="308.0" prefHeight="8.0" prefWidth="625.0" />
-        <TableView fx:id="tblCompra" layoutX="18.0" layoutY="370.0" prefHeight="200.0" prefWidth="465.0">
+        <TableView fx:id="tblCompra" layoutX="38.0" layoutY="368.0" prefHeight="200.0" prefWidth="548.0">
             <columns>
                 <TableColumn fx:id="colProducto2" prefWidth="206.0" text="Producto" />
                 <TableColumn fx:id="colPrecio2" prefWidth="84.0" text="Precio" />
@@ -36,15 +40,17 @@
                 <TableColumn fx:id="colTotal2" prefWidth="100.0" text="Total" />
             </columns>
         </TableView>
-        <Button fx:id="btnEliminar" layoutX="213.0" layoutY="580.0" mnemonicParsing="false" text="Eliminar Producto" />
-        <Label fx:id="labelTotal" layoutX="562.0" layoutY="397.0" text="Total Q 0.00">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-        <Button fx:id="btnCancelar" layoutX="531.0" layoutY="470.0" mnemonicParsing="false" onAction="#cancelar"  text="Cancelar" />
-        <Button fx:id="btnGuardar" layoutX="637.0" layoutY="470.0" mnemonicParsing="false" onAction="#guardar"  text="Guardar" />
-        <Button fx:id="btnRegresar" layoutX="656.0" layoutY="580.0" mnemonicParsing="false" onAction="#regresar" text="Regresar" />
-      <ComboBox fx:id="cmbProveedor" layoutX="38.0" layoutY="86.0" prefHeight="25.0" prefWidth="227.0" promptText="Proveedor" />
-      <ComboBox fx:id="cmbUsuario" layoutX="96.0" layoutY="326.0" prefWidth="150.0" promptText="Usuario" />
+        <JFXButton fx:id="btnEliminar" layoutX="270.0" layoutY="581.0" mnemonicParsing="false" text="Eliminar Producto" />
+        <Label fx:id="labelTotal" layoutX="611.0" layoutY="368.0" text="Total Q 0.00">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <JFXButton fx:id="btnCancelar" layoutX="630.0" layoutY="556.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+        <JFXButton fx:id="btnGuardar" layoutX="630.0" layoutY="504.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+        <JFXComboBox fx:id="cmbProveedor" layoutX="38.0" layoutY="86.0" prefHeight="25.0" prefWidth="227.0" promptText="Proveedor" />
+        <JFXComboBox fx:id="cmbUsuario" layoutX="38.0" layoutY="328.0" prefWidth="150.0" promptText="Usuario" />
+      <Label fx:id="lblInformacion" layoutX="358.0" layoutY="86.0" prefHeight="25.0" prefWidth="25.0" />
+      <Label fx:id="lblInformacion2" layoutX="436.0" layoutY="581.0" prefHeight="25.0" prefWidth="25.0" />
     </children>
 </AnchorPane>

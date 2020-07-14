@@ -3,6 +3,7 @@ JPA\ProveedorJpaController.class
 JPA\Cliente.class
 JPA\ReciboCompraJpaController.class
 Proveedores\ProveedorDAO.class
+Compras\DetalleReciboDAO.class
 JPA\DetalleCompra_.class
 JPA\Proveedor.class
 JPA\ClienteJpaController.class
@@ -18,6 +19,7 @@ Clientes\ClienteDAO.class
 JPA\Factura_.class
 JPA\exceptions\IllegalOrphanException.class
 Proveedores\FormProveedoresController.class
+Ventas\DetalleFacturaDAO.class
 Compras\FormComprasController.class
 Ventas\RevisarVentaController.class
 Compras\ComprasDAO.class
@@ -39,6 +41,7 @@ JPA\Cliente_.class
 JPA\DetalleCompra.class
 JPA\ProductoJpaController.class
 Ventas\FormVentasController.class
+Ventas\TablaVentas.class
 JPA\DetalleFacturaJpaController.class
 Inventario\ModificarProductoController.class
 JPA\Factura.class

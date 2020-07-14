@@ -15,7 +15,9 @@ import JPA.Proveedor;
 import JPA.Usuario;
 import Proveedores.ProveedorDAO;
 import Usuarios.UsuarioDAO;
-import java.io.FileWriter;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -27,18 +29,17 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -49,17 +50,17 @@ import javafx.stage.Stage;
 public class RegistrarVentaController implements Initializable {
 
     @FXML
-    private TextField txtCantidad, txtDescuento;
+    private JFXTextField txtCantidad, txtDescuento;
     @FXML
-    private Button btnBuscar, btnAgregar, btnEliminar, btnCancelar, btnGuardar, btnRegresar;
+    private JFXButton btnBuscar, btnAgregar, btnEliminar, btnCancelar, btnGuardar, btnRegresar;
     @FXML
-    private ComboBox<String> cmbCliente;
+    private JFXComboBox<String> cmbCliente;
     @FXML
-    private ComboBox<String> cmbProveedor;
+    private JFXComboBox<String> cmbProveedor;
     @FXML
-    private ComboBox<String> cmbUsuario;
+    private JFXComboBox<String> cmbUsuario;
     @FXML
-    private Label labelTotal;
+    private Label labelTotal, lblInformacion, lblInformacion2;
     
     private VentasDAO factura_dao = new VentasDAO();
     private DetalleFacturaDAO detallefactura_dao = new DetalleFacturaDAO();
@@ -102,6 +103,26 @@ public class RegistrarVentaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        lblInformacion.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                String title = "Instrucciones";
+                String message = "Primero tienes que seleccionar el proveedor y dale en buscar\n"
+                               + "Después seleccionas el producto, ingresas la cantidad y lo agregas.\n"
+                               + "Cuando hayas terminado, seleccionas el usuario, el cliente y le das en Guardar.";
+                showInformation(title, message);
+            }
+        });
+        lblInformacion2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                String title = "Eliminar producto";
+                String message = "Para eliminar el producto, tienes que seleccionarlo, y después le das en Eliminar Producto";
+                showInformation(title, message);
+            }
+        });
+        txtCantidad.setLabelFloat(true);
+        txtDescuento.setLabelFloat(true);
         //Agregar proveedores al comboBox
         ObservableList<String> items = FXCollections.observableArrayList();
         List<Proveedor> a = proveedor_dao.getProveedor();
@@ -218,7 +239,7 @@ public class RegistrarVentaController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegresar.getScene().getWindow();
+        Stage actual = (Stage) labelTotal.getScene().getWindow();
         actual.close();
     }
     
@@ -233,7 +254,7 @@ public class RegistrarVentaController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegresar.getScene().getWindow();
+        Stage actual = (Stage) labelTotal.getScene().getWindow();
         actual.close();
     }
     

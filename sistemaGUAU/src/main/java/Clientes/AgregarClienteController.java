@@ -8,6 +8,7 @@ package Clientes;
 import JPA.Cliente;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.IOException;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,7 +54,7 @@ public class AgregarClienteController implements Initializable {
     @FXML
     private JFXButton btnVaciarCampos;
     @FXML
-    private JFXTextField txtTIpoCliente;
+    private JFXComboBox cmbTipoCliente;
     @FXML
     private JFXButton btnCancelar;
 
@@ -63,7 +66,13 @@ public class AgregarClienteController implements Initializable {
         txtNombre.setLabelFloat(true);
         txtDireccion.setLabelFloat(true);
         txtTelefono.setLabelFloat(true);
-        txtTIpoCliente.setLabelFloat(true);
+        cmbTipoCliente.setLabelFloat(true);
+        ObservableList<String> items = FXCollections.observableArrayList();
+        items.add("Seleccione Tipo");
+        items.add("Frecuente");
+        items.add("Eventual");
+        cmbTipoCliente.setItems(items);
+        cmbTipoCliente.getSelectionModel().select(0);
     }
 
     //************************METODOS
@@ -173,10 +182,10 @@ public class AgregarClienteController implements Initializable {
         String nombre = txtNombre.getText();
         String telefono = txtTelefono.getText();
         String direccion = txtDireccion.getText();
-        String tipo_cliente = txtTIpoCliente.getText();
+        String tipo_cliente = cmbTipoCliente.getSelectionModel().getSelectedItem().toString();
         boolean mayorista = cbMayorista.isSelected();
 
-        if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && tipo_cliente.length() != 0) {
+        if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && cmbTipoCliente.getSelectionModel().getSelectedIndex() != 0) {
             if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {
                 if (valiSoloNumeros(txtTelefono.getText())) {
                     Cliente newCliente = new Cliente();
@@ -215,7 +224,7 @@ public class AgregarClienteController implements Initializable {
         this.txtNombre.setText("");
         this.txtTelefono.setText("");
         this.txtDireccion.setText("");
-        this.txtTIpoCliente.setText("");
+        this.cmbTipoCliente.getSelectionModel().select(0);
         this.cbMayorista.setSelected(false);
     }
 

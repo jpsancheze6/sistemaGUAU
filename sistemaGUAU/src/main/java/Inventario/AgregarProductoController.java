@@ -54,7 +54,7 @@ public class AgregarProductoController implements Initializable {
     @FXML
     private JFXTextField txtPeso;
     @FXML
-    private JFXTextField txtReferencia;
+    private JFXComboBox cmbUnidad;
     @FXML
     private JFXComboBox<String> cmbProveedor;
 
@@ -72,7 +72,7 @@ public class AgregarProductoController implements Initializable {
         txtNombre.setLabelFloat(true);
         txtPeso.setLabelFloat(true);
         txtPrecio.setLabelFloat(true);
-        txtReferencia.setLabelFloat(true);
+        cmbUnidad.setLabelFloat(true);
         // Agregar proveedores
         ObservableList<String> items = FXCollections.observableArrayList();
         List<Proveedor> a = proveedor_dao.getProveedor();
@@ -82,6 +82,13 @@ public class AgregarProductoController implements Initializable {
             items.add(texto);
         }
         cmbProveedor.setItems(items);
+        ObservableList<String> unidades = FXCollections.observableArrayList();
+        unidades.add("Seleccione unidad");
+        unidades.add("Libras");
+        unidades.add("Kilogramos");
+        unidades.add("Quintales");
+        unidades.add("Bolsas");
+        cmbUnidad.setItems(unidades);
     }
 
     @FXML
@@ -92,10 +99,10 @@ public class AgregarProductoController implements Initializable {
         String animal = txtAnimal.getText();
         String marca = txtMarca.getText();
         String peso = txtPeso.getText(); //
-        String unidad_referencia = txtReferencia.getText();
+        String unidad_referencia = cmbUnidad.getSelectionModel().getSelectedItem().toString();
         int seleccion = cmbProveedor.getSelectionModel().getSelectedIndex(); // -1 && >=0
 
-        if (nombre.length() != 0 && existencias.length() != 0 && precio.length() != 0 && animal.length() != 0 && marca.length() != 0 && peso.length() != 0 && seleccion >= 0 && unidad_referencia.length() != 0) {
+        if (nombre.length() != 0 && existencias.length() != 0 && precio.length() != 0 && animal.length() != 0 && marca.length() != 0 && peso.length() != 0 && seleccion >= 0 && cmbUnidad.getSelectionModel().getSelectedIndex() != 0) {
             Producto producto = new Producto();
             producto.setNombre(nombre);
             producto.setExistencias(Float.parseFloat(existencias));
@@ -149,7 +156,7 @@ public class AgregarProductoController implements Initializable {
         txtAnimal.setText("");
         txtMarca.setText("");
         txtPeso.setText(""); //
-        txtReferencia.setText("");
+        cmbUnidad.getSelectionModel().select(0);
         cmbProveedor.getSelectionModel().clearSelection();
     }
 

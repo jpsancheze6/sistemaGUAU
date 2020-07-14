@@ -8,6 +8,7 @@ package Clientes;
 import JPA.Cliente;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import java.awt.Robot;
 import java.io.FileNotFoundException;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,9 +50,9 @@ public class ModificarClienteController implements Initializable {
     @FXML
     private JFXTextField txtTelefono;
     @FXML
-    private JFXTextField txtTIpoCliente;
-    @FXML
     private JFXCheckBox cbMayorista;
+    @FXML
+    private JFXComboBox cmbTipoCliente;
     @FXML
     private JFXButton btnActualizar;
     @FXML
@@ -68,15 +71,27 @@ public class ModificarClienteController implements Initializable {
         txtNombre.setLabelFloat(true);
         txtDireccion.setLabelFloat(true);
         txtTelefono.setLabelFloat(true);
-        txtTIpoCliente.setLabelFloat(true);
-        try ( FileReader fileReader = new FileReader("cliente.txt")) {
+        cmbTipoCliente.setLabelFloat(true);
+        ObservableList<String> items = FXCollections.observableArrayList();
+        items.add("Seleccione Tipo");
+        items.add("Frecuente");
+        items.add("Eventual");
+        cmbTipoCliente.setItems(items);
+        cmbTipoCliente.getSelectionModel().select(0);
+
+        try (FileReader fileReader = new FileReader("cliente.txt")) {
             int id = fileReader.read();
             this.cliente = cliente_dao.getClienteByID(id);
             txtNIT.setText(this.cliente.getNit());
             txtNombre.setText(this.cliente.getNombre());
             txtDireccion.setText(this.cliente.getDireccion());
             txtTelefono.setText(this.cliente.getTelefono());
-            txtTIpoCliente.setText(this.cliente.getTipocliente());
+
+            if (this.cliente.getTipocliente().equals("Frecuente")) {
+                cmbTipoCliente.getSelectionModel().select(1);;
+            } else {
+                cmbTipoCliente.getSelectionModel().select(2);;
+            }
             if (this.cliente.getMayorista()) {
                 cbMayorista.setSelected(true);
             }
@@ -86,7 +101,7 @@ public class ModificarClienteController implements Initializable {
             // Exception handling
         }
     }
-    
+
     public static String showConfirm(String title, String message, String... options) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.initStyle(StageStyle.DECORATED);
@@ -192,10 +207,10 @@ public class ModificarClienteController implements Initializable {
         String nombre = txtNombre.getText();
         String telefono = txtTelefono.getText();
         String direccion = txtDireccion.getText();
-        String tipo_cliente = txtTIpoCliente.getText();
+        String tipo_cliente = cmbTipoCliente.getSelectionModel().getSelectedItem().toString();
         boolean mayorista = cbMayorista.isSelected();
 
-        if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && tipo_cliente.length() != 0) {
+        if (nit.length() != 0 && nombre.length() != 0 && telefono.length() != 0 && direccion.length() != 0 && cmbTipoCliente.getSelectionModel().getSelectedIndex() != 0) {
 
             if (valiSoloLetrasyEspacios(txtNombre.getText()).equals(true)) {
 
@@ -214,7 +229,7 @@ public class ModificarClienteController implements Initializable {
                     } catch (Exception ex) {
                         showError("Error al Actualizar", "Debido a un error no se puedo Actualizar el Cliente");
                     }
-                    
+
                 } else {
                     showError("Error de Validacion", "El numero de telefono NO puede contener letras o simbolos");
                 }
@@ -249,7 +264,7 @@ public class ModificarClienteController implements Initializable {
         this.txtNombre.setText("");
         this.txtTelefono.setText("");
         this.txtDireccion.setText("");
-        this.txtTIpoCliente.setText("");
+        this.cmbTipoCliente.getSelectionModel().select(0);
         this.cbMayorista.setSelected(false);
     }
 

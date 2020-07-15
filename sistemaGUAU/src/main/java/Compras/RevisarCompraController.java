@@ -3,10 +3,12 @@ package Compras;
 
 import Inventario.ProductoDAO;
 import JPA.DetalleCompra;
+import JPA.DetalleFactura;
 import JPA.Producto;
 import JPA.Proveedor;
 import JPA.ReciboCompra;
 import Proveedores.ProveedorDAO;
+import Ventas.TablaVentas;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import java.io.FileNotFoundException;
@@ -43,15 +45,15 @@ public class RevisarCompraController implements Initializable {
     
     //Tabla para mostrar compra seleccionada
     @FXML
-    private TableView<DetalleCompra> tblCompra;
+    private TableView<TablaVentas> tblCompra;
     @FXML
-    private TableColumn<DetalleCompra, String> colProducto;
+    private TableColumn<TablaVentas, String> colProducto;
     @FXML
-    private TableColumn<DetalleCompra, Float> colPrecio;
+    private TableColumn<TablaVentas, Float> colPrecio;
     @FXML
-    private TableColumn<DetalleCompra, Float> colCantidad;
+    private TableColumn<TablaVentas, Float> colCantidad;
     @FXML
-    private TableColumn<DetalleCompra, Float> colTotal;
+    private TableColumn<TablaVentas, Float> colTotal;
     
     private ComprasDAO recibo_dao = new ComprasDAO();
     private DetalleReciboDAO detallerecibo_dao = new DetalleReciboDAO();
@@ -60,6 +62,7 @@ public class RevisarCompraController implements Initializable {
     
     private ObservableList<DetalleCompra> modelo_detallerecibos = FXCollections.observableArrayList(); 
     private ObservableList<Producto> modelo_producto = FXCollections.observableArrayList(); 
+    private ObservableList<TablaVentas> mostrarProductos = FXCollections.observableArrayList(); 
     
     private ReciboCompra recibo;
     private Proveedor proveedor;
@@ -72,32 +75,33 @@ public class RevisarCompraController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         txtProveedor.setLabelFloat(true);
         txtTotal.setLabelFloat(true);
-        colProducto.setCellValueFactory(new PropertyValueFactory<>("productoid")); 
-        colPrecio.setCellValueFactory(new PropertyValueFactory<>("subtotal")); 
+        colProducto.setCellValueFactory(new PropertyValueFactory<>("nombreProducto")); 
+        colPrecio.setCellValueFactory(new PropertyValueFactory<>("precioProducto")); 
         colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad")); 
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("subtotal")); 
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total")); 
         int id2 = 0;
         try (FileReader fileReader = new FileReader("recibo.txt")) {
             int id = fileReader.read();
             id2 = id;
             this.recibo = recibo_dao.getReciboByID(id);
             this.proveedor = proveedor_dao.getProveedorByID(this.recibo.getProveedorid().getIdProveedor());
-            txtProveedor.setText(this.proveedor.getNombre());
+            txtProveedor.setText(this.proveedor.getEmpresa());
             txtTotal.setText(String.valueOf(this.recibo.getTotal()));
+            //Obtener cantidad de detalle de facturas con el ID de la factura
+            List<DetalleCompra> cantidad = detallerecibo_dao.getDetalleRecibo();
+            for (Iterator<DetalleCompra> iterator = cantidad.iterator(); iterator.hasNext();) {
+                DetalleCompra next = iterator.next(); 
+                if(next.getReciboid().getIdRecibo() == id2){
+                    Producto producto_enviar = producto_dao.getProductoByID(next.getProductoid().getIdProducto());
+                    mostrarProductos.add(new TablaVentas (next.getProductoid().getIdProducto(), producto_enviar.getNombre(), producto_enviar.getPrecio(), next.getCantidad(), next.getSubtotal()));
+                    tblCompra.setItems(mostrarProductos);
+                }
+            } 
         } catch (FileNotFoundException e) {
             System.out.println("No");
         } catch (IOException e) {
             System.out.println("Noup");
         }
-
-        List<DetalleCompra> lista_detallerecibo = detallerecibo_dao.getDetalleRecibo();
-        for (Iterator<DetalleCompra> iterator = lista_detallerecibo.iterator(); iterator.hasNext();) {
-            DetalleCompra next = iterator.next(); 
-            if(next.getReciboid().getIdRecibo() == id2){
-                modelo_detallerecibos.add(next);
-            } 
-        }
-        tblCompra.setItems(modelo_detallerecibos);
     }    
 
     @FXML

@@ -6,7 +6,12 @@
 package Compras;
 
 import static Inventario.InventarioController.showException;
+import JPA.Cliente;
+import JPA.Factura;
+import JPA.Proveedor;
 import JPA.ReciboCompra;
+import Proveedores.ProveedorDAO;
+import Ventas.TablaMostrar;
 import com.jfoenix.controls.JFXButton;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,19 +44,21 @@ public class FormComprasController implements Initializable {
     private JFXButton btnRegistrar, btnEditar, btnRegresar;
     
     private ComprasDAO compras_dao = new ComprasDAO(); 
+    private ProveedorDAO proveedor_dao = new ProveedorDAO();
     private ObservableList<ReciboCompra> modelo_recibos = FXCollections.observableArrayList(); 
+    private ObservableList<TablaMostrar> mostrarFacturas = FXCollections.observableArrayList(); 
     
     //Tabla para mostrar los recibos de compras
     @FXML
-    private TableView<ReciboCompra> tblCompras;
+    private TableView<TablaMostrar> tblCompras;
     @FXML
-    private TableColumn<ReciboCompra, Integer> colID;
+    private TableColumn<TablaMostrar, Integer> colID;
     @FXML
-    private TableColumn<ReciboCompra, String> colProveedor;
+    private TableColumn<TablaMostrar, String> colProveedor;
     @FXML
-    private TableColumn<ReciboCompra, Date> colFecha;
+    private TableColumn<TablaMostrar, Date> colFecha;
     @FXML
-    private TableColumn<ReciboCompra, Float> colTotal;
+    private TableColumn<TablaMostrar, Float> colTotal;
     
 
     /**
@@ -63,18 +70,21 @@ public class FormComprasController implements Initializable {
     }    
     
     public void agregarElementos(){
-        colID.setCellValueFactory(new PropertyValueFactory<>("idRecibo")); 
-        colProveedor.setCellValueFactory(new PropertyValueFactory<>("proveedorid")); 
-        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha")); 
+        colID.setCellValueFactory(new PropertyValueFactory<>("idFactura")); 
+        colProveedor.setCellValueFactory(new PropertyValueFactory<>("nombreCliente")); 
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("Fecha")); 
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total")); 
  
-        List<ReciboCompra> lista_recibos = compras_dao.getRecibos(); 
- 
-        for(Iterator<ReciboCompra> iterator = lista_recibos.iterator(); iterator.hasNext();) { 
-            ReciboCompra next = iterator.next(); 
-            modelo_recibos.add(next); 
-        } 
-        tblCompras.setItems(modelo_recibos); 
+        List<ReciboCompra> f = compras_dao.getRecibos();
+        int tamF = f.size();
+        int i = 1;
+        while(i <= tamF) {
+            ReciboCompra recibo_enviar = compras_dao.getReciboByID(i);
+            Proveedor proveedor_enviar = proveedor_dao.getProveedorByID(recibo_enviar.getProveedorid().getIdProveedor());
+            mostrarFacturas.add(new TablaMostrar(recibo_enviar.getIdRecibo(), proveedor_enviar.getEmpresa(), recibo_enviar.getFecha(), recibo_enviar.getTotal()));
+            tblCompras.setItems(mostrarFacturas);
+            i++;
+        }
     }
     
     @FXML
@@ -94,8 +104,8 @@ public class FormComprasController implements Initializable {
     @FXML
     private void revisarCompra(ActionEvent event) throws IOException {
         try {
-            ReciboCompra recibo_seleccionado = (ReciboCompra) tblCompras.getSelectionModel().getSelectedItem();
-            ReciboCompra recibo_enviar = compras_dao.getReciboByID(recibo_seleccionado.getIdRecibo());
+            TablaMostrar recibo_seleccionado = (TablaMostrar) tblCompras.getSelectionModel().getSelectedItem();
+            ReciboCompra recibo_enviar = compras_dao.getReciboByID(recibo_seleccionado.getIdFactura());
             try (FileWriter fileWriter = new FileWriter("recibo.txt")) {
                 System.out.println(recibo_enviar.getIdRecibo());
                 fileWriter.write(recibo_enviar.getIdRecibo());

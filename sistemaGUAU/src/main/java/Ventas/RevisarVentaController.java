@@ -49,6 +49,7 @@ public class RevisarVentaController implements Initializable {
     
     private ObservableList<DetalleFactura> modelo_detallefacturas = FXCollections.observableArrayList(); 
     private ObservableList<Producto> modelo_producto = FXCollections.observableArrayList(); 
+    private ObservableList<TablaVentas> mostrarProductos = FXCollections.observableArrayList(); 
     
     private Factura factura;
     private Cliente cliente;
@@ -56,15 +57,15 @@ public class RevisarVentaController implements Initializable {
     
     //Tabla de la venta seleccionada
     @FXML
-    private TableView<DetalleFactura> tblVenta;
+    private TableView<TablaVentas> tblVenta;
     @FXML
-    private TableColumn<DetalleFactura, Producto> colProducto;
+    private TableColumn<TablaVentas, String> colProducto;
     @FXML
-    private TableColumn<DetalleFactura, Float> colPrecio;
+    private TableColumn<TablaVentas, Float> colPrecio;
     @FXML
-    private TableColumn<DetalleFactura, Float> colCantidad;
+    private TableColumn<TablaVentas, Float> colCantidad;
     @FXML
-    private TableColumn<DetalleFactura, Float> colTotal;
+    private TableColumn<TablaVentas, Float> colTotal;
 
 
     /**
@@ -74,10 +75,10 @@ public class RevisarVentaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         txtCliente.setLabelFloat(true);
         txtTotal.setLabelFloat(true);
-        colProducto.setCellValueFactory(new PropertyValueFactory<>("productoid")); 
-        colPrecio.setCellValueFactory(new PropertyValueFactory<>("subtotal")); 
+        colProducto.setCellValueFactory(new PropertyValueFactory<>("nombreProducto")); 
+        colPrecio.setCellValueFactory(new PropertyValueFactory<>("precioProducto")); 
         colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad")); 
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("subtotal")); 
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total")); 
         int id2 = 0;
         try (FileReader fileReader = new FileReader("factura.txt")) {
             int id = fileReader.read();
@@ -86,19 +87,31 @@ public class RevisarVentaController implements Initializable {
             this.cliente = cliente_dao.getClienteByID(this.factura.getClienteid().getIdCliente());
             txtCliente.setText(this.cliente.getNombre());
             txtTotal.setText(String.valueOf(this.factura.getTotal()));
+            
+            //Obtener cantidad de detalle de facturas con el ID de la factura
+            List<DetalleFactura> cantidad = detallefactura_dao.getDetalleFacturas();
+            for (Iterator<DetalleFactura> iterator = cantidad.iterator(); iterator.hasNext();) {
+                DetalleFactura next = iterator.next(); 
+                if(next.getFacturaid().getIdFactura() == id2){
+                    Producto producto_enviar = producto_dao.getProductoByID(next.getProductoid().getIdProducto());
+                    mostrarProductos.add(new TablaVentas (next.getProductoid().getIdProducto(), producto_enviar.getNombre(), producto_enviar.getPrecio(), next.getCantidad(), next.getSubtotal()));
+                    tblVenta.setItems(mostrarProductos);
+                }
+            } 
+         
         } catch (FileNotFoundException e) {
             System.out.println("No");
         } catch (IOException e) {
             System.out.println("Noup");
         }
 
-        List<DetalleFactura> lista_detallefactura = detallefactura_dao.getDetalleFacturas();
-        for (Iterator<DetalleFactura> iterator = lista_detallefactura.iterator(); iterator.hasNext();) {
-            DetalleFactura next = iterator.next(); 
-            if(next.getFacturaid().getIdFactura() == id2)
-                modelo_detallefacturas.add(next);
-        }
-        tblVenta.setItems(modelo_detallefacturas);
+//        List<DetalleFactura> lista_detallefactura = detallefactura_dao.getDetalleFacturas();
+//        for (Iterator<DetalleFactura> iterator = lista_detallefactura.iterator(); iterator.hasNext();) {
+//            DetalleFactura next = iterator.next(); 
+//            if(next.getFacturaid().getIdFactura() == id2)
+//                modelo_detallefacturas.add(next);
+//        }
+//        tblVenta.setItems(modelo_detallefacturas);
     }    
     
     @FXML

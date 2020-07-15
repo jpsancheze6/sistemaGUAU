@@ -17,10 +17,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Principal/FormPrincipal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Login/FormLogin.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Mevecon<Login>");
         stage.show();
     }
 

@@ -5,16 +5,19 @@ JPA\DetalleCompra_.class
 JPA\ClienteJpaController.class
 Principal\FormPrincipalController.class
 JPA\DetalleFactura.class
+Ventas\RegistrarVentaController$1.class
 Clientes\ClienteDAO.class
 JPA\exceptions\IllegalOrphanException.class
 Proveedores\FormProveedoresController.class
 Compras\FormComprasController.class
 Ventas\RevisarVentaController.class
+Compras\RegistrarCompraController$1.class
 Compras\ComprasDAO.class
 Ventas\VentasDAO.class
 Inventario\InventarioController.class
 Inventario\ProductoDAO.class
 Proveedores\ModificarProveedorController.class
+Ventas\TablaMostrar.class
 Inventario\AgregarProductoController.class
 JPA\ProductoJpaController.class
 Inventario\ModificarProductoController.class
@@ -25,6 +28,7 @@ JPA\UsuarioJpaController.class
 JPA\ProveedorJpaController.class
 JPA\Cliente.class
 JPA\Proveedor.class
+Compras\RegistrarCompraController$2.class
 JPA\FacturaJpaController.class
 JPA\Producto_.class
 Login\FormLoginController.class
@@ -33,6 +37,7 @@ Proveedores\AgregarProveedorController.class
 Clientes\AgregarClienteController.class
 JPA\Factura_.class
 Ventas\DetalleFacturaDAO.class
+Ventas\RegistrarVentaController$2.class
 JPA\Usuario.class
 Clientes\FormClientesController.class
 sistemaguau\Main.class

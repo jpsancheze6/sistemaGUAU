@@ -97,7 +97,7 @@ public class FormComprasController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegistrar.getScene().getWindow();
+        Stage actual = (Stage) btnEditar.getScene().getWindow();
         actual.close();
     }
 
@@ -139,7 +139,7 @@ public class FormComprasController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegresar.getScene().getWindow();
+        Stage actual = (Stage) btnEditar.getScene().getWindow();
         actual.close();
     }
     

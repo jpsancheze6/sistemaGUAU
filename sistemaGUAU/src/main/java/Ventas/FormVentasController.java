@@ -131,7 +131,7 @@ public class FormVentasController implements Initializable {
         stage.setResizable(false);
         stage.show();
         //Cerrar ventana actual
-        Stage actual = (Stage) btnRegresar.getScene().getWindow();
+        Stage actual = (Stage) btnEditar.getScene().getWindow();
         actual.close();
     }
     

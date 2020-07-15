@@ -1,6 +1,8 @@
 package Ventas;
 
+import Clientes.ClienteDAO;
 import static Inventario.InventarioController.showException;
+import JPA.Cliente;
 import JPA.Factura;
 import com.jfoenix.controls.JFXButton;
 import java.io.FileWriter;
@@ -34,21 +36,22 @@ public class FormVentasController implements Initializable {
     private JFXButton btnRegistrar, btnEditar, btnRegresar;
     
     private VentasDAO factura_dao = new VentasDAO();
+    private ClienteDAO cliente_dao = new ClienteDAO();
     private DetalleFacturaDAO detalleFactura_dao = new DetalleFacturaDAO();
     private ObservableList<Factura> modelo_facturas = FXCollections.observableArrayList(); 
-    private Factura factura;
+    private ObservableList<TablaMostrar> mostrarFacturas = FXCollections.observableArrayList(); 
     
     //Tabla para mostra las ventas
     @FXML
-    private TableView<Factura> tblVentas;
+    private TableView<TablaMostrar> tblVentas;
     @FXML
-    private TableColumn<Factura, Integer> colID;
+    private TableColumn<TablaMostrar, Integer> colID;
     @FXML
-    private TableColumn<Factura, String> colCliente;
+    private TableColumn<TablaMostrar, String> colCliente;
     @FXML
-    private TableColumn<Factura, Date> colFecha;
+    private TableColumn<TablaMostrar, Date> colFecha;
     @FXML
-    private TableColumn<Factura, Float> colTotal;
+    private TableColumn<TablaMostrar, Float> colTotal;
 
     /**
      * Initializes the controller class.
@@ -60,17 +63,20 @@ public class FormVentasController implements Initializable {
    
     public void agregarElementos(){
         colID.setCellValueFactory(new PropertyValueFactory<>("idFactura")); 
-        colCliente.setCellValueFactory(new PropertyValueFactory<>("clienteid")); 
-        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha")); 
-        colTotal.setCellValueFactory(new PropertyValueFactory<>("total")); 
- 
-        List<Factura> lista_recibos = factura_dao.getFacturas(); 
- 
-        for(Iterator<Factura> iterator = lista_recibos.iterator(); iterator.hasNext();) { 
-            Factura next = iterator.next(); 
-            modelo_facturas.add(next); 
-        } 
-        tblVentas.setItems(modelo_facturas); 
+        colCliente.setCellValueFactory(new PropertyValueFactory<>("nombreCliente")); 
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("Fecha")); 
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        
+        List<Factura> f = factura_dao.getFacturas();
+        int tamF = f.size();
+        int i = 1;
+        while(i <= tamF) {
+            Factura factura_enviar = factura_dao.getFacturaByID(i);
+            Cliente cliente_enviar = cliente_dao.getClienteByID(factura_enviar.getClienteid().getIdCliente());
+            mostrarFacturas.add(new TablaMostrar(factura_enviar.getIdFactura(), cliente_enviar.getNombre(),factura_enviar.getFecha(), factura_enviar.getTotal()));
+            tblVentas.setItems(mostrarFacturas);
+            i++;
+        }
     }
     
     @FXML
@@ -90,7 +96,7 @@ public class FormVentasController implements Initializable {
     @FXML
     private void revisarVenta(ActionEvent event) throws IOException {
         try {
-            Factura factura_seleccionada = (Factura) tblVentas.getSelectionModel().getSelectedItem();
+            TablaMostrar factura_seleccionada = (TablaMostrar) tblVentas.getSelectionModel().getSelectedItem();
             Factura factura_enviar = factura_dao.getFacturaByID(factura_seleccionada.getIdFactura());
             try (FileWriter fileWriter = new FileWriter("factura.txt")) {
                 System.out.println(factura_enviar.getIdFactura());
